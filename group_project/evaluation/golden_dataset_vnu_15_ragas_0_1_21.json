@@ -1,0 +1,497 @@
+[
+  {
+    "id": "vnu_eval_001",
+    "schema_version": "golden-authoring-v1",
+    "ragas_version": "0.1.21",
+    "corpus_commit": "bf41e36b701ecb712e4d6e92d7aefc229727ac5e",
+    "category": "happy_case",
+    "difficulty": "easy",
+    "question": "Một học phần tại ĐHQGHN thường có khối lượng bao nhiêu tín chỉ?",
+    "ground_truth": "Một học phần thường có khối lượng từ 2 đến 5 tín chỉ và được tổ chức giảng dạy trọn vẹn trong một học kỳ; học phần thực tập thực tế là ngoại lệ được nêu trong quy chế.",
+    "ground_truth_context": [
+      "Mỗi học phần có khối lượng kiến thức từ 2 đến 5 tín chỉ, được tổ chức giảng dạy trọn vẹn trong một học kỳ, trừ học phần thực tập thực tế."
+    ],
+    "answerable": true,
+    "expected_behavior": "answer",
+    "source_document": "data/standardized/legal/quy-che-dao-tao-dai-hoc-dhqghn-3626.md",
+    "source_section": "Điều 5, Khoản 1",
+    "reference_document_ids": [
+      "quy-che-dao-tao-dai-hoc-dhqghn-3626"
+    ],
+    "query_language": "vi",
+    "answer_language": "vi",
+    "evaluation_metrics": [
+      "faithfulness",
+      "answer_relevancy",
+      "context_recall",
+      "context_precision"
+    ],
+    "tags": [
+      "dao_tao",
+      "hoc_phan",
+      "tin_chi"
+    ]
+  },
+  {
+    "id": "vnu_eval_002",
+    "schema_version": "golden-authoring-v1",
+    "ragas_version": "0.1.21",
+    "corpus_commit": "bf41e36b701ecb712e4d6e92d7aefc229727ac5e",
+    "category": "happy_case",
+    "difficulty": "easy",
+    "question": "Một năm học tại ĐHQGHN có bao nhiêu học kỳ chính và học kỳ phụ?",
+    "ground_truth": "Mỗi năm học có hai học kỳ chính và một học kỳ phụ.",
+    "ground_truth_context": [
+      "Mỗi năm học có hai học kỳ chính và một học kỳ phụ."
+    ],
+    "answerable": true,
+    "expected_behavior": "answer",
+    "source_document": "data/standardized/legal/quy-che-dao-tao-dai-hoc-dhqghn-3626.md",
+    "source_section": "Điều 16",
+    "reference_document_ids": [
+      "quy-che-dao-tao-dai-hoc-dhqghn-3626"
+    ],
+    "query_language": "vi",
+    "answer_language": "vi",
+    "evaluation_metrics": [
+      "faithfulness",
+      "answer_relevancy",
+      "context_recall",
+      "context_precision"
+    ],
+    "tags": [
+      "dao_tao",
+      "hoc_ky",
+      "nam_hoc"
+    ]
+  },
+  {
+    "id": "vnu_eval_003",
+    "schema_version": "golden-authoring-v1",
+    "ragas_version": "0.1.21",
+    "corpus_commit": "bf41e36b701ecb712e4d6e92d7aefc229727ac5e",
+    "category": "happy_case",
+    "difficulty": "easy",
+    "question": "Sinh viên đại học hệ chính quy cần đáp ứng tiêu chí chung nào để được xét học bổng khuyến khích học tập?",
+    "ground_truth": "Sinh viên phải có kết quả học tập và rèn luyện từ loại khá trở lên, đồng thời không bị kỷ luật từ mức khiển trách trở lên trong kỳ xét học bổng.",
+    "ground_truth_context": [
+      "Sinh viên có kết quả học tập, rèn luyện đạt từ loại khá trở lên và không bị kỷ luật từ mức khiển trách trở lên trong kỳ xét cấp học bổng."
+    ],
+    "answerable": true,
+    "expected_behavior": "answer",
+    "source_document": "data/standardized/legal/quy-dinh-hoc-bong-dhqghn-4618.md",
+    "source_section": "Điều 5, Khoản 3.1",
+    "reference_document_ids": [
+      "quy-dinh-hoc-bong-dhqghn-4618"
+    ],
+    "query_language": "vi",
+    "answer_language": "vi",
+    "evaluation_metrics": [
+      "faithfulness",
+      "answer_relevancy",
+      "context_recall",
+      "context_precision"
+    ],
+    "tags": [
+      "hoc_bong",
+      "kkht",
+      "dieu_kien"
+    ]
+  },
+  {
+    "id": "vnu_eval_004",
+    "schema_version": "golden-authoring-v1",
+    "ragas_version": "0.1.21",
+    "corpus_commit": "bf41e36b701ecb712e4d6e92d7aefc229727ac5e",
+    "category": "happy_case",
+    "difficulty": "easy",
+    "question": "Ký túc xá Hòa Lạc khu B,C có bao nhiêu phòng và bao nhiêu chỗ ở?",
+    "ground_truth": "Ký túc xá Hòa Lạc khu B,C có 432 phòng ở với tổng công suất 2.328 chỗ ở.",
+    "ground_truth_context": [
+      "Toàn khu ký túc xá có tổng công suất 432 phòng ở với 2.328 chỗ ở."
+    ],
+    "answerable": true,
+    "expected_behavior": "answer",
+    "source_document": "data/standardized/news/article_02.md",
+    "source_section": "Cơ sở vật chất",
+    "reference_document_ids": [
+      "article_02"
+    ],
+    "query_language": "vi",
+    "answer_language": "vi",
+    "evaluation_metrics": [
+      "faithfulness",
+      "answer_relevancy",
+      "context_recall",
+      "context_precision"
+    ],
+    "tags": [
+      "ky_tuc_xa",
+      "hoa_lac",
+      "suc_chua"
+    ]
+  },
+  {
+    "id": "vnu_eval_005",
+    "schema_version": "golden-authoring-v1",
+    "ragas_version": "0.1.21",
+    "corpus_commit": "bf41e36b701ecb712e4d6e92d7aefc229727ac5e",
+    "category": "happy_case",
+    "difficulty": "easy",
+    "question": "Cổng thông tin việc làm sinh viên ĐHQGHN hỗ trợ sinh viên những hoạt động nào?",
+    "ground_truth": "Cổng hỗ trợ cập nhật tin tuyển dụng, tìm cơ hội thực tập và việc làm theo ngành học, kết nối với doanh nghiệp và nhà tuyển dụng, đồng thời tiếp cận các chương trình hướng nghiệp và ngày hội việc làm.",
+    "ground_truth_context": [
+      "Sinh viên có thể cập nhật tin tuyển dụng, tìm cơ hội thực tập và việc làm theo ngành học, kết nối với doanh nghiệp, nhà tuyển dụng và tiếp cận các chương trình hướng nghiệp, ngày hội việc làm."
+    ],
+    "answerable": true,
+    "expected_behavior": "answer",
+    "source_document": "data/standardized/news/article_05.md",
+    "source_section": "Nội dung chính",
+    "reference_document_ids": [
+      "article_05"
+    ],
+    "query_language": "vi",
+    "answer_language": "vi",
+    "evaluation_metrics": [
+      "faithfulness",
+      "answer_relevancy",
+      "context_recall",
+      "context_precision"
+    ],
+    "tags": [
+      "viec_lam",
+      "thuc_tap",
+      "huong_nghiep"
+    ]
+  },
+  {
+    "id": "vnu_eval_006",
+    "schema_version": "golden-authoring-v1",
+    "ragas_version": "0.1.21",
+    "corpus_commit": "bf41e36b701ecb712e4d6e92d7aefc229727ac5e",
+    "category": "paraphrase_synonym",
+    "difficulty": "medium",
+    "question": "SV muốn học thêm CTĐT thứ 2 thì phải học CTĐT đầu ít nhất mấy kỳ?",
+    "ground_truth": "Sinh viên phải đã học ít nhất hai học kỳ của chương trình đào tạo thứ nhất.",
+    "ground_truth_context": [
+      "Sinh viên được đăng ký học thêm chương trình đào tạo thứ hai nếu đã học ít nhất hai học kỳ của chương trình đào tạo thứ nhất."
+    ],
+    "answerable": true,
+    "expected_behavior": "answer",
+    "source_document": "data/standardized/legal/quy-che-dao-tao-dai-hoc-dhqghn-3626.md",
+    "source_section": "Điều 26, Khoản 1, Điểm b",
+    "reference_document_ids": [
+      "quy-che-dao-tao-dai-hoc-dhqghn-3626"
+    ],
+    "query_language": "vi",
+    "answer_language": "vi",
+    "evaluation_metrics": [
+      "faithfulness",
+      "answer_relevancy",
+      "context_recall",
+      "context_precision"
+    ],
+    "tags": [
+      "viet_tat",
+      "ctdt",
+      "chuong_trinh_thu_hai"
+    ]
+  },
+  {
+    "id": "vnu_eval_007",
+    "schema_version": "golden-authoring-v1",
+    "ragas_version": "0.1.21",
+    "corpus_commit": "bf41e36b701ecb712e4d6e92d7aefc229727ac5e",
+    "category": "paraphrase_synonym",
+    "difficulty": "medium",
+    "question": "Phòng KTX HL có máy lạnh, nước nóng và chỗ ngồi học không?",
+    "ground_truth": "Có. Phòng ở được trang bị điều hòa nhiệt độ, bình nước nóng và bàn học; ngoài ra còn có giường tầng và tủ.",
+    "ground_truth_context": [
+      "Các phòng ở được trang bị giường tầng, tủ, bàn học, bình nước nóng và điều hòa nhiệt độ."
+    ],
+    "answerable": true,
+    "expected_behavior": "answer",
+    "source_document": "data/standardized/news/article_02.md",
+    "source_section": "Cơ sở vật chất",
+    "reference_document_ids": [
+      "article_02"
+    ],
+    "query_language": "vi",
+    "answer_language": "vi",
+    "evaluation_metrics": [
+      "faithfulness",
+      "answer_relevancy",
+      "context_recall",
+      "context_precision"
+    ],
+    "tags": [
+      "viet_tat",
+      "ktx",
+      "hoa_lac",
+      "tien_nghi"
+    ]
+  },
+  {
+    "id": "vnu_eval_008",
+    "schema_version": "golden-authoring-v1",
+    "ragas_version": "0.1.21",
+    "corpus_commit": "bf41e36b701ecb712e4d6e92d7aefc229727ac5e",
+    "category": "paraphrase_synonym",
+    "difficulty": "medium",
+    "question": "Xét HB KKHT thì GPA lấy điểm thi lần đầu hay điểm cải thiện?",
+    "ground_truth": "Điểm trung bình chung học tập dùng để xét học bổng được tính từ điểm thi hoặc kiểm tra hết môn lần thứ nhất, không lấy điểm cải thiện sau đó.",
+    "ground_truth_context": [
+      "Điểm trung bình chung học tập để xét học bổng cho sinh viên được tính từ điểm thi, kiểm tra hết môn học lần thứ nhất."
+    ],
+    "answerable": true,
+    "expected_behavior": "answer",
+    "source_document": "data/standardized/legal/quy-dinh-hoc-bong-dhqghn-4618.md",
+    "source_section": "Điều 5, Khoản 3.2, Điểm d",
+    "reference_document_ids": [
+      "quy-dinh-hoc-bong-dhqghn-4618"
+    ],
+    "query_language": "vi",
+    "answer_language": "vi",
+    "evaluation_metrics": [
+      "faithfulness",
+      "answer_relevancy",
+      "context_recall",
+      "context_precision"
+    ],
+    "tags": [
+      "viet_tat",
+      "hoc_bong",
+      "gpa",
+      "lan_thi_thu_nhat"
+    ]
+  },
+  {
+    "id": "vnu_eval_009",
+    "schema_version": "golden-authoring-v1",
+    "ragas_version": "0.1.21",
+    "corpus_commit": "bf41e36b701ecb712e4d6e92d7aefc229727ac5e",
+    "category": "edge_case",
+    "difficulty": "hard",
+    "question": "Một sinh viên chính quy có học lực khá, rèn luyện khá, không bị kỷ luật nhưng chỉ hoàn thành 12 tín chỉ trong học kỳ thì có đương nhiên đủ điều kiện nhận học bổng KKHT không?",
+    "ground_truth": "Không. Ngoài tiêu chí học tập, rèn luyện và kỷ luật, sinh viên phải hoàn thành ít nhất 15 tín chỉ trong học kỳ xét học bổng. Trường hợp đặc biệt chỉ được xem xét theo quyết định của Hiệu trưởng.",
+    "ground_truth_context": [
+      "Sinh viên có kết quả học tập, rèn luyện đạt từ loại khá trở lên và không bị kỷ luật từ mức khiển trách trở lên trong kỳ xét cấp học bổng.",
+      "Tại học kỳ xét học bổng, sinh viên được xét, cấp học bổng phải hoàn thành ít nhất 15 tín chỉ; trường hợp đặc biệt do Hiệu trưởng đơn vị đào tạo quyết định."
+    ],
+    "answerable": true,
+    "expected_behavior": "answer",
+    "source_document": "data/standardized/legal/quy-dinh-hoc-bong-dhqghn-4618.md",
+    "source_section": "Điều 5, Khoản 3.1 và Khoản 3.4, Điểm c",
+    "reference_document_ids": [
+      "quy-dinh-hoc-bong-dhqghn-4618"
+    ],
+    "query_language": "vi",
+    "answer_language": "vi",
+    "evaluation_metrics": [
+      "faithfulness",
+      "answer_relevancy",
+      "context_recall",
+      "context_precision"
+    ],
+    "tags": [
+      "hoc_bong",
+      "and_condition",
+      "tin_chi",
+      "ngoai_le"
+    ]
+  },
+  {
+    "id": "vnu_eval_010",
+    "schema_version": "golden-authoring-v1",
+    "ragas_version": "0.1.21",
+    "corpus_commit": "bf41e36b701ecb712e4d6e92d7aefc229727ac5e",
+    "category": "edge_case",
+    "difficulty": "hard",
+    "question": "Sinh viên đã học 2 học kỳ, ngành thứ hai khác ngành thứ nhất và có GPA 2,3. Trong trường hợp nào sinh viên vẫn có thể đăng ký chương trình đào tạo thứ hai?",
+    "ground_truth": "Sinh viên có thể đăng ký nếu đáp ứng điều kiện trúng tuyển của chương trình thứ hai trong năm tuyển sinh, đồng thời có đơn xin học chương trình thứ hai và trả học phí theo quy định. Phương án GPA từ 2,5 kèm ngưỡng bảo đảm chất lượng đầu vào không áp dụng vì GPA hiện tại là 2,3.",
+    "ground_truth_context": [
+      "Điều kiện điểm là: GPA từ 2,5 trở lên và đáp ứng ngưỡng bảo đảm chất lượng đầu vào, hoặc GPA từ 2,0 trở lên và đáp ứng điều kiện trúng tuyển của chương trình thứ hai trong năm tuyển sinh.",
+      "Sinh viên phải có đơn xin học thêm chương trình đào tạo thứ hai và trả học phí theo quy định của đơn vị đào tạo."
+    ],
+    "answerable": true,
+    "expected_behavior": "answer",
+    "source_document": "data/standardized/legal/quy-che-dao-tao-dai-hoc-dhqghn-3626.md",
+    "source_section": "Điều 26, Khoản 1, Điểm c-d",
+    "reference_document_ids": [
+      "quy-che-dao-tao-dai-hoc-dhqghn-3626"
+    ],
+    "query_language": "vi",
+    "answer_language": "vi",
+    "evaluation_metrics": [
+      "faithfulness",
+      "answer_relevancy",
+      "context_recall",
+      "context_precision"
+    ],
+    "tags": [
+      "chuong_trinh_thu_hai",
+      "or_condition",
+      "gpa",
+      "tuyen_sinh"
+    ]
+  },
+  {
+    "id": "vnu_eval_011",
+    "schema_version": "golden-authoring-v1",
+    "ragas_version": "0.1.21",
+    "corpus_commit": "bf41e36b701ecb712e4d6e92d7aefc229727ac5e",
+    "category": "edge_case",
+    "difficulty": "hard",
+    "question": "Trong thủ tục nội trú năm học 2025-2026 dành cho học sinh chuyên đã được xét duyệt, QH2025 và QH2023/QH2024 phải thực hiện các bước khác nhau như thế nào?",
+    "ground_truth": "Học sinh QH2025 phải thực hiện đủ ba bước: hoàn thiện hồ sơ nội trú, nộp lệ phí và dịch vụ gia tăng, rồi làm thủ tục nhận phòng. Học sinh QH2023 và QH2024 chỉ thực hiện bước 2 và bước 3.",
+    "ground_truth_context": [
+      "Học sinh QH2025 thực hiện đủ 03 bước; học sinh QH2023, QH2024 thực hiện bước 02 và 03."
+    ],
+    "answerable": true,
+    "expected_behavior": "answer",
+    "source_document": "data/standardized/news/article_03.md",
+    "source_section": "Quy trình làm thủ tục nội trú năm học 2025-2026",
+    "reference_document_ids": [
+      "article_03"
+    ],
+    "query_language": "vi",
+    "answer_language": "vi",
+    "valid_at": "2025-08-03",
+    "temporal_scope": "historical_2025_2026",
+    "evaluation_metrics": [
+      "faithfulness",
+      "answer_relevancy",
+      "context_recall",
+      "context_precision"
+    ],
+    "tags": [
+      "ky_tuc_xa",
+      "multi_condition",
+      "temporal",
+      "hoc_sinh_chuyen"
+    ]
+  },
+  {
+    "id": "vnu_eval_012",
+    "schema_version": "golden-authoring-v1",
+    "ragas_version": "0.1.21",
+    "corpus_commit": "bf41e36b701ecb712e4d6e92d7aefc229727ac5e",
+    "category": "out_of_domain",
+    "difficulty": "medium",
+    "question": "Học phí ngành Công nghệ thông tin UET năm học 2026-2027 là bao nhiêu?",
+    "ground_truth": "Không đủ thông tin trong bộ tài liệu hiện tại để xác định học phí ngành Công nghệ thông tin UET năm học 2026-2027. Hệ thống phải từ chối suy đoán và đề nghị người dùng kiểm tra thông báo học phí chính thức mới nhất của UET.",
+    "ground_truth_context": [],
+    "answerable": false,
+    "expected_behavior": "abstain",
+    "source_document": null,
+    "source_section": null,
+    "reference_document_ids": [],
+    "query_language": "vi",
+    "answer_language": "vi",
+    "evaluation_metrics": [
+      "abstention_accuracy",
+      "unsupported_claim_rate"
+    ],
+    "tags": [
+      "unanswerable",
+      "hoc_phi",
+      "current_information",
+      "hallucination_resistance"
+    ]
+  },
+  {
+    "id": "vnu_eval_013",
+    "schema_version": "golden-authoring-v1",
+    "ragas_version": "0.1.21",
+    "corpus_commit": "bf41e36b701ecb712e4d6e92d7aefc229727ac5e",
+    "category": "out_of_domain",
+    "difficulty": "medium",
+    "question": "Thư viện ĐHQGHN mở cửa đến mấy giờ vào Chủ nhật?",
+    "ground_truth": "Bộ tài liệu hiện tại không cung cấp giờ mở cửa Chủ nhật của thư viện ĐHQGHN. Hệ thống phải nói rõ không tìm thấy thông tin và không tự suy đoán thời gian.",
+    "ground_truth_context": [],
+    "answerable": false,
+    "expected_behavior": "abstain",
+    "source_document": null,
+    "source_section": null,
+    "reference_document_ids": [],
+    "query_language": "vi",
+    "answer_language": "vi",
+    "evaluation_metrics": [
+      "abstention_accuracy",
+      "unsupported_claim_rate"
+    ],
+    "tags": [
+      "unanswerable",
+      "thu_vien",
+      "gio_mo_cua",
+      "hallucination_resistance"
+    ]
+  },
+  {
+    "id": "vnu_eval_014",
+    "schema_version": "golden-authoring-v1",
+    "ragas_version": "0.1.21",
+    "corpus_commit": "bf41e36b701ecb712e4d6e92d7aefc229727ac5e",
+    "category": "multilingual_cross_lingual",
+    "difficulty": "medium",
+    "question": "What is the minimum weight of the final course assessment in the overall course grade at VNU?",
+    "ground_truth": "The final course assessment is mandatory and must account for at least 60% of the overall course grade.",
+    "ground_truth_context": [
+      "Điểm đánh giá kết thúc học phần là bắt buộc và có trọng số không dưới 60% điểm của học phần."
+    ],
+    "answerable": true,
+    "expected_behavior": "answer",
+    "source_document": "data/standardized/legal/quy-che-dao-tao-dai-hoc-dhqghn-3626.md",
+    "source_section": "Điều 37, Khoản 1",
+    "reference_document_ids": [
+      "quy-che-dao-tao-dai-hoc-dhqghn-3626"
+    ],
+    "query_language": "en",
+    "answer_language": "en",
+    "evaluation_metrics": [
+      "faithfulness",
+      "answer_relevancy",
+      "context_recall",
+      "context_precision"
+    ],
+    "tags": [
+      "cross_lingual",
+      "assessment",
+      "final_exam",
+      "percentage"
+    ]
+  },
+  {
+    "id": "vnu_eval_015",
+    "schema_version": "golden-authoring-v1",
+    "ragas_version": "0.1.21",
+    "corpus_commit": "bf41e36b701ecb712e4d6e92d7aefc229727ac5e",
+    "category": "multilingual_cross_lingual",
+    "difficulty": "medium",
+    "question": "For regular undergraduate students, how many months per academic year is the merit scholarship paid?",
+    "ground_truth": "The scholarship is awarded by semester and is paid for 10 months in an academic year.",
+    "ground_truth_context": [
+      "Học bổng được cấp theo từng học kỳ và cấp 10 tháng trong năm học."
+    ],
+    "answerable": true,
+    "expected_behavior": "answer",
+    "source_document": "data/standardized/legal/quy-dinh-hoc-bong-dhqghn-4618.md",
+    "source_section": "Điều 5, Khoản 3.4, Điểm c",
+    "reference_document_ids": [
+      "quy-dinh-hoc-bong-dhqghn-4618"
+    ],
+    "query_language": "en",
+    "answer_language": "en",
+    "evaluation_metrics": [
+      "faithfulness",
+      "answer_relevancy",
+      "context_recall",
+      "context_precision"
+    ],
+    "tags": [
+      "cross_lingual",
+      "scholarship",
+      "duration"
+    ]
+  }
+]
