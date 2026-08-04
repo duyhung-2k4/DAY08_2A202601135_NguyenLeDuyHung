@@ -28,6 +28,43 @@ STANDARDIZED_DIR = Path(__file__).parent.parent / "data" / "standardized"
 CHUNK_SIZE = 800
 CHUNK_OVERLAP = 100
 
+# Corpus của nhóm là tiếng Việt (VNU/DHQGHN) nhưng người dùng có thể hỏi bằng
+# tiếng Anh. BM25 match theo token chính xác nên không tự bắc cầu ngôn ngữ được
+# — cần expand query sang tiếng Việt cho các thuật ngữ hành chính đại học phổ
+# biến trước khi tokenize. Đây không phải dịch máy đầy đủ, chỉ đủ cho domain
+# của bài lab (học phí, học bổng, ký túc xá, đăng ký học phần...).
+EN_VI_GLOSSARY: dict[str, list[str]] = {
+    "tuition": ["học", "phí"],
+    "fee": ["phí", "lệ", "phí"],
+    "fees": ["phí", "lệ", "phí"],
+    "payment": ["thanh", "toán", "nộp"],
+    "policy": ["quy", "định", "chính", "sách"],
+    "scholarship": ["học", "bổng"],
+    "scholarships": ["học", "bổng"],
+    "eligibility": ["điều", "kiện", "tiêu", "chuẩn"],
+    "eligible": ["đủ", "điều", "kiện"],
+    "library": ["thư", "viện"],
+    "study": ["học", "tập", "tự", "học"],
+    "room": ["phòng"],
+    "university": ["đại", "học"],
+    "dormitory": ["ký", "túc", "xá"],
+    "accommodation": ["ký", "túc", "xá", "chỗ", "ở"],
+    "registration": ["đăng", "ký"],
+    "course": ["học", "phần", "môn", "học"],
+    "student": ["sinh", "viên"],
+    "students": ["sinh", "viên"],
+    "academic": ["học", "vụ", "đào", "tạo"],
+}
+
+
+def _expand_query(query: str) -> list[str]:
+    """Tokenize + mở rộng query bằng glossary Anh-Việt (xem EN_VI_GLOSSARY)."""
+    tokens = query.lower().split()
+    expanded = list(tokens)
+    for tok in tokens:
+        expanded.extend(EN_VI_GLOSSARY.get(tok, []))
+    return expanded
+
 
 def load_corpus() -> list[dict]:
     """
@@ -93,7 +130,7 @@ def lexical_search(query: str, top_k: int = 10) -> list[dict]:
     if _BM25_INDEX is None:
         _BM25_INDEX = build_bm25_index(CORPUS)
 
-    tokenized_query = query.lower().split()
+    tokenized_query = _expand_query(query)
     scores = _BM25_INDEX.get_scores(tokenized_query)
 
     top_indices = np.argsort(scores)[::-1][:top_k]
