@@ -6,14 +6,16 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+VNU_GOLDEN_DATASET_PATH = Path(__file__).parent / "golden_dataset_vnu_15_ragas_0_1_21.json"
 GOLDEN_DATASET_PATH = Path(__file__).parent / "golden_dataset.json"
 RESULTS_PATH = Path(__file__).parent / "results.md"
 DETAILS_PATH = Path(__file__).parent / "eval_details.json"
 
 
 def load_golden_dataset() -> list[dict]:
-    """Load golden dataset từ JSON file."""
-    with open(GOLDEN_DATASET_PATH, "r", encoding="utf-8") as f:
+    """Load golden dataset từ JSON file (ưu tiên golden_dataset_vnu_15_ragas_0_1_21.json)."""
+    target_path = VNU_GOLDEN_DATASET_PATH if VNU_GOLDEN_DATASET_PATH.exists() else GOLDEN_DATASET_PATH
+    with open(target_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -86,10 +88,10 @@ def get_evaluator_stack():
 # Direct Retrieval Metrics (Recall@k, MRR, Hit Rate)
 # =============================================================================
 
-def compute_retrieval_metrics(retrieved_sources: list[dict], ground_truth_contexts: list[str], source_document: str = "") -> dict:
+def compute_retrieval_metrics(retrieved_sources: list[dict], ground_truth_contexts: list[str], source_document: str = "", reference_doc_ids: list[str] = None) -> dict:
     """
     Tính toán các chỉ số đánh giá Retriever độc lập (không cần LLM Generator):
-    - Hit Rate: Có lấy được chunk nào thuộc source_document không?
+    - Hit Rate: Có lấy được chunk nào thuộc source_document / reference_doc_ids không?
     - Recall@k: Tỷ lệ chuỗi văn bản ground truth xuất hiện trong retrieved contexts.
     - MRR (Mean Reciprocal Rank): Thứ hạng nghịch đảo của chunk đúng đầu tiên.
     """
@@ -97,27 +99,29 @@ def compute_retrieval_metrics(retrieved_sources: list[dict], ground_truth_contex
 
     # 1. Document Hit Rate
     hit = 0
-    if source_document:
-        for s in retrieved_sources:
-            src_name = s.get("metadata", {}).get("source", "") if isinstance(s, dict) else ""
-            if source_document in src_name or src_name in source_document:
-                hit = 1
-                break
+    ref_ids = reference_doc_ids or []
+    for s in retrieved_sources:
+        src_name = s.get("metadata", {}).get("source", "") if isinstance(s, dict) else ""
+        if (source_document and (source_document in src_name or src_name in source_document)) or \
+           any(ref_id in src_name for ref_id in ref_ids if ref_id):
+            hit = 1
+            break
 
     # 2. Recall@k
     recalled_count = 0
-    if ground_truth_contexts:
-        for gt in ground_truth_contexts:
+    valid_gts = [gt for gt in ground_truth_contexts if gt]
+    if valid_gts:
+        for gt in valid_gts:
             if any(gt[:50].lower() in ret.lower() for ret in retrieved_texts if ret):
                 recalled_count += 1
-        recall_at_k = recalled_count / len(ground_truth_contexts)
+        recall_at_k = recalled_count / len(valid_gts)
     else:
         recall_at_k = 1.0 if not retrieved_texts else 0.0
 
     # 3. MRR (Mean Reciprocal Rank)
     mrr = 0.0
     for rank, ret in enumerate(retrieved_texts, start=1):
-        if any(gt[:50].lower() in ret.lower() for gt in ground_truth_contexts if gt):
+        if valid_gts and any(gt[:50].lower() in ret.lower() for gt in valid_gts if gt):
             mrr = 1.0 / rank
             break
 
@@ -167,9 +171,10 @@ def evaluate_with_ragas(rag_pipeline_fn, golden_dataset: list[dict], evaluator_s
         sample_id = item.get("id", "N/A")
         category = item.get("category", "general")
         question = item.get("question", "")
-        ground_truth = item.get("expected_answer", item.get("ground_truth", ""))
-        gt_contexts = item.get("ground_truth_context", [item.get("expected_context", "")])
-        source_doc = item.get("source_document", "")
+        ground_truth = item.get("ground_truth") or item.get("expected_answer", "")
+        gt_contexts = item.get("ground_truth_context") or [item.get("expected_context", "")]
+        source_doc = item.get("source_document") or ""
+        ref_doc_ids = item.get("reference_document_ids", [])
 
         start_time = time.time()
         status = "success"
@@ -198,7 +203,7 @@ def evaluate_with_ragas(rag_pipeline_fn, golden_dataset: list[dict], evaluator_s
                 contexts = [""]
 
             # Compute direct retrieval metrics
-            ret_metrics = compute_retrieval_metrics(sources if isinstance(result, dict) else [], gt_contexts, source_doc)
+            ret_metrics = compute_retrieval_metrics(sources if isinstance(result, dict) else [], gt_contexts, source_doc, ref_doc_ids)
 
             # Store for Ragas evaluation (ONLY SUCCESSFUL SAMPLES)
             valid_eval_data["question"].append(question)
@@ -215,6 +220,7 @@ def evaluate_with_ragas(rag_pipeline_fn, golden_dataset: list[dict], evaluator_s
                 "ground_truth_answer": ground_truth,
                 "ground_truth_context": gt_contexts,
                 "source_document": source_doc,
+                "reference_document_ids": ref_doc_ids,
                 "retrieval_metrics": ret_metrics,
                 "status": "success",
                 "latency_seconds": round(latency, 3),
@@ -230,6 +236,7 @@ def evaluate_with_ragas(rag_pipeline_fn, golden_dataset: list[dict], evaluator_s
                 "ground_truth_answer": ground_truth,
                 "ground_truth_context": gt_contexts,
                 "source_document": source_doc,
+                "reference_document_ids": ref_doc_ids,
                 "retrieval_metrics": {"hit_rate": 0.0, "recall_at_k": 0.0, "mrr": 0.0},
                 "status": "pipeline_error",
                 "latency_seconds": round(latency, 3),
