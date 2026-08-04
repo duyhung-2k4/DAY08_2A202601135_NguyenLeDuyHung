@@ -27,7 +27,12 @@ Xây dựng một RAG pipeline thực tế, end-to-end, từ thu thập dữ li�
 
 **Chính sách/quy định dịch vụ đại học** (học phí, học bổng, ký túc xá, đăng ký học phần) + **Thông tin/thông báo đại học** (sự kiện, dịch vụ thư viện, hỗ trợ sinh viên)
 
-Dữ liệu mẫu trong repo được crawl thật từ trang công khai của **RMIT Vietnam** (rmit.edu.vn) — xem chi tiết URL nguồn trong `src/task1_collect_legal_docs.py` và `src/task2_crawl_news.py`.
+Dữ liệu trong repo được thu thập thật từ trang công khai của **Đại học Quốc gia Hà Nội (VNU)** — xem chi tiết URL nguồn trong `src/task1_collect_legal_docs.py` (`DOCUMENTS`) và `src/task2_crawl_news.py` (`ARTICLE_URLS`).
+
+| Loại | Số lượng | Nguồn |
+|------|----------|-------|
+| Văn bản chính sách (PDF) | 5 | `ussh.vnu.edu.vn` (Quy chế đào tạo ĐH — QĐ 3626), `uet.vnu.edu.vn` (Quy định học bổng QĐ 4618, Sổ tay học vụ 2019/2020, Quy định thời gian học tập) |
+| Bài viết/thông báo | 9 | `css.vnu.edu.vn` (ký túc xá, nội trú, việc làm sinh viên), `uet.vnu.edu.vn` (định mức học phí 2025-2026, quy chế đào tạo, học bổng) |
 
 ---
 
