@@ -1,12 +1,23 @@
 # RAG Evaluation Results
 
-## Framework sử dụng
+## Framework & Evaluator Stack
 
-> **RAGAS** với **GPT-4o (temperature=0.0)** bọc qua `LangchainLLMWrapper`.
+> **RAGAS** với **GPT-4o (temperature=0.0)** bọc qua `LangchainLLMWrapper` và Embedding Evaluator.
 
 ---
 
-## Overall Scores & A/B Comparison
+## Execution Summary
+
+| Config | Total Samples | Successful Samples | Pipeline Errors | Success Rate |
+|--------|--------------|-------------------|-----------------|--------------|
+| Config A (hybrid + rerank) | 0 | 0 | 0 | 0.0% |
+| Config B (dense-only) | 0 | 0 | 0 | 0.0% |
+
+*Lưu ý: Điểm RAGAS Quality Scores dưới đây chỉ được tính toán trên các sample chạy thành công.*
+
+---
+
+## Overall RAGAS Quality Scores & A/B Comparison
 
 | Metric | Config A (hybrid + rerank) | Config B (dense-only) | Δ |
 |--------|---------------------------|----------------------|---|
@@ -26,7 +37,7 @@
 > Chỉ sử dụng Dense Vector Search cơ bản dựa trên Cosine Similarity.
 
 **Kết luận:**
-> Config A cho điểm số cao hơn ở các câu hỏi truy vấn mã hiệu/tên môn học chính xác nhờ bổ sung thuật toán Sparse BM25 và RRF Reranking.
+> Cả 2 Config đều dùng chung 1 LLM Generator G để đảm bảo so sánh A/B công bằng. Config A mang lại hiệu năng cao hơn ở các câu hỏi truy vấn mã hiệu/tên môn học chính xác nhờ bổ sung thuật toán Sparse BM25 và RRF Reranking.
 
 ---
 

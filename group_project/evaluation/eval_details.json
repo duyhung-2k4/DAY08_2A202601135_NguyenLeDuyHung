@@ -1,0 +1,22 @@
+{
+  "Config A (hybrid + rerank)": {
+    "execution_summary": {
+      "total": 15,
+      "successful": 0,
+      "pipeline_error": 15,
+      "success_rate": 0.0
+    },
+    "overall_scores": {},
+    "audit_log": []
+  },
+  "Config B (dense-only)": {
+    "execution_summary": {
+      "total": 15,
+      "successful": 0,
+      "pipeline_error": 15,
+      "success_rate": 0.0
+    },
+    "overall_scores": {},
+    "audit_log": []
+  }
+}
