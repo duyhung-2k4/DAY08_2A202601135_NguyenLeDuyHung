@@ -31,9 +31,18 @@ openai>=1.30.0
 streamlit>=1.35.0
 
 # Group project - Evaluation
-ragas==0.1.21
+# ragas==0.1.21 (ban goc cua de bai) KHONG cai duoc tren Python 3.13: no keo theo
+# langchain-community<0.3, ma ban do doi numpy<2.0 -- numpy 1.26.x lai khong co wheel
+# san cho Python 3.13 nen pip phai build tu source va can compiler C (may khong co).
+# Dung ragas moi (ho tro numpy 2.x) thay the.
+ragas>=0.4.0
 datasets>=2.14.0
 langchain-openai>=0.1.0
+# ragas>=0.4 khong pin langchain-community nen pip mac dinh lay ban 0.4.x, nhung ban
+# do da bo module langchain_community.chat_models.vertexai ma ragas.llms.base import
+# thang (khong lazy-import) -> "ModuleNotFoundError: vertexai" ngay khi `import ragas`.
+# Ghim ve 0.3.30 (ban cuoi con giu module nay, van ho tro numpy 2.x tren Python 3.13).
+langchain-community==0.3.30
 
 # Testing (dung de cham diem bai ca nhan)
 pytest>=7.0.0

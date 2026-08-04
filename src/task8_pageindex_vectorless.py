@@ -25,6 +25,7 @@ có field "deprecation" cảnh báo) và trả kết quả trong "retrieved_node
 import json
 import os
 import time
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from pathlib import Path
 
 from dotenv import load_dotenv
@@ -35,11 +36,22 @@ load_dotenv()
 
 PAGEINDEX_API_KEY = os.getenv("PAGEINDEX_API_KEY", "")
 STANDARDIZED_DIR = Path(__file__).parent.parent / "data" / "standardized"
-PDF_CACHE_DIR = Path(__file__).parent.parent / "data" / "pageindex_pdf"
-DOC_REGISTRY_PATH = Path(__file__).parent.parent / "data" / "pageindex_docs.json"
+# Tên khớp với .gitignore sẵn có (pageindex_pdfs/, pageindex_doc_ids.json) — không
+# commit PDF trung gian hay doc_id gắn với tài khoản PageIndex của từng người.
+PDF_CACHE_DIR = Path(__file__).parent.parent / "data" / "pageindex_pdfs"
+DOC_REGISTRY_PATH = Path(__file__).parent.parent / "data" / "pageindex_doc_ids.json"
 
 POLL_INTERVAL_SECONDS = 3
 POLL_TIMEOUT_SECONDS = 300
+
+
+# Font mặc định của fpdf2 (Helvetica/Times/Courier) chỉ hỗ trợ latin-1 — không đủ
+# cho tiếng Việt có dấu. Dùng font Unicode có sẵn trên máy để convert đúng nội dung.
+_UNICODE_FONT_CANDIDATES = [
+    "/Library/Fonts/Arial Unicode.ttf",
+    "/System/Library/Fonts/Supplemental/Arial Unicode.ttf",
+    "/System/Library/Fonts/Supplemental/NotoSans-Regular.ttf",
+]
 
 
 def _markdown_to_pdf(md_path: Path, pdf_path: Path) -> None:
@@ -47,10 +59,23 @@ def _markdown_to_pdf(md_path: Path, pdf_path: Path) -> None:
     pdf = FPDF()
     pdf.set_auto_page_break(auto=True, margin=15)
     pdf.add_page()
-    pdf.set_font("Helvetica", size=11)
+
+    font_path = next((p for p in _UNICODE_FONT_CANDIDATES if Path(p).exists()), None)
+    if font_path:
+        pdf.add_font("Unicode", "", font_path)
+        pdf.set_font("Unicode", size=11)
+    else:
+        pdf.set_font("Helvetica", size=11)
+
     text = md_path.read_text(encoding="utf-8")
     for line in text.splitlines() or [""]:
-        pdf.multi_cell(0, 6, line.encode("latin-1", "replace").decode("latin-1"))
+        if not font_path:
+            line = line.encode("latin-1", "replace").decode("latin-1")
+        # multi_cell() để lại con trỏ X gần lề phải sau khi wrap dòng dài — phải
+        # reset về lề trái trước mỗi dòng, nếu không dòng kế tiếp gần như hết
+        # chỗ ngang và fpdf2 raise "Not enough horizontal space".
+        pdf.set_x(pdf.l_margin)
+        pdf.multi_cell(0, 6, line or " ")
     pdf.output(str(pdf_path))
 
 
@@ -130,9 +155,8 @@ def pageindex_search(query: str, top_k: int = 5) -> list[dict]:
 
     client = PageIndexClient(api_key=PAGEINDEX_API_KEY)
 
-    results: list[dict] = []
-    rank = 0
-    for filename, doc_id in registry.items():
+    def _query_one(filename: str, doc_id: str) -> list[dict]:
+        _wait_until_retrieval_ready(client, doc_id)
         resp = client.submit_query(doc_id=doc_id, query=query)
         retrieval_id = resp["retrieval_id"]
 
@@ -142,21 +166,35 @@ def pageindex_search(query: str, top_k: int = 5) -> list[dict]:
             time.sleep(POLL_INTERVAL_SECONDS)
             retrieval = client.get_retrieval(retrieval_id)
 
+        items = []
         for node in retrieval.get("retrieved_nodes", []):
             for group in node.get("relevant_contents", []):
                 for item in group:
-                    rank += 1
-                    results.append({
+                    items.append({
                         "content": item.get("relevant_content", ""),
-                        # PageIndex không trả score trực tiếp — tự gán theo rank
-                        # (giảm dần, tối đa 1.0) để nhất quán format với Task 5/6.
-                        "score": max(0.0, 1.0 - 0.05 * (rank - 1)),
                         "metadata": {"source": filename, "section": item.get("section_title")},
                         "source": "pageindex",
                     })
+        return items
 
-    results.sort(key=lambda r: r["score"], reverse=True)
-    return results[:top_k]
+    # Mỗi document là 1 request/poll độc lập (SDK chỉ nhận 1 doc_id/query) — chạy
+    # song song bằng thread pool thay vì tuần tự, nếu không query trên 13 doc sẽ
+    # rất chậm (tổng thời gian = tổng round-trip từng doc thay vì round-trip lớn nhất).
+    all_items: list[dict] = []
+    with ThreadPoolExecutor(max_workers=min(8, len(registry))) as pool:
+        futures = {
+            pool.submit(_query_one, filename, doc_id): filename
+            for filename, doc_id in registry.items()
+        }
+        for future in as_completed(futures):
+            all_items.extend(future.result())
+
+    # PageIndex không trả score trực tiếp — tự gán theo rank tổng hợp (giảm dần,
+    # tối đa 1.0) để nhất quán format với Task 5/6.
+    for rank, item in enumerate(all_items, 1):
+        item["score"] = max(0.0, 1.0 - 0.05 * (rank - 1))
+
+    return all_items[:top_k]
 
 
 if __name__ == "__main__":
