@@ -4,6 +4,8 @@ requests>=2.31.0
 numpy>=1.24.0
 
 # Task 2 - Crawling
+# Sau khi pip install, PHAI chay them: playwright install chromium
+# (crawl4ai khong tu tai browser binary -> loi "BrowserType.launch: Executable doesn't exist")
 crawl4ai>=0.3.0
 
 # Task 3 - Document conversion
