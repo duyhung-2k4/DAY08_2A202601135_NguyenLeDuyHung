@@ -1,0 +1,1138 @@
+{
+  "metadata": {
+    "evaluator_framework": "RAGAS v0.1.21",
+    "evaluator_llm": "GPT-4o (temperature=0.0)",
+    "benchmark_dataset": "golden_dataset_vnu_15_ragas_0_1_21.json",
+    "timestamp": "2026-08-04T05:59:06Z"
+  },
+  "execution_summary": {
+    "config_a_hybrid_rerank": {
+      "total_samples": 15,
+      "successful_samples": 15,
+      "pipeline_error_samples": 0,
+      "pipeline_success_rate": 100.0
+    },
+    "config_b_dense_only": {
+      "total_samples": 15,
+      "successful_samples": 15,
+      "pipeline_error_samples": 0,
+      "pipeline_success_rate": 100.0
+    }
+  },
+  "overall_scores": {
+    "config_a_hybrid_rerank": {
+      "faithfulness": 0.8111111111111112,
+      "answer_relevancy": 0.6856639615343558,
+      "context_recall": 0.8333333333333334,
+      "context_precision": 0.6981481480880246
+    },
+    "config_b_dense_only": {
+      "faithfulness": 0.6404761904761905,
+      "answer_relevancy": 0.6248650027775402,
+      "context_recall": 0.7333333333333333,
+      "context_precision": 0.7133333332687779
+    }
+  },
+  "metrics_comparison": {
+    "faithfulness": {
+      "config_a_score": 0.8111,
+      "config_b_score": 0.6405,
+      "delta_a_minus_b": 0.1706
+    },
+    "answer_relevancy": {
+      "config_a_score": 0.6857,
+      "config_b_score": 0.6249,
+      "delta_a_minus_b": 0.0608
+    },
+    "context_recall": {
+      "config_a_score": 0.8333,
+      "config_b_score": 0.7333,
+      "delta_a_minus_b": 0.1
+    },
+    "context_precision": {
+      "config_a_score": 0.6981,
+      "config_b_score": 0.7133,
+      "delta_a_minus_b": -0.0152
+    }
+  },
+  "ab_comparison_results": {
+    "Config A (hybrid + rerank)": {
+      "overall_scores": {
+        "faithfulness": 0.8111111111111112,
+        "answer_relevancy": 0.6856639615343558,
+        "context_recall": 0.8333333333333334,
+        "context_precision": 0.6981481480880246
+      },
+      "execution_summary": {
+        "total_samples": 15,
+        "successful_samples": 15,
+        "pipeline_error_samples": 0,
+        "pipeline_success_rate": 100.0
+      },
+      "audit_log": [
+        {
+          "sample_id": "vnu_eval_001",
+          "category": "happy_case",
+          "question": "Một học phần tại ĐHQGHN thường có khối lượng bao nhiêu tín chỉ?",
+          "answer": "Một học phần tại Đại học Quốc gia Hà Nội (ĐHQGHN) thường có khối lượng kiến thức từ 2 đến 5 tín chỉ [Document 1].",
+          "retrieved_contexts": [
+            "tra đánh giá.\nĐiều 5. Học phần\n1. Học phần là một phần kiến thức của chương trình đào tạo; mỗi học phần\ncó khối lượng kiến thức từ 2 đến 5 tín chỉ, được tổ chức giảng dạy trọn vẹn trong\nmột học kỳ (trừ học phần thực tập thực tế); mỗi học phần có mã số riêng do thủ\ntrưởng đơn vị đào tạo ban hành dựa trên nguyên tắc đánh mã của Đại học Quốc gia\nHà Nội.",
+            "Để đảm bảo tiến độ thời gian hoàn thành khóa học và đảm bảo chất lượng học tập,\nmỗi học kỳ sinh viên đăng ký với số lượng tín chỉ (không bao gồm các học phần ngoại\nngữ, giáo dục thể chất, giáo dục quốc phòng - an ninh, kỹ năng bổ trợ, cải thiện điểm, tự\nchọn tự do) như sau:\nHọc kỳ chính, không tính học kỳ cuối khóa: tất cả sinh viên phải thực hiện đăng ký\nlớp học phần trước khi học kỳ mới bắt đầu. Số tín chỉ tối thiểu sinh viên phải đăng ký: 14\ntín chỉ đối với sinh viên hệ chuẩn, 16 tín chỉ đối với chất lượng cao và chuẩn quốc tế. Số\ntín chỉ tối đa được phép đăng ký: 25 tín chỉ đối với sinh viên theo học một ngành, 28 tín\nchỉ đối với sinh viên theo học bằng kép. Chỉ những sinh viên đăng ký 14 tín chỉ trở lên\nmới được xét học bổng khuyến khích học tập. Trường hợp sinh viên có nguyện vọng",
+            "13\nChương trình đào tạo song ngành gồm hai phần: Chương trình đào tạo ngành\nthứ nhất có khối lượng kiến thức tối thiểu là 120 tín chỉ, ngành thứ hai có khối\nlượng kiến thức từ 30 tín chỉ trở lên (những học phần giống nhau, tương đương\ngiữa hai chương trình đào tạo chỉ được tính khối lượng kiến thức một lần). Việc tổ\nchức và quản lý đào tạo được thực hiện liên thông giữa các khoa/bộ môn trong\ncùng một đơn vị đào tạo, giữa các đơn vị đào tạo trong Đại học Quốc gia Hà Nội;\ne) Chương trình đào tạo liên kết với cơ sở giáo dục nước ngoài do Đại học\nQuốc gia Hà Nội cấp bằng được thiết kế theo quy định của Đại học Quốc gia Hà\nNội và tham khảo chương trình đào tạo của đối tác nước ngoài để điều chỉnh, bổ\nsung đáp ứng yêu cầu và điều kiện thực tế của Việt Nam;",
+            "tập, mỗi học kỳ sinh viên đăng ký với số lượng tín chỉ (không bao gồm các học phần\nngoại ngữ, giáo dục thể chất, giáo dục quốc phòng - an ninh, kỹ năng bổ trợ, cải thiện\nđiểm, tự chọn tự do) như sau:\n5",
+            "b) Đối với đào tạo theo hình thức chính quy và vừa làm vừa học, tối đa 30%\ntổng khối lượng của chương trình đào tạo được thực hiện bằng lớp học trực tuyến.\nTrong trường hợp thiên tai, dịch bệnh phức tạp và các trường hợp bất khả kháng\nkhác, đơn vị đào tạo thực hiện theo hướng dẫn của Bộ Giáo dục và Đào tạo và của\nĐại học Quốc gia Hà Nội.\nĐiều 21. Tổ chức đăng ký học phần\n1. Số tín chỉ đăng ký học trong mỗi học kỳ chính (không bao gồm các học\nphần giáo dục thể chất, giáo dục quốc phòng - an ninh, kỹ năng bổ trợ, cải thiện\nđiểm, tự chọn tự do) đảm bảo điều kiện khối lượng đăng ký tối thiểu không ít hơn\n2/3 khối lượng trung bình một học kỳ theo kế hoạch học tập chuẩn; khối lượng tối\nđa không vượt quá 3/2 khối lượng trung bình một học kỳ theo kế hoạch học tập"
+          ],
+          "ground_truth_answer": "Một học phần thường có khối lượng từ 2 đến 5 tín chỉ và được tổ chức giảng dạy trọn vẹn trong một học kỳ; học phần thực tập thực tế là ngoại lệ được nêu trong quy chế.",
+          "ground_truth_context": [
+            "Mỗi học phần có khối lượng kiến thức từ 2 đến 5 tín chỉ, được tổ chức giảng dạy trọn vẹn trong một học kỳ, trừ học phần thực tập thực tế."
+          ],
+          "source_document": "data/standardized/legal/quy-che-dao-tao-dai-hoc-dhqghn-3626.md",
+          "reference_document_ids": [
+            "quy-che-dao-tao-dai-hoc-dhqghn-3626"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 13.721,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.9658408984984006,
+            "context_recall": 1.0,
+            "context_precision": 0.9999999999
+          }
+        },
+        {
+          "sample_id": "vnu_eval_002",
+          "category": "happy_case",
+          "question": "Một năm học tại ĐHQGHN có bao nhiêu học kỳ chính và học kỳ phụ?",
+          "answer": "Một năm học tại ĐHQGHN có hai học kỳ chính và một học kỳ phụ. Mỗi học kỳ chính có 15 tuần học, từ 3 đến 4 tuần thi và 1 tuần dự phòng, trong khi học kỳ phụ có ít nhất 5 tuần học và 1 tuần thi, được tổ chức trong thời gian giữa hai học kỳ chính [quy-che-dao-tao-dai-hoc-dhqghn-3626.md].",
+          "retrieved_contexts": [
+            "Năm học 200  - 200\n|     | Học kỳ I   |     |     | Học kỳ II  |     |     | Học kỳ hè  |     |\n| --- | ---------- | --- | --- | ---------- | --- | --- | ---------- | --- |\nSố\nMã MH  Tên học phần  Mã MH  Tên học phần  Số TC  Mã MH  Tên học phần  Số TC\nTC\n|     |                  |     |                  |     |     |                  |     |     |\n| --- | ---------------- | --- | ---------------- | --- | --- | ---------------- | --- | --- |\n|     |                  |     |                  |     |     |                  |     |     |\n|     |                  |     |                  |     |     |                  |     |     |\n|     |                  |     |                  |     |     |                  |     |     |",
+            "14\nChương III\nTỔ CHỨC ĐÀO TẠO\nĐiều 16. Học kỳ\nMỗi năm học có hai học kỳ chính và một học kỳ phụ. Mỗi học kỳ chính có\n15 tuần học, từ 3 đến 4 tuần thi và 1 tuần dự phòng.\nMỗi học kỳ phụ có ít nhất 5 tuần học và 1 tuần thi, được tổ chức trong thời\ngian giữa hai học kỳ chính.\nĐiều 17. Khóa học\n1. Thời gian của khóa học\na) Thời gian thiết kế của khóa học đào tạo chính quy là 8 học kỳ chính đối\nvới đào tạo cử nhân, từ 9 đến 10 học kỳ chính đối với đào tạo kĩ sư, 10 học kỳ\nchính đối với đào tạo dược sĩ, 12 học kỳ chính đối với đào tạo bác sĩ;\nb) Thời gian theo kế hoạch học tập chuẩn toàn khoá đối với hình thức đào\ntạo vừa làm vừa học dài hơn tối thiểu 20% so với hình thức đào tạo chính quy của\ncùng chương trình đào tạo;",
+            "c) Học bổng được cấp theo từng học kỳ và cấp 10 tháng trong năm học. Tại\nhọc kỳ xét học bổng, sinh viên được xét, cấp học bổng phải hoàn thành ít nhất\n15 tín chỉ. Trường hợp đặc biệt do Hiệu trưởng đơn vị đào tạo quyết định.\n\nd) Riêng học kỳ cuối cùng của khóa học, đơn vị căn cứ vào kết quả xét tốt\nnghiệp theo đúng quy chế đào tạo tại ĐHQGHN và điểm rèn luyện toàn khóa để\nxét và cấp học bổng KKHT (điểm trung bình chung tích lũy toàn khóa học thay\ncho kết quả học tập của học kỳ đó). Trường hợp đặc biệt do Hiệu trưởng đơn vị\nđào tạo quyết định.\n\ne) Sinh viên thuộc diện hưởng học bổng chính sách, trợ cấp xã hội, chính\nsách  ưu  đãi  theo  quy  định  hiện  hành  của  nhà  nước  thì  vẫn  được  xét,  cấp  học\nbổng KKHT.\n\nĐiều 6. Học bổng cho sinh viên hệ đào tạo tài năng, hệ đào tạo chất",
+            "- Trong 2 tuần đầu của học kỳ chính, sinh viên được phép đăng ký những học phần\nmuốn học thêm hoặc đăng ký đổi sang lớp học phần khác.\n- Việc rút bớt học phần trong khối lượng học tập đã đăng ký theo nhu cầu và khả\nnăng lựa chọn của sinh viên chỉ được chấp nhận:\n● Sinh viên có đơn trình bày rõ lý do xin rút bớt học phần (có ý kiến của\nCVHT), nộp tại P. 105-E3 chậm nhất 2 tuần kể từ đầu học kỳ chính.\n● Được Nhà trường đồng ý.\nNgoài thời hạn trên, học phần vẫn được giữ nguyên, nếu sinh viên không học sẽ\nphải nhận điểm F và không được trả lại học phí.\n- Phần giảng dạy lý thuyết được tổ chức tại giảng đường, phòng học theo công bố\ntrên Thời khóa biểu. Mỗi lớp từ 20 đến 140 sinh viên. Các nhóm bài tập/thực hành/thực",
+            "HỌC BỔNG KHUYẾN KHÍCH HỌC TẬP, HỌC BỔNG CHÍNH SÁCH\n\nChương II\n\nĐiều 5. Học bổng khuyến khích học tập (KKHT)\n1. Học bổng cho học sinh trường trung học phổ thông (THPT) chuyên\n1.1. Đối tượng và tiêu chí\na)  Đối  tượng:  Học  sinh  trường  THPT  chuyên  thuộc  các  đơn  vị  đào  tạo\n\ntrong ĐHQGHN\n\nb) Tiêu chí: Có học lực đạt từ loại giỏi trở lên, hạnh kiểm đạt từ loại tốt\ntrở lên trong học kỳ xét cấp học bổng và đạt được một trong các tiêu chuẩn sau:\nĐiểm môn chuyên của học kỳ xét cấp học bổng phải đạt từ 8,5 trở lên hoặc đạt\nmột  trong  các  giải  từ  khuyến  khích  trở  lên  trong  các  kỳ  thi  học  sinh  giỏi  cấp\nĐHQGHN, quốc gia, khu vực, quốc tế của năm đó."
+          ],
+          "ground_truth_answer": "Mỗi năm học có hai học kỳ chính và một học kỳ phụ.",
+          "ground_truth_context": [
+            "Mỗi năm học có hai học kỳ chính và một học kỳ phụ."
+          ],
+          "source_document": "data/standardized/legal/quy-che-dao-tao-dai-hoc-dhqghn-3626.md",
+          "reference_document_ids": [
+            "quy-che-dao-tao-dai-hoc-dhqghn-3626"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 1.0,
+            "mrr": 0.5
+          },
+          "status": "success",
+          "latency_seconds": 2.464,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.8198378435228555,
+            "context_recall": 1.0,
+            "context_precision": 0.99999999995
+          }
+        },
+        {
+          "sample_id": "vnu_eval_003",
+          "category": "happy_case",
+          "question": "Sinh viên đại học hệ chính quy cần đáp ứng tiêu chí chung nào để được xét học bổng khuyến khích học tập?",
+          "answer": "Sinh viên đại học hệ chính quy cần có kết quả học tập, rèn luyện đạt từ loại khá trở lên để được xét học bổng khuyến khích học tập [Document 5 | Source: quy-dinh-hoc-bong-dhqghn-4618.md].",
+          "retrieved_contexts": [
+            "HỌC BỔNG KHUYẾN KHÍCH HỌC TẬP, HỌC BỔNG CHÍNH SÁCH\n\nChương II\n\nĐiều 5. Học bổng khuyến khích học tập (KKHT)\n1. Học bổng cho học sinh trường trung học phổ thông (THPT) chuyên\n1.1. Đối tượng và tiêu chí\na)  Đối  tượng:  Học  sinh  trường  THPT  chuyên  thuộc  các  đơn  vị  đào  tạo\n\ntrong ĐHQGHN\n\nb) Tiêu chí: Có học lực đạt từ loại giỏi trở lên, hạnh kiểm đạt từ loại tốt\ntrở lên trong học kỳ xét cấp học bổng và đạt được một trong các tiêu chuẩn sau:\nĐiểm môn chuyên của học kỳ xét cấp học bổng phải đạt từ 8,5 trở lên hoặc đạt\nmột  trong  các  giải  từ  khuyến  khích  trở  lên  trong  các  kỳ  thi  học  sinh  giỏi  cấp\nĐHQGHN, quốc gia, khu vực, quốc tế của năm đó.",
+            "Học bổng được cấp theo từng học kỳ và cấp 9 tháng trong năm học.\nBên cạnh học bổng KKHT theo văn bản quy định này, Hiệu trưởng đơn vị\nđào  tạo  có  thể  có  các  chế  độ,  chính  sách  khác  đối  với  học  sinh  trường  THPT\nchuyên do đơn vị quản lý. Học sinh thuộc diện hưởng học bổng chính sách, trợ\ncấp xã hội, chính sách ưu đãi theo quy định hiện hành của nhà nước thì vẫn được\nxét, cấp học bổng KKHT.\n\n\f3\n\n2. Học bổng cho các đối tượng học sinh khác\nHiệu trưởng đơn vị đào tạo căn cứ thực tiễn tại đơn vị và các văn bản quy\nđịnh hiện hành, chỉ đạo triển khai thực hiện đầy đủ, bảo đảm quyền, lợi ích hợp\npháp của học sinh.\n\n3. Học bổng cho sinh viên đại học hệ chính quy\n3.1. Đối tượng, tiêu chí\nSinh viên có kết quả học tập, rèn luyện đạt từ loại khá trở lên và không bị kỷ",
+            "2. Những đơn vị có chương trình liên kết đào tạo (trong nước hoặc quốc\ntế) căn cứ chỉ tiêu tuyển sinh liên kết đào tạo và mức thu học phí, xây dựng kế\nhoạch cân đối thu chi một cách hợp lý, bố trí nguồn phù hợp (từ nguồn học phí\nhoặc các nguồn thu hợp pháp khác) để cấp học bổng cho sinh viên, bảo đảm ít\nnhất 10% sinh viên được cấp học bổng khuyến khích học tập.\n\n3. Tích cực tìm kiếm, khai thác và phát triển các nguồn học bổng từ các tổ\nchức, cá nhân đối tác trong và ngoài nước để khuyến khích học sinh, sinh viên\ncó thành tích học tập, rèn luyện giỏi, xuất sắc hoặc học sinh, sinh viên có hoàn\ncảnh khó khăn nhưng nỗ lực vươn lên học tốt.",
+            "g) Tiêu chí xét cấp lần đầu và điều kiện cấp duy trì, quy trình, cách thức\nthực hiện hàng năm do người đứng đầu đơn vị đào tạo có các ngành khoa học cơ\nbản thuộc diện triển khai chương trình học bổng quy định cụ thể.\n\nĐiều 8. Học bổng chính sách\nThực hiện theo Điều 9, Nghị định số 84/2020/NĐ-CP ngày 17/7/2020 của\n\nChính phủ Quy định chi tiết một số điều của Luật Giáo dục.\n\nChương III\nHỌC BỔNG TÀI TRỢ CỦA ĐỐI TÁC\n\nĐiều 9. Đối tượng, tiêu chí và mức học bổng\nĐược xác định theo từng chương trình học bổng trên cơ sở văn bản thông\nbáo, thỏa thuận được ký kết giữa ĐHQGHN hoặc đơn vị đào tạo với đối tác (tổ\nchức hoặc cá nhân) tài trợ học bổng.",
+            "Điều 10. Nguyên tắc xét, cấp học bổng\nTrong một năm học, mỗi học sinh, sinh viên chỉ được nhận 01 học bổng\ntài trợ do ĐHQGHN hoặc các đơn vị quản lý. Trường hợp đặc biệt do Giám đốc\nĐHQGHN  (đối  với  những  học  bổng  tài  trợ  do  ĐHQGHN  quản  lý)  hoặc  Hiệu\ntrưởng (đối với các học bổng tài trợ do đơn vị đào tạo quản lý) quyết định.\n\nHọc  sinh,  sinh  viên  đã  được  nhận  học  bổng  khuyến  khích  học  tập  hoặc\nhọc bổng chính sách nếu đủ điều kiện vẫn được xét, cấp học bổng tài trợ trong\nnăm học.\n\n\f6"
+          ],
+          "ground_truth_answer": "Sinh viên phải có kết quả học tập và rèn luyện từ loại khá trở lên, đồng thời không bị kỷ luật từ mức khiển trách trở lên trong kỳ xét học bổng.",
+          "ground_truth_context": [
+            "Sinh viên có kết quả học tập, rèn luyện đạt từ loại khá trở lên và không bị kỷ luật từ mức khiển trách trở lên trong kỳ xét cấp học bổng."
+          ],
+          "source_document": "data/standardized/legal/quy-dinh-hoc-bong-dhqghn-4618.md",
+          "reference_document_ids": [
+            "quy-dinh-hoc-bong-dhqghn-4618"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 1.0,
+            "mrr": 0.5
+          },
+          "status": "success",
+          "latency_seconds": 2.068,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.8323165285220321,
+            "context_recall": 0.0,
+            "context_precision": 0.49999999995
+          }
+        },
+        {
+          "sample_id": "vnu_eval_004",
+          "category": "happy_case",
+          "question": "Ký túc xá Hòa Lạc khu B,C có bao nhiêu phòng và bao nhiêu chỗ ở?",
+          "answer": "Ký túc xá Hòa Lạc khu B,C có tổng cộng 432 phòng ở, với 2.328 chỗ ở [Cơ sở vật chất, 2026].",
+          "retrieved_contexts": [
+            "| 15  | Phùng Thị Ánh  | 08/05/1990  | Y sỹ  |\n**Cơ sở vật chất:**\nKý túc xá Hòa Lạc – Khu B,C nằm trong khuôn viên Công viên Công nghệ cao và Đổi mới sáng tạo của Đại học Quốc gia Hà Nội, vị trí thuận lợi gần các giảng đường của các đơn vị đào tạo. Với tổng diện tích 3,9 ha, toàn khu ký túc xá hiện tại gồm 05 tòa nhà, trong đó có 02 tòa nhà ở B1, C1 – 5 tầng và tòa nhà B2 – 11 tầng; tổng công suất 432 phòng ở với 2.328 chỗ ở; 02 khu tổ hợp dịch vụ nhà ăn B4, C4 – 2 tầng với quy mô mỗi khu gồm 02 nhà ăn lớn và các dịch vụ tiện ích khác phục vụ nhu cầu thiết yếu của các bạn HSSV như hệ thống giải khát ăn nhanh, cửa hàng tiện ích, khu giải trí, khu vui chơi thể thao.",
+            "Việc tiếp nhận công trình nhà D1, D7, D8 có ý nghĩa thiết thực trong lộ trình chuẩn bị cơ sở vật chất, chỗ ở và các điều kiện sinh hoạt phục vụ sinh viên ĐHQGHN học tập tại Hòa Lạc trong năm học 2026-2027. Đây không chỉ là bước bổ sung quỹ chỗ ở cho sinh viên, mà còn là cơ sở để Trung tâm Hỗ trợ sinh viên từng bước hoàn thiện mô hình quản lý, vận hành ký túc xá theo hướng chuyên nghiệp, an toàn, văn minh và hiện đại.",
+            "# Giới thiệu về KTX Hòa Lạc - Khu B,C - Trung tâm Hỗ trợ sinh viên - Đại học Quốc gia Hà Nội\n\n**Source:** https://css.vnu.edu.vn/gioi-thieu-ve-ktx-hoa-lac-khu-bc/\n**Crawled:** 2026-08-04T10:16:50.763417\n\n---",
+            "Trước đó, ngày 06/7/2026, Đại học Quốc gia Hà Nội đã ban hành Quyết định số 3110/QĐ-ĐHQGHN về việc giao Trung tâm Hỗ trợ sinh viên quản lý, khai thác các công trình nhà D1, D7, D8 và hạ tầng kỹ thuật kèm theo tại khu ký túc xá số 4 thuộc Dự án đầu tư xây dựng khu ký túc xá sinh viên ĐHQGHN tại Hòa Lạc. Trên cơ sở quyết định này, việc tổ chức bàn giao là bước quan trọng nhằm cụ thể hóa nhiệm vụ được giao, tạo điều kiện để Trung tâm Hỗ trợ sinh viên chủ động tiếp nhận, quản lý, vận hành và chuẩn bị các điều kiện phục vụ sinh viên trong năm học 2026-2027.",
+            "**Giới thiệu chung**\nĐịa chỉ: Ký túc xá số 4 – Đô thị Đại học Quốc gia Hà Nội, xã Hòa Lạc, thành phố Hà Nội\nĐiện thoại: **082.789.8080**\nEmail: css.ktxhoalac@gmail.com\nTổng số CBVC: 18 người\nTrưởng ban: **Bà Nguyễn Minh Huệ**\nPhó trưởng ban:**Ông Lê Thành Thật**\nPhó trưởng ban:**Ông Lê Hoàng Hạc**\n**Chức năng, nhiệm vụ:**\nTổ chức thực hiện công tác quản lý, phục vụ HSSV nội trú; cung cấp các dịch vụ nhằm nâng cao đời sống tinh thần và hỗ trợ học tập, nghiên cứu khoa học cho HSSV; tổ chức các hoạt động tư vấn, hướng nghiệp, giới thiệu việc làm, khởi nghiệp, phát triển tinh thần đổi mới sáng tạo và các kỹ năng bổ trợ cho HSSV.\n**III. Cơ cấu tổ chức:**\nKý túc xá gồm các tổ chuyên môn:\n* **Tổ quản lý sinh viên** :\n*** Tổ Hành chính – Dịch vụ:**\n*** Tổ Bảo vệ** :\n*** Tổ Y tế** :"
+          ],
+          "ground_truth_answer": "Ký túc xá Hòa Lạc khu B,C có 432 phòng ở với tổng công suất 2.328 chỗ ở.",
+          "ground_truth_context": [
+            "Toàn khu ký túc xá có tổng công suất 432 phòng ở với 2.328 chỗ ở."
+          ],
+          "source_document": "data/standardized/news/article_02.md",
+          "reference_document_ids": [
+            "article_02"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 2.114,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.9472564304854253,
+            "context_recall": 1.0,
+            "context_precision": 0.9999999999
+          }
+        },
+        {
+          "sample_id": "vnu_eval_005",
+          "category": "happy_case",
+          "question": "Cổng thông tin việc làm sinh viên ĐHQGHN hỗ trợ sinh viên những hoạt động nào?",
+          "answer": "Cổng thông tin việc làm sinh viên ĐHQGHN hỗ trợ sinh viên thông qua nhiều hoạt động hữu ích. Cụ thể, sinh viên có thể cập nhật thường xuyên các tin tuyển dụng mới nhất, tìm kiếm cơ hội thực tập và việc làm theo ngành học, kết nối trực tiếp với doanh nghiệp và nhà tuyển dụng, cũng như tiếp cận các chương trình hướng nghiệp, ngày hội việc làm và các hoạt động hỗ trợ sinh viên khác [Document 1 | Source: article_05.md].",
+          "retrieved_contexts": [
+            "🎓 TÌM VIỆC LÀM, THỰC TẬP DỄ DÀNG HƠN CÙNG CỔNG THÔNG TIN VIỆC LÀM SINH VIÊN ĐHQGHN Bạn đang tìm kiếm: ✅ Việc làm bán thời gian phù hợp với lịch học? ✅ Cơ hội thực tập để tích lũy kinh nghiệm? ✅ Việc làm sau tốt nghiệp từ các doanh nghiệp uy tín? Cổng thông tin việc làm sinh viên do Trung tâm Hỗ trợ sinh viên – ĐHQGHN xây dựng và vận hành sẽ giúp bạn kết nối nhanh chóng với các cơ hội nghề nghiệp phù hợp. 📌 Tại đây, sinh viên có thể: 🔹 Cập nhật thường xuyên các tin tuyển dụng mới nhất. 🔹 Tìm kiếm cơ hội thực tập và việc làm theo ngành học. 🔹 Kết nối trực tiếp với doanh nghiệp, nhà tuyển dụng. 🔹 Tiếp cận các chương trình hướng nghiệp, ngày hội việc làm và hoạt động hỗ trợ sinh viên",
+            "# TÌM VIỆC LÀM, THỰC TẬP DỄ DÀNG HƠN CÙNG CỔNG THÔNG TIN VIỆC LÀM SINH VIÊN ĐHQGHN - Trung tâm Hỗ trợ sinh viên - Đại học Quốc gia Hà Nội\n\n**Source:** https://css.vnu.edu.vn/tim-viec-lam-thuc-tap-de-dang-hon-cung-cong-thong-tin-viec-lam-sinh-vien-dhqghn/\n**Crawled:** 2026-08-04T10:16:56.146520\n\n---",
+            ". 🔹 Tiếp cận các chương trình hướng nghiệp, ngày hội việc làm và hoạt động hỗ trợ sinh viên. 🌐 Truy cập ngay: http://vieclam.css.vnu.edu.vn/vi Hãy theo dõi và thường xuyên cập nhật thông tin để không bỏ lỡ những cơ hội việc làm phù hợp với bản thân! #VNUCSS #ViecLamSinhVien #HuongNghiep #ThucTap #TuyenDung #SinhVienDHQGHN",
+            "Trang chủ » Tin tức » TÌM VIỆC LÀM, THỰC TẬP DỄ DÀNG HƠN CÙNG CỔNG THÔNG TIN VIỆC LÀM SINH VIÊN ĐHQGHN",
+            "c, Tổ chức các hoạt động hỗ trợ khác theo nhu cầu (tham quan, ngoại khóa, thể thao…)\nd, Các hoạt động tình nguyện: tiếp sức mùa thi, gây quỹ ủng hộ sinh viên nội trú, đồng bào vùng sâu, vùng xa.\n* [[Infographic] Những lưu ý dành cho thí sinh tham dự kỳ thi đánh giá năng lực của ĐHQGHN](https://css.vnu.edu.vn/infographic-nhung-luu-y-danh-cho-thi-sinh-tham-du-ky-thi-danh-gia-nang-luc-cua-dhqghn/)\n* [[Infographic] Phân loại cách ly người nhiễm, nghi nhiễm COVID-19](https://css.vnu.edu.vn/infographic-phan-loai-cach-ly-nguoi-nhiem-nghi-nhiem-covid-19-2/)"
+          ],
+          "ground_truth_answer": "Cổng hỗ trợ cập nhật tin tuyển dụng, tìm cơ hội thực tập và việc làm theo ngành học, kết nối với doanh nghiệp và nhà tuyển dụng, đồng thời tiếp cận các chương trình hướng nghiệp và ngày hội việc làm.",
+          "ground_truth_context": [
+            "Sinh viên có thể cập nhật tin tuyển dụng, tìm cơ hội thực tập và việc làm theo ngành học, kết nối với doanh nghiệp, nhà tuyển dụng và tiếp cận các chương trình hướng nghiệp, ngày hội việc làm."
+          ],
+          "source_document": "data/standardized/news/article_05.md",
+          "reference_document_ids": [
+            "article_05"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 2.471,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.8509225150538628,
+            "context_recall": 1.0,
+            "context_precision": 0.8333333332916666
+          }
+        },
+        {
+          "sample_id": "vnu_eval_006",
+          "category": "paraphrase_synonym",
+          "question": "SV muốn học thêm CTĐT thứ 2 thì phải học CTĐT đầu ít nhất mấy kỳ?",
+          "answer": "Sinh viên muốn học thêm chương trình đào tạo thứ hai phải học ít nhất hai học kỳ của chương trình đào tạo thứ nhất [Document 5 | Source: quy-che-dao-tao-dai-hoc-dhqghn-3626.md].",
+          "retrieved_contexts": [
+            "- Trong 2 tuần đầu của học kỳ chính, sinh viên được phép đăng ký những học phần\nmuốn học thêm hoặc đăng ký đổi sang lớp học phần khác.\n- Việc rút bớt học phần trong khối lượng học tập đã đăng ký theo nhu cầu và khả\nnăng lựa chọn của sinh viên chỉ được chấp nhận:\n● Sinh viên có đơn trình bày rõ lý do xin rút bớt học phần (có ý kiến của\nCVHT), nộp tại P. 105-E3 chậm nhất 2 tuần kể từ đầu học kỳ chính.\n● Được Nhà trường đồng ý.\nNgoài thời hạn trên, học phần vẫn được giữ nguyên, nếu sinh viên không học sẽ\nphải nhận điểm F và không được trả lại học phí.\n- Phần giảng dạy lý thuyết được tổ chức tại giảng đường, phòng học theo công bố\ntrên Thời khóa biểu. Mỗi lớp từ 20 đến 140 sinh viên. Các nhóm bài tập/thực hành/thực",
+            "1. Sinh viên đang học tại các đơn vị đào tạo của Đại học Quốc gia Hà Nội\ntheo hình thức đào tạo chính quy được đăng ký học thêm một chương trình đào tạo\nthứ hai nếu có đủ các điều kiện:\na) Ngành học chính của chương trình đào tạo thứ hai phải khác ngành học\nchính của chương trình đào tạo thứ nhất;\nb) Đã học ít nhất hai học kỳ của chương trình đào tạo thứ nhất;\nc) Điểm trung bình chung tất cả các học phần tính từ đầu khóa học đến thời\nđiểm đăng ký học chương trình đào tạo thứ hai đạt từ 2,5 trở lên và đáp ứng ngưỡng\nbảo đảm chất lượng đầu vào của chương trình thứ hai trong năm tuyển sinh hoặc\nđiểm trung bình chung tất cả các học phần tính từ đầu khóa học đến thời điểm đăng\nký học chương trình đào tạo thứ hai đạt từ 2,0 trở lên và đáp ứng điều kiện trúng",
+            "học kỳ chính đối với đào tạo kỹ sư. Thời gian được phép tạm ngừng học để củng cố kiến\nthức, cải thiện kết quả học tập là 4 học kỳ chính, do đó sinh viên cần phải tính toán, lập\nkế hoạch để hoàn thiện được chương trình đào tạo trong thời gian của khóa học.\n- Trước khi đăng ký học phần chính thức, sinh viên cần kiểm tra thật cẩn thận các\nthông tin sau:\n● Ngày giờ đăng ký và thời hạn chót để đăng ký;\n● Tên và mã số học phần, lớp học phần;\n● Điều kiện tiên quyết của học phần có được bảo đảm hay không.\n● Các lớp học phần có bị trùng lặp về thời gian học không.\n● Có bảo đảm khối lượng học tập tối thiểu (hoặc tối đa) hay không.",
+            "Học kỳ chính, không tính học kỳ cuối khóa: tất cả sinh viên phải thực hiện\nđăng ký lớp học phần trước khi học kỳ mới bắt đầu. Số tín chỉ tối thiểu sinh viên phải\nđăng ký: 14 tín chỉ đối với sinh viên hệ chuẩn, 16 tín chỉ đối với chất lượng cao và\nchuẩn quốc tế. Số tín chỉ tối đa được phép đăng ký: 25 tín chỉ đối với sinh viên theo\nhọc một ngành, 28 tín chỉ đối với sinh viên theo học bằng kép. Chỉ những sinh viên\nđăng ký 14 tín chỉ trở lên mới được xét học bổng khuyến khích học tập. Trường hợp\nsinh viên có nguyện vọng đăng ký học ít hơn số tín chỉ tối thiểu trong một học kỳ\nphải được sự đồng ý của Thủ trưởng đơn vị đào tạo.\nHọc kỳ phụ: không bắt buộc, sinh viên đăng ký học theo nguyện vọng.\nSinh viên thuộc diện cảnh báo học vụ: tổng số tín chỉ đăng ký học (tối thiểu,",
+            "nhận tốt nghiệp chương trình đào tạo thứ nhất, không vượt quá thời gian đào tạo\ntối đa và đã đăng kí muộn nhất 02 năm trước thời điểm xét tốt nghiệp chương trình\nthứ hai."
+          ],
+          "ground_truth_answer": "Sinh viên phải đã học ít nhất hai học kỳ của chương trình đào tạo thứ nhất.",
+          "ground_truth_context": [
+            "Sinh viên được đăng ký học thêm chương trình đào tạo thứ hai nếu đã học ít nhất hai học kỳ của chương trình đào tạo thứ nhất."
+          ],
+          "source_document": "data/standardized/legal/quy-che-dao-tao-dai-hoc-dhqghn-3626.md",
+          "reference_document_ids": [
+            "quy-che-dao-tao-dai-hoc-dhqghn-3626"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 2.187,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 0.5,
+            "answer_relevancy": 0.8028770101897736,
+            "context_recall": 1.0,
+            "context_precision": 0.49999999995
+          }
+        },
+        {
+          "sample_id": "vnu_eval_007",
+          "category": "paraphrase_synonym",
+          "question": "Phòng KTX HL có máy lạnh, nước nóng và chỗ ngồi học không?",
+          "answer": "Có, phòng ở ký túc xá (KTX) được trang bị đầy đủ tiện nghi bao gồm giường tầng, tủ, bàn học, bình nước nóng và điều hòa nhiệt độ. Điều này cho thấy phòng ở khang trang, sạch đẹp và đáp ứng nhu cầu học tập của sinh viên [Document 2 | Source: article_02.md].",
+          "retrieved_contexts": [
+            "BƯỚC 3: Làm thủ tục nhận phòng tại KTX\n– Thời gian: Từ 8h00′ -17h00′ Ngày 03/8/2025 (Chủ Nhật).\n– Địa điểm: Văn phòng Ban Quản lý KTX Mễ Trì – Tầng 1 nhà C0, số 182 Lương Thế Vinh, Thanh Xuân, Hà Nội.\n*** 𝐆𝐡𝐢 𝐜𝐡𝐮́:\n– Học sinh QH 2025 thực hiện đủ 03 bước\n– Học sinh QH 2023, QH 2024 thực hiện bước 02 và 03\n– Hết thời gian quy định, Học sinh không hoàn thiện hồ sơ và không nộp lệ phí, đồng nghĩa với không có nhu cầu ở KTX.\n***=======\nTHÔNG TIN LIÊN HỆ: Hotline 0834182182",
+            "– Thời gian hoàn thiện hồ sơ: Từ ngày 22/7 đến hết ngày 31/7/2025\n– Lưu ý: Học sinh có 02 loại phòng để lựa chọn đăng ký: MT_A5 (ở 04 HS) và MT_N2a (ở 02 HS)\nBƯỚC 2: Nộp lệ phí và dịch vụ gia tăng\n– Hình thức nộp: Học sinh lựa chọn 01 trong 02 cách:\n+ Chuyển khoản từ ngày 01/8 đến ngày 04/8/2025 (KTX sẽ có hướng dẫn nộp chuyển khoản trước ngày 31/7/2025 trên Website )\n+ Nộp trực tiếp tại Văn phòng Ban Quản lý KTX (Tầng 01 nhà C0, số 182 Lương Thế Vinh, Thanh Xuân, Hà Nội) trong ngày 03/8/2025 (Chủ Nhật)\n– Lệ phí kỳ I: Tính từ ngày 01/8/2025 đến 31/12/2025 (5 tháng)\n– Tổng số tiền học sinh phải nộp theo loại phòng được sắp xếp: Xem trong mục “Biên lai” tại Website\nBƯỚC 3: Làm thủ tục nhận phòng tại KTX\n– Thời gian: Từ 8h00′ -17h00′ Ngày 03/8/2025 (Chủ Nhật).",
+            "Các phòng ở khang trang, sạch đẹp, tiện nghi với trang bị giường tầng, tủ, bàn học, bình nước nóng, điều hòa nhiệt độ. Khu ký túc xá với không gian thư giãn và học tập đầy đủ, hiện đại, cảnh quan môi trường với cây xanh, sân vườn, sân thể thao rộng rãi, thoáng mát đáp ứng mọi nhu cầu ăn ở, sinh hoạt và học tập cho HSSV nội trú..\n**Các hoạt động hỗ trợ**\nHiện nay, Trung tâm Hỗ trợ sinh viên đã thành lập **Văn phòng tư vấn và hỗ trợ sinh viên tại KTX** để tổ chức các hoạt động hỗ trợ sinh viên như:\na, Tìm kiếm và giới thiệu việc làm; Tư vấn thực tập\nb, Tìm kiếm học bổng và hỗ trợ cho những sinh viên có hoàn cảnh đặc biệt.\nc, Tổ chức các hoạt động hỗ trợ khác theo nhu cầu (tham quan, ngoại khóa, thể thao…)",
+            "d. Bước 4: Huỷ môn đã đăng ký (nếu cần thiết) và In phiếu đăng ký học\nphần.\n- Huỷ một số một học đã đăng ký, hãy nhấn vào dấu . Xuất hiện màn hình\nthông báo bạn có chắc chắn muốn huỷ học phần đã đăng ký không? Nếu\nđồng ý nhấn chuột vào nút “OK”, ngược lại nhấn vào nút “Cancel”.\n- Nhấn chuột vào nút “Xem và in” khi việc đăng ký đã hoàn thành và chọn\nmáy in để in và ấn nút Print.\n35\n\n5. Kết thúc chương trình\nĐể kết thúc chương trình, nhấn chuột vào nút “Thoát”\nViệc thoát khỏi chương trình cần được thực hiện đúng quy trình. Tuyệt đối\nkhông tắt màn hình hay tắt máy như tắt một thiết bị tiêu thụ điện thông thường.\nPhải nhấn vào nút “Thoát” cho đến khi hệ thống thông báo là bạn đã thoát ra\nthành công.\n36",
+            "**Giới thiệu chung**\nĐịa chỉ: Ký túc xá số 4 – Đô thị Đại học Quốc gia Hà Nội, xã Hòa Lạc, thành phố Hà Nội\nĐiện thoại: **082.789.8080**\nEmail: css.ktxhoalac@gmail.com\nTổng số CBVC: 18 người\nTrưởng ban: **Bà Nguyễn Minh Huệ**\nPhó trưởng ban:**Ông Lê Thành Thật**\nPhó trưởng ban:**Ông Lê Hoàng Hạc**\n**Chức năng, nhiệm vụ:**\nTổ chức thực hiện công tác quản lý, phục vụ HSSV nội trú; cung cấp các dịch vụ nhằm nâng cao đời sống tinh thần và hỗ trợ học tập, nghiên cứu khoa học cho HSSV; tổ chức các hoạt động tư vấn, hướng nghiệp, giới thiệu việc làm, khởi nghiệp, phát triển tinh thần đổi mới sáng tạo và các kỹ năng bổ trợ cho HSSV.\n**III. Cơ cấu tổ chức:**\nKý túc xá gồm các tổ chuyên môn:\n* **Tổ quản lý sinh viên** :\n*** Tổ Hành chính – Dịch vụ:**\n*** Tổ Bảo vệ** :\n*** Tổ Y tế** :"
+          ],
+          "ground_truth_answer": "Có. Phòng ở được trang bị điều hòa nhiệt độ, bình nước nóng và bàn học; ngoài ra còn có giường tầng và tủ.",
+          "ground_truth_context": [
+            "Các phòng ở được trang bị giường tầng, tủ, bàn học, bình nước nóng và điều hòa nhiệt độ."
+          ],
+          "source_document": "data/standardized/news/article_02.md",
+          "reference_document_ids": [
+            "article_02"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 2.63,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.9034535846887904,
+            "context_recall": 1.0,
+            "context_precision": 0.3333333333
+          }
+        },
+        {
+          "sample_id": "vnu_eval_008",
+          "category": "paraphrase_synonym",
+          "question": "Xét HB KKHT thì GPA lấy điểm thi lần đầu hay điểm cải thiện?",
+          "answer": "Điểm trung bình chung học tập để xét học bổng KKHT được tính từ điểm thi, kiểm tra hết môn học lần thứ nhất. Do đó, khi xét học bổng KKHT, GPA sẽ lấy điểm thi lần đầu chứ không phải điểm cải thiện [Document 1 | Source: quy-dinh-hoc-bong-dhqghn-4618.md].",
+          "retrieved_contexts": [
+            "b) Học bổng loại giỏi: Dành cho sinh viên trong học kỳ xét, cấp học bổng\ncó điểm trung bình chung học tập đạt loại giỏi trở lên và điểm rèn luyện đạt loại\ntốt trở lên. Mức học bổng cao hơn loại khá, cụ thể do hiệu trưởng quyết định.\n\nc) Học bổng loại xuất sắc: Dành cho sinh viên có điểm trung bình chung\nhọc tập và điểm rèn luyện trong học kỳ đều đạt loại xuất sắc. Mức học bổng cao\nhơn loại giỏi, cụ thể do hiệu trưởng quyết định.\n\nd) Điểm trung bình chung học tập và điểm rèn luyện quy định tại các điểm a,\nb và c khoản này được xác định theo quy định hiện hành của ĐHQGHN; trong đó\nđiểm trung bình chung học tập để xét học bổng cho sinh viên được tính từ điểm thi,\nkiểm tra hết môn học lần thứ nhất.\n\n3.3.  Nguồn học  bổng:  Học  bổng  KKHT  được  bố  trí  tối  thiểu  8%  nguồn\n\nthu học phí.",
+            "c) Học bổng được cấp theo từng học kỳ và cấp 10 tháng trong năm học. Tại\nhọc kỳ xét học bổng, sinh viên được xét, cấp học bổng phải hoàn thành ít nhất\n15 tín chỉ. Trường hợp đặc biệt do Hiệu trưởng đơn vị đào tạo quyết định.\n\nd) Riêng học kỳ cuối cùng của khóa học, đơn vị căn cứ vào kết quả xét tốt\nnghiệp theo đúng quy chế đào tạo tại ĐHQGHN và điểm rèn luyện toàn khóa để\nxét và cấp học bổng KKHT (điểm trung bình chung tích lũy toàn khóa học thay\ncho kết quả học tập của học kỳ đó). Trường hợp đặc biệt do Hiệu trưởng đơn vị\nđào tạo quyết định.\n\ne) Sinh viên thuộc diện hưởng học bổng chính sách, trợ cấp xã hội, chính\nsách  ưu  đãi  theo  quy  định  hiện  hành  của  nhà  nước  thì  vẫn  được  xét,  cấp  học\nbổng KKHT.\n\nĐiều 6. Học bổng cho sinh viên hệ đào tạo tài năng, hệ đào tạo chất",
+            "23\nĐiều 25. Đào tạo văn bằng thứ hai\n1. Đào tạo văn bằng thứ hai theo hình thức vừa làm vừa học dành cho người\nđã có bằng đại học.\n2. Chương trình đào tạo văn bằng thứ hai được xác định cho người học theo\nnguyên tắc: người học được bảo lưu kết quả học tập đối với những học phần trong\nchương trình đào tạo ngành học thứ nhất có từ 80% trở lên nội dung tương đương\nvới nội dung học phần trong chương trình đào tạo của ngành học mới và điểm học\nphần đạt từ điểm D trở lên; những học phần có nội dung tương đương từ 50% đến\ndưới 80% thì người học không được bảo lưu kết quả học tập nhưng có thể tự học\nvà dự thi để lấy điểm; những học phần chưa học hoặc có nội dung tương đương\ndưới 50% thì người học phải dự học mới được dự thi theo quy định chung.",
+            "3.3.  Nguồn học  bổng:  Học  bổng  KKHT  được  bố  trí  tối  thiểu  8%  nguồn\n\nthu học phí.\n\n3.4. Trình tự xét, cấp học bổng:\na) Hiệu trưởng căn cứ vào nguồn học bổng khuyến khích học tập xác định số\nlượng suất học bổng cho từng khóa học, ngành học. Trong trường hợp số lượng sinh\nviên thuộc diện được xét, cấp học bổng nhiều hơn số suất học bổng thì việc xét, cấp\nhọc bổng do Hiệu trưởng quyết định;\n\n\f4\n\nb) Hiệu trưởng căn cứ vào kết quả học tập, rèn luyện của sinh viên thực hiện\nxét, cấp học bổng theo thứ tự từ loại suất sắc trở xuống đến hết số suất học bổng đã\nđược xác định;",
+            "tăng hoặc hạ điểm của bài thi so với đáp án;\nđ) Sửa chữa, thêm bớt vào bài làm của sinh viên để tăng hay hạ điểm;\ne) Sửa chữa làm sai lệch điểm trên bài thi, biên bản chấm thi hoặc sổ điểm;\ng) Đánh tráo bài thi hoặc điểm thi của sinh viên.\nĐiều 41. Cách tính điểm đánh giá bộ phận, điểm học phần\n1. Điểm đánh giá bộ phận và điểm thi kết thúc học phần được chấm theo\nthang điểm 10 (từ 0 đến 10), có lẻ đến một chữ số thập phân.\n2. Điểm học phần là tổng của điểm đánh giá bộ phận và điểm thi kết thúc\nhọc phần sau khi đã tính trọng số được quy định trong đề cương học phần và được\nlàm tròn đến một chữ số thập phân, sau đó được chuyển thành điểm chữ.\na) Loại đạt có phân mức:\n9,0 – 10 tương ứng với A+\n8,5 – 8,9 tương ứng với A"
+          ],
+          "ground_truth_answer": "Điểm trung bình chung học tập dùng để xét học bổng được tính từ điểm thi hoặc kiểm tra hết môn lần thứ nhất, không lấy điểm cải thiện sau đó.",
+          "ground_truth_context": [
+            "Điểm trung bình chung học tập để xét học bổng cho sinh viên được tính từ điểm thi, kiểm tra hết môn học lần thứ nhất."
+          ],
+          "source_document": "data/standardized/legal/quy-dinh-hoc-bong-dhqghn-4618.md",
+          "reference_document_ids": [
+            "quy-dinh-hoc-bong-dhqghn-4618"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 1.0,
+            "mrr": 1.0
+          },
+          "status": "success",
+          "latency_seconds": 2.579,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.8293612076788546,
+            "context_recall": 1.0,
+            "context_precision": 0.9999999999
+          }
+        },
+        {
+          "sample_id": "vnu_eval_009",
+          "category": "edge_case",
+          "question": "Một sinh viên chính quy có học lực khá, rèn luyện khá, không bị kỷ luật nhưng chỉ hoàn thành 12 tín chỉ trong học kỳ thì có đương nhiên đủ điều kiện nhận học bổng KKHT không?",
+          "answer": "Một sinh viên chính quy có học lực khá, rèn luyện khá nhưng chỉ hoàn thành 12 tín chỉ trong học kỳ sẽ không đủ điều kiện nhận học bổng KKHT. Theo quy định, sinh viên được xét, cấp học bổng KKHT phải hoàn thành ít nhất 15 tín chỉ trong học kỳ xét học bổng [Document 1].",
+          "retrieved_contexts": [
+            "c) Học bổng được cấp theo từng học kỳ và cấp 10 tháng trong năm học. Tại\nhọc kỳ xét học bổng, sinh viên được xét, cấp học bổng phải hoàn thành ít nhất\n15 tín chỉ. Trường hợp đặc biệt do Hiệu trưởng đơn vị đào tạo quyết định.\n\nd) Riêng học kỳ cuối cùng của khóa học, đơn vị căn cứ vào kết quả xét tốt\nnghiệp theo đúng quy chế đào tạo tại ĐHQGHN và điểm rèn luyện toàn khóa để\nxét và cấp học bổng KKHT (điểm trung bình chung tích lũy toàn khóa học thay\ncho kết quả học tập của học kỳ đó). Trường hợp đặc biệt do Hiệu trưởng đơn vị\nđào tạo quyết định.\n\ne) Sinh viên thuộc diện hưởng học bổng chính sách, trợ cấp xã hội, chính\nsách  ưu  đãi  theo  quy  định  hiện  hành  của  nhà  nước  thì  vẫn  được  xét,  cấp  học\nbổng KKHT.\n\nĐiều 6. Học bổng cho sinh viên hệ đào tạo tài năng, hệ đào tạo chất",
+            "Học bổng được cấp theo từng học kỳ và cấp 9 tháng trong năm học.\nBên cạnh học bổng KKHT theo văn bản quy định này, Hiệu trưởng đơn vị\nđào  tạo  có  thể  có  các  chế  độ,  chính  sách  khác  đối  với  học  sinh  trường  THPT\nchuyên do đơn vị quản lý. Học sinh thuộc diện hưởng học bổng chính sách, trợ\ncấp xã hội, chính sách ưu đãi theo quy định hiện hành của nhà nước thì vẫn được\nxét, cấp học bổng KKHT.\n\n\f3\n\n2. Học bổng cho các đối tượng học sinh khác\nHiệu trưởng đơn vị đào tạo căn cứ thực tiễn tại đơn vị và các văn bản quy\nđịnh hiện hành, chỉ đạo triển khai thực hiện đầy đủ, bảo đảm quyền, lợi ích hợp\npháp của học sinh.\n\n3. Học bổng cho sinh viên đại học hệ chính quy\n3.1. Đối tượng, tiêu chí\nSinh viên có kết quả học tập, rèn luyện đạt từ loại khá trở lên và không bị kỷ",
+            "b) Học bổng loại giỏi: Dành cho sinh viên trong học kỳ xét, cấp học bổng\ncó điểm trung bình chung học tập đạt loại giỏi trở lên và điểm rèn luyện đạt loại\ntốt trở lên. Mức học bổng cao hơn loại khá, cụ thể do hiệu trưởng quyết định.\n\nc) Học bổng loại xuất sắc: Dành cho sinh viên có điểm trung bình chung\nhọc tập và điểm rèn luyện trong học kỳ đều đạt loại xuất sắc. Mức học bổng cao\nhơn loại giỏi, cụ thể do hiệu trưởng quyết định.\n\nd) Điểm trung bình chung học tập và điểm rèn luyện quy định tại các điểm a,\nb và c khoản này được xác định theo quy định hiện hành của ĐHQGHN; trong đó\nđiểm trung bình chung học tập để xét học bổng cho sinh viên được tính từ điểm thi,\nkiểm tra hết môn học lần thứ nhất.\n\n3.3.  Nguồn học  bổng:  Học  bổng  KKHT  được  bố  trí  tối  thiểu  8%  nguồn\n\nthu học phí.",
+            "HỌC BỔNG KHUYẾN KHÍCH HỌC TẬP, HỌC BỔNG CHÍNH SÁCH\n\nChương II\n\nĐiều 5. Học bổng khuyến khích học tập (KKHT)\n1. Học bổng cho học sinh trường trung học phổ thông (THPT) chuyên\n1.1. Đối tượng và tiêu chí\na)  Đối  tượng:  Học  sinh  trường  THPT  chuyên  thuộc  các  đơn  vị  đào  tạo\n\ntrong ĐHQGHN\n\nb) Tiêu chí: Có học lực đạt từ loại giỏi trở lên, hạnh kiểm đạt từ loại tốt\ntrở lên trong học kỳ xét cấp học bổng và đạt được một trong các tiêu chuẩn sau:\nĐiểm môn chuyên của học kỳ xét cấp học bổng phải đạt từ 8,5 trở lên hoặc đạt\nmột  trong  các  giải  từ  khuyến  khích  trở  lên  trong  các  kỳ  thi  học  sinh  giỏi  cấp\nĐHQGHN, quốc gia, khu vực, quốc tế của năm đó.",
+            "36\ncủa bài thi học phần đó.\nc) Đình chỉ thi: Áp dụng đối với sinh viên vi phạm một trong các lỗi:\n- Đã bị cảnh cáo một lần nhưng trong giờ thi học phần đó vẫn tiếp tục vi\nphạm quy định;\n- Sau khi bóc đề thi bị phát hiện mang theo những vật dụng không được phép;\n- Đưa đề thi ra ngoài hoặc nhận bài, tài liệu từ ngoài vào phòng thi.\nSinh viên bị kỷ luật đình chỉ thi sẽ bị điểm không (0) bài thi học phần đó và\nphải ra khỏi phòng thi ngay sau khi có quyết định đình chỉ thi.\nCác hình thức kỷ luật nói trên do cán bộ coi thi lập biên bản, thu tang vật và\nghi rõ hình thức kỷ luật.\nd) Sinh viên thi hộ hoặc nhờ người thi hộ bị kỷ luật ở mức đình chỉ học tập\n1 năm nếu vi phạm lần thứ nhất và buộc thôi học nếu vi phạm lần thứ hai."
+          ],
+          "ground_truth_answer": "Không. Ngoài tiêu chí học tập, rèn luyện và kỷ luật, sinh viên phải hoàn thành ít nhất 15 tín chỉ trong học kỳ xét học bổng. Trường hợp đặc biệt chỉ được xem xét theo quyết định của Hiệu trưởng.",
+          "ground_truth_context": [
+            "Sinh viên có kết quả học tập, rèn luyện đạt từ loại khá trở lên và không bị kỷ luật từ mức khiển trách trở lên trong kỳ xét cấp học bổng.",
+            "Tại học kỳ xét học bổng, sinh viên được xét, cấp học bổng phải hoàn thành ít nhất 15 tín chỉ; trường hợp đặc biệt do Hiệu trưởng đơn vị đào tạo quyết định."
+          ],
+          "source_document": "data/standardized/legal/quy-dinh-hoc-bong-dhqghn-4618.md",
+          "reference_document_ids": [
+            "quy-dinh-hoc-bong-dhqghn-4618"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.5,
+            "mrr": 0.5
+          },
+          "status": "success",
+          "latency_seconds": 2.26,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 0.6666666666666666,
+            "answer_relevancy": 0.8238161017387533,
+            "context_recall": 1.0,
+            "context_precision": 0.9999999999
+          }
+        },
+        {
+          "sample_id": "vnu_eval_010",
+          "category": "edge_case",
+          "question": "Sinh viên đã học 2 học kỳ, ngành thứ hai khác ngành thứ nhất và có GPA 2,3. Trong trường hợp nào sinh viên vẫn có thể đăng ký chương trình đào tạo thứ hai?",
+          "answer": "Sinh viên đã học 2 học kỳ, ngành thứ hai khác ngành thứ nhất và có GPA 2,3 có thể đăng ký chương trình đào tạo thứ hai nếu đáp ứng điều kiện về điểm trung bình chung. Cụ thể, sinh viên cần có điểm trung bình chung tất cả các học phần tính từ đầu khóa học đến thời điểm đăng ký học chương trình đào tạo thứ hai đạt từ 2,5 trở lên và đáp ứng ngưỡng bảo đảm chất lượng đầu vào của chương trình thứ hai trong năm tuyển sinh. Tuy nhiên, nếu GPA của sinh viên chỉ đạt 2,3, thì sinh viên không đủ điều kiện để đăng ký chương trình đào tạo thứ hai, trừ khi điểm trung bình chung đạt từ 2,0 trở lên và đáp ứng điều kiện trúng tuyển của chương trình thứ hai trong năm tuyển sinh [Document 1].",
+          "retrieved_contexts": [
+            "1. Sinh viên đang học tại các đơn vị đào tạo của Đại học Quốc gia Hà Nội\ntheo hình thức đào tạo chính quy được đăng ký học thêm một chương trình đào tạo\nthứ hai nếu có đủ các điều kiện:\na) Ngành học chính của chương trình đào tạo thứ hai phải khác ngành học\nchính của chương trình đào tạo thứ nhất;\nb) Đã học ít nhất hai học kỳ của chương trình đào tạo thứ nhất;\nc) Điểm trung bình chung tất cả các học phần tính từ đầu khóa học đến thời\nđiểm đăng ký học chương trình đào tạo thứ hai đạt từ 2,5 trở lên và đáp ứng ngưỡng\nbảo đảm chất lượng đầu vào của chương trình thứ hai trong năm tuyển sinh hoặc\nđiểm trung bình chung tất cả các học phần tính từ đầu khóa học đến thời điểm đăng\nký học chương trình đào tạo thứ hai đạt từ 2,0 trở lên và đáp ứng điều kiện trúng",
+            "23\nĐiều 25. Đào tạo văn bằng thứ hai\n1. Đào tạo văn bằng thứ hai theo hình thức vừa làm vừa học dành cho người\nđã có bằng đại học.\n2. Chương trình đào tạo văn bằng thứ hai được xác định cho người học theo\nnguyên tắc: người học được bảo lưu kết quả học tập đối với những học phần trong\nchương trình đào tạo ngành học thứ nhất có từ 80% trở lên nội dung tương đương\nvới nội dung học phần trong chương trình đào tạo của ngành học mới và điểm học\nphần đạt từ điểm D trở lên; những học phần có nội dung tương đương từ 50% đến\ndưới 80% thì người học không được bảo lưu kết quả học tập nhưng có thể tự học\nvà dự thi để lấy điểm; những học phần chưa học hoặc có nội dung tương đương\ndưới 50% thì người học phải dự học mới được dự thi theo quy định chung.",
+            "lượng kiến thức tương đương có trong chương trình thứ nhất.\n6. Đơn vị tổ chức chương trình đào tạo thứ nhất và thứ hai cập nhật kết quả\nhọc tập của sinh viên sau mỗi học kỳ lên Cổng thông tin đào tạo đại học của Đại\nhọc Quốc gia Hà Nội. Trong quá trình sinh viên học cùng lúc hai chương trình, nếu\nđiểm trung bình chung tích luỹ của chương trình đào tạo thứ nhất đạt dưới điểm\ntrung bình hoặc thuộc diện cảnh báo kết quả học tập thì phải dừng học chương\ntrình đào tạo thứ hai ở học kỳ tiếp theo; sinh viên sẽ bị loại khỏi danh sách học\nchương trình đào tạo thứ hai.\n7. Sinh viên chỉ được xét tốt nghiệp chương trình thứ hai nếu được công\nnhận tốt nghiệp chương trình đào tạo thứ nhất, không vượt quá thời gian đào tạo",
+            "24\nd) Sinh viên có đơn xin học thêm chương trình đào tạo thứ hai và trả học phí\ntheo quy định của đơn vị đào tạo.\n2. Đơn vị tổ chức chương trình đào tạo thứ hai đề xuất, tổ chức thẩm định\ncác học phần cần tích lũy để hoàn thành chương trình đào tạo thứ hai và công nhận\nnhững học phần tương đương của chương trình đào tạo thứ nhất (so với chương\ntrình đào tạo thứ hai). Các trường đại học thành viên báo cáo Đại học Quốc gia Hà\nNội cho ý kiến trước khi triển khai chương trình đào tạo thứ hai, các trường/khoa\ntrực thuộc trình Đại học Quốc gia Hà Nội xem xét, phê duyệt.\n3. Căn cứ chỉ tiêu được Giám đốc Đại học Quốc gia Hà Nội giao hàng năm,\nthủ trưởng đơn vị đào tạo tổ chức tuyển sinh cho hình thức học cùng lúc hai chương\ntrình đào tạo.",
+            "ký học chương trình đào tạo thứ hai đạt từ 2,0 trở lên và đáp ứng điều kiện trúng\ntuyển của chương trình thứ hai trong năm tuyển sinh;"
+          ],
+          "ground_truth_answer": "Sinh viên có thể đăng ký nếu đáp ứng điều kiện trúng tuyển của chương trình thứ hai trong năm tuyển sinh, đồng thời có đơn xin học chương trình thứ hai và trả học phí theo quy định. Phương án GPA từ 2,5 kèm ngưỡng bảo đảm chất lượng đầu vào không áp dụng vì GPA hiện tại là 2,3.",
+          "ground_truth_context": [
+            "Điều kiện điểm là: GPA từ 2,5 trở lên và đáp ứng ngưỡng bảo đảm chất lượng đầu vào, hoặc GPA từ 2,0 trở lên và đáp ứng điều kiện trúng tuyển của chương trình thứ hai trong năm tuyển sinh.",
+            "Sinh viên phải có đơn xin học thêm chương trình đào tạo thứ hai và trả học phí theo quy định của đơn vị đào tạo."
+          ],
+          "source_document": "data/standardized/legal/quy-che-dao-tao-dai-hoc-dhqghn-3626.md",
+          "reference_document_ids": [
+            "quy-che-dao-tao-dai-hoc-dhqghn-3626"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 4.434,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 0.75,
+            "answer_relevancy": 0.8643040831654728,
+            "context_recall": 1.0,
+            "context_precision": 0.9999999999
+          }
+        },
+        {
+          "sample_id": "vnu_eval_011",
+          "category": "edge_case",
+          "question": "Trong thủ tục nội trú năm học 2025-2026 dành cho học sinh chuyên đã được xét duyệt, QH2025 và QH2023/QH2024 phải thực hiện các bước khác nhau như thế nào?",
+          "answer": "Trong thủ tục nội trú năm học 2025-2026 dành cho học sinh chuyên đã được xét duyệt, học sinh QH2025 và QH2023/QH2024 phải thực hiện các bước khác nhau. \n\nCụ thể, học sinh QH2025 cần thực hiện đủ 03 bước: hoàn thiện hồ sơ nội trú, nộp lệ phí và dịch vụ gia tăng, và làm thủ tục nhận phòng tại KTX. Trong khi đó, học sinh QH2023 và QH2024 chỉ cần thực hiện bước 02 (nộp lệ phí và dịch vụ gia tăng) và bước 03 (làm thủ tục nhận phòng tại KTX) [Document 1, 2].",
+          "retrieved_contexts": [
+            "Trang chủ » Sinh viên » CÔNG BỐ DANH SÁCH XÉT DUYỆT VÀ HƯỚNG DẪN LÀM THỦ TỤC NỘI TRÚ NĂM HỌC 2025-2026 CHO ĐỐI TƯỢNG HỌC SINH CHUYÊN\nCÔNG BỐ DANH SÁCH XÉT DUYỆT VÀ HƯỚNG DẪN LÀM THỦ TỤC NỘI TRÚ NĂM HỌC 2025-2026 CHO ĐỐI TƯỢNG HỌC SINH CHUYÊN\n=====***=====***=====\nI. ĐỐI TƯỢNG\nHọc sinh QH2023, QH2024 và QH2025 Trường THPT Chuyên Khoa học Tự nhiên và THPT Chuyên Khoa học Xã hội & Nhân văn đã được xét duyệt ở nội trú năm học 2025-2026.\nDanh sách học sinh QH2025 được duyệt ở nội trú xem chi tiết theo link sau:\nII. QUY TRÌNH LÀM THỦ TỤC NỘI TRÚ\nBƯỚC 1: Học sinh hoàn thiện hồ sơ nội trú\n– Khai báo trực tuyến (Online) thông qua Website: (Chi tiết thực hiện theo hướng dẫn tại Phụ lục 01: )\n– Thời gian hoàn thiện hồ sơ: Từ ngày 22/7 đến hết ngày 31/7/2025",
+            "# CÔNG BỐ DANH SÁCH XÉT DUYỆT VÀ HƯỚNG DẪN LÀM THỦ TỤC NỘI TRÚ NĂM HỌC 2025-2026 CHO ĐỐI TƯỢNG HỌC SINH CHUYÊN - Trung tâm Hỗ trợ sinh viên - Đại học Quốc gia Hà Nội\n\n**Source:** https://css.vnu.edu.vn/cong-bo-danh-sach-xet-duyet-va-huong-dan-lam-thu-tuc-noi-tru-nam-hoc-2025-2026-cho-doi-tuong-hoc-sinh-chuyen/\n**Crawled:** 2026-08-04T10:16:52.840221\n\n---",
+            "BƯỚC 3: Làm thủ tục nhận phòng tại KTX\n– Thời gian: Từ 8h00′ -17h00′ Ngày 03/8/2025 (Chủ Nhật).\n– Địa điểm: Văn phòng Ban Quản lý KTX Mễ Trì – Tầng 1 nhà C0, số 182 Lương Thế Vinh, Thanh Xuân, Hà Nội.\n*** 𝐆𝐡𝐢 𝐜𝐡𝐮́:\n– Học sinh QH 2025 thực hiện đủ 03 bước\n– Học sinh QH 2023, QH 2024 thực hiện bước 02 và 03\n– Hết thời gian quy định, Học sinh không hoàn thiện hồ sơ và không nộp lệ phí, đồng nghĩa với không có nhu cầu ở KTX.\n***=======\nTHÔNG TIN LIÊN HỆ: Hotline 0834182182",
+            "– Thời gian hoàn thiện hồ sơ: Từ ngày 22/7 đến hết ngày 31/7/2025\n– Lưu ý: Học sinh có 02 loại phòng để lựa chọn đăng ký: MT_A5 (ở 04 HS) và MT_N2a (ở 02 HS)\nBƯỚC 2: Nộp lệ phí và dịch vụ gia tăng\n– Hình thức nộp: Học sinh lựa chọn 01 trong 02 cách:\n+ Chuyển khoản từ ngày 01/8 đến ngày 04/8/2025 (KTX sẽ có hướng dẫn nộp chuyển khoản trước ngày 31/7/2025 trên Website )\n+ Nộp trực tiếp tại Văn phòng Ban Quản lý KTX (Tầng 01 nhà C0, số 182 Lương Thế Vinh, Thanh Xuân, Hà Nội) trong ngày 03/8/2025 (Chủ Nhật)\n– Lệ phí kỳ I: Tính từ ngày 01/8/2025 đến 31/12/2025 (5 tháng)\n– Tổng số tiền học sinh phải nộp theo loại phòng được sắp xếp: Xem trong mục “Biên lai” tại Website\nBƯỚC 3: Làm thủ tục nhận phòng tại KTX\n– Thời gian: Từ 8h00′ -17h00′ Ngày 03/8/2025 (Chủ Nhật).",
+            "9\n\n6. Trung tâm Hỗ trợ Sinh viên, Trung tâm Quản lý đô thị đại học, Trung\ntâm Giáo dục Quốc phòng và An ninh cân đối, ưu tiên bố trí chỗ ở nội trú trong\nKý túc xá cho sinh viên nhận học bổng nếu sinh viên có nhu cầu.\n\nĐiều 16. Trách nhiệm của đơn vị đào tạo\n1.  Thực  hiện  đúng,  đầy  đủ  các  nội  dung  quy  định  hiện  hành  của  Nhà\nnước,  của  ĐHQGHN  về  công  tác  bố  trí  nguồn,  quản  lý,  xét,  cấp  học  bổng\nkhuyến khích học tập; học bổng đối với các chương trình đào tạo tài năng, chất\nlượng cao hoặc học bổng đối với một số chương trình đào tạo đặc thù khác dành\ncho học sinh, sinh viên; hỗ trợ đầy đủ về thủ tục theo thẩm quyền để học sinh,\nsinh viên đúng đối tượng được nhận học bổng chính sách xã hội."
+          ],
+          "ground_truth_answer": "Học sinh QH2025 phải thực hiện đủ ba bước: hoàn thiện hồ sơ nội trú, nộp lệ phí và dịch vụ gia tăng, rồi làm thủ tục nhận phòng. Học sinh QH2023 và QH2024 chỉ thực hiện bước 2 và bước 3.",
+          "ground_truth_context": [
+            "Học sinh QH2025 thực hiện đủ 03 bước; học sinh QH2023, QH2024 thực hiện bước 02 và 03."
+          ],
+          "source_document": "data/standardized/news/article_03.md",
+          "reference_document_ids": [
+            "article_03"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 4.806,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.8527456180948226,
+            "context_recall": 1.0,
+            "context_precision": 0.8055555555287036
+          }
+        },
+        {
+          "sample_id": "vnu_eval_012",
+          "category": "out_of_domain",
+          "question": "Học phí ngành Công nghệ thông tin UET năm học 2026-2027 là bao nhiêu?",
+          "answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+          "retrieved_contexts": [
+            "Căn cứ khung chương trình các chương trình đào tạo tại Trường ĐHCN đã được phê duyệt và áp dụng;\nCăn cứ Tờ trình ngày 11 tháng 09 năm 2025 về định mức thu học phí các CTĐT tại trường ĐHCN năm học 2025 -2026 của các phòng Công tác sinh viên, Kế hoạch – Tài chính, Đào tạo;\nTheo đề nghị của Trưởng phòng Kế hoạch – Tài chính.\n**HIỆU TRƯỞNG****TRƯỜNG ĐẠI HỌC CÔNG NGHỆ**\n**QUYẾT ĐỊNH:**\n**Điều 1.** Ban hành Quy định định mức thu học phí và các khoản thu khác từ người học năm học 2025-2026 (chi tiết theo phụ lục ).\n**Điều 2****.** Mức thu học phí và các khoản thu khác ban hành theo Quyết định này được áp dụng từ năm học 2025-2026.",
+            "# Định mức học phí các chương trình đào tạo năm học 2025-2026 - Trường Đại học Công Nghệ - Đại học Quốc Gia Hà Nội\n\n**Source:** https://uet.vnu.edu.vn/dinh-muc-hoc-phi-cac-chuong-trinh-dao-tao-nam-hoc-2025-2026/\n**Crawled:** 2026-08-04T10:16:59.753533\n\n---\n\nTrở lại",
+            "thực hiện tại đơn vị đào tạo hoặc tại đơn vị phối hợp đào tạo theo quy định liên kết\nđào tạo trong nước tại Điều 10 của Quy chế này, riêng những hoạt động thực hành,\nthực tập, trải nghiệm thực tế và giảng dạy trực tuyến có thể thực hiện ngoài đơn vị\nđào tạo, đơn vị phối hợp đào tạo.\nĐiều 8. Kinh phí đào tạo\n1. Nguồn kinh phí đào tạo\nKinh phí để tổ chức đào tạo một ngành học bao gồm kinh phí từ ngân sách\nnhà nước, học phí và các nguồn kinh phí hợp pháp khác.\na) Kinh phí từ ngân sách nhà nước\nĐại học Quốc gia Hà Nội phân bổ kinh phí theo định mức và chỉ tiêu đào\ntạo hàng năm cho các ngành học được cấp ngân sách nhà nước.\nb) Học phí\n- Sinh viên theo học bất kỳ ngành học nào đều phải trả học phí (trừ sinh viên\nthuộc đối tượng được miễn giảm theo quy định hiện hành của nhà nước).",
+            "giá của từng học phần ghi theo mức điểm chữ, bao gồm cả kết quả các học phần tự\nchọn tự do. Trên cơ sở phụ lục văn bằng bằng tiếng Việt, đơn vị đào tạo lập và cấp\nphụ lục văn bằng bằng tiếng nước ngoài cho sinh viên.\n9. Đơn vị đào tạo công bố công khai danh sách sinh viên tốt nghiệp (mã số\nsinh viên, họ và tên, ngày tháng năm sinh, ngành học) trên trang web của đơn vị\nvà chịu trách nhiệm về chất lượng đào tạo, giá trị văn bằng do đơn vị cấp.\n10. Sinh viên chưa hoàn thành học phần giáo dục quốc phòng - an ninh, học\nphần giáo dục thể chất, kỹ năng bổ trợ hoặc chưa đạt chuẩn đầu ra về ngoại ngữ,\ncông nghệ thông tin (nếu có) nhưng đã hết thời gian tối đa được phép học, trong\nthời hạn 3 năm tính từ ngày phải ngừng học, được trở về đơn vị đào tạo hoàn thành",
+            "|     | ELT2028  | Chuyên nghiệp trong công nghệ  |        |     |             |\n| --- | -------- | ------------------------------ | ------ | --- | ----------- |\n|     |          |                                | 2  30  |     |             |\n|     |          |                                |        |     |             |\n|     | POL1001  | Tư tưởng Hồ Chí Minh           | 2  20  | 10  |    PHI1005  |\n|     | MAT1101  | Xác suất thống kê              | 3  30  | 15  |    MAT1041  |\n|     | INT2044  | Lý thuyết thông tin            | 3  45  |     |    MAT1101  |\nQH-2018-I/CQ-CA-\n|     | INT3403  | Đồ họa máy tính  | 3  30  | 15  |    INT2203  |\n| --- | -------- | ---------------- | ------ | --- | ----------- |\nCLCL\n|     |     | Chọn 2 học phần (3 tín chỉ mỗi     |     |     |     |"
+          ],
+          "ground_truth_answer": "Không đủ thông tin trong bộ tài liệu hiện tại để xác định học phí ngành Công nghệ thông tin UET năm học 2026-2027. Hệ thống phải từ chối suy đoán và đề nghị người dùng kiểm tra thông báo học phí chính thức mới nhất của UET.",
+          "ground_truth_context": [
+            ""
+          ],
+          "source_document": "",
+          "reference_document_ids": [],
+          "retrieval_metrics": {
+            "hit_rate": 0.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 2.612,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.0,
+            "context_recall": 1.0,
+            "context_precision": 0.0
+          }
+        },
+        {
+          "sample_id": "vnu_eval_013",
+          "category": "out_of_domain",
+          "question": "Thư viện ĐHQGHN mở cửa đến mấy giờ vào Chủ nhật?",
+          "answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+          "retrieved_contexts": [
+            "2.  Thời gian học tập tại phòng tự học\n-  Sáng: Mở cửa từ 8h00 (mở cửa cả ngày thứ 7).\n-  Chiều: Đóng cửa lúc 19h00.\nYêu cầu sinh viên phải đến phòng tự học (315-G2) tối thiểu 2 lần/tuần. Ngoài ra, nếu gặp khó khăn trong quá trình học tập trên lớp, sinh\nviên phải tham gia các giờ tự học có trợ giảng hướng dẫn (lịch chi tiết được thông báo cụ thể trong HK).",
+            "## Đào tạo sau Đại học\n\nNgày 07/10/2024, Đại học Quốc gia Hà Nội (ĐHQGHN) ban hành Quyết định số 4618/QĐ-ĐHQGHN, văn bản này quy định về công tác quản lý, sử dụng học bổng tại Đại học Quốc gia Hà Nội (ĐHQGHN); áp dụng đối với học sinh, sinh viên, học viên cao học, nghiên cứu sinh của ĐHQGHN (gọi chung là học sinh, sinh viên) và các đơn vị, bộ phận chức năng liên quan.\nChi tiết như văn bản .\nTrân trọng thông báo.\n09/10/2024\n09/10/2024\n### Bài viết liên quan\n24/02/2025\n19/12/2024\n22/11/2024",
+            "LỜI MỞ ĐẦU\nSổ tay học vụ được Nhà trường phát hành vào đầu mỗi năm học, cung\ncấp các thông tin cần thiết liên quan đến học vụ nhằm giúp các bạn sinh viên có\nthể tổ chức tốt kế hoạch học tập của mình.\nKhi cần được giải đáp các vấn đề liên quan đến học vụ, sinh viên có thể:\n1. Trình bày với cố vấn học tập để được giải đáp cụ thể.\n2. Trình bày rõ ràng bằng văn bản nộp tại Phòng 104-E3.\n3. Trình bày và gửi qua địa chỉ email: daotao_dhcn@vnu.edu.vn.\nBên cạnh đó, yêu cầu sinh viên có trách nhiệm thường xuyên kiểm tra\nhộp thư điện tử do nhà trường cung cấp cho từng sinh viên vào đầu khóa học,\nPhòng Đào tạo sẽ sử dụng địa chỉ hòm thư này để gửi các thông tin liên quan và\nliên hệ với sinh viên khi cần.\nNhà trường hy vọng các bạn sinh viên sẽ sử dụng cuốn sổ tay học vụ hữu",
+            "🎓 TÌM VIỆC LÀM, THỰC TẬP DỄ DÀNG HƠN CÙNG CỔNG THÔNG TIN VIỆC LÀM SINH VIÊN ĐHQGHN Bạn đang tìm kiếm: ✅ Việc làm bán thời gian phù hợp với lịch học? ✅ Cơ hội thực tập để tích lũy kinh nghiệm? ✅ Việc làm sau tốt nghiệp từ các doanh nghiệp uy tín? Cổng thông tin việc làm sinh viên do Trung tâm Hỗ trợ sinh viên – ĐHQGHN xây dựng và vận hành sẽ giúp bạn kết nối nhanh chóng với các cơ hội nghề nghiệp phù hợp. 📌 Tại đây, sinh viên có thể: 🔹 Cập nhật thường xuyên các tin tuyển dụng mới nhất. 🔹 Tìm kiếm cơ hội thực tập và việc làm theo ngành học. 🔹 Kết nối trực tiếp với doanh nghiệp, nhà tuyển dụng. 🔹 Tiếp cận các chương trình hướng nghiệp, ngày hội việc làm và hoạt động hỗ trợ sinh viên",
+            "LỜI MỞ ĐẦU\nSổ tay học vụ được Nhà trường phát hành vào đầu mỗi năm học, cung cấp các\nthông tin cần thiết liên quan đến học vụ nhằm giúp các bạn sinh viên có thể tổ chức tốt kế\nhoạch học tập của mình.\nKhi cần được giải đáp các vấn đề liên quan đến học vụ, sinh viên có thể:\n1. Trình bày với cố vấn học tập để được giải đáp cụ thể.\n2. Trình bày rõ ràng bằng văn bản nộp tại Phòng 104-E3.\n3. Trình bày và gửi qua địa chỉ email: daotao_dhcn@vnu.edu.vn.\nBên cạnh đó, yêu cầu sinh viên có trách nhiệm thường xuyên kiểm tra hộp thư\nđiện tử do nhà trường cung cấp cho từng sinh viên vào đầu khóa học, Phòng Đào tạo sẽ\nsử dụng địa chỉ hòm thư này để gửi các thông tin liên quan và liên hệ với sinh viên khi\ncần.\nNhà trường hy vọng các bạn sinh viên sẽ sử dụng cuốn sổ tay học vụ hữu ích để"
+          ],
+          "ground_truth_answer": "Bộ tài liệu hiện tại không cung cấp giờ mở cửa Chủ nhật của thư viện ĐHQGHN. Hệ thống phải nói rõ không tìm thấy thông tin và không tự suy đoán thời gian.",
+          "ground_truth_context": [
+            ""
+          ],
+          "source_document": "",
+          "reference_document_ids": [],
+          "retrieval_metrics": {
+            "hit_rate": 0.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 1.403,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.0,
+            "context_recall": 0.5,
+            "context_precision": 0.9999999999
+          }
+        },
+        {
+          "sample_id": "vnu_eval_014",
+          "category": "multilingual_cross_lingual",
+          "question": "What is the minimum weight of the final course assessment in the overall course grade at VNU?",
+          "answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+          "retrieved_contexts": [
+            "Kết quả học tập của sinh viên được đánh giá sau mỗi học kỳ chính theo các\ntiêu chí sau:\n1. Khối lượng kiến thức học tập là tổng số tín chỉ của những học phần (không\ntính học phần tự chọn tự do) mà sinh viên đã đăng ký học trong học kỳ.\n2. Khối lượng kiến thức tích lũy là tổng số tín chỉ của những học phần đã\nđược đánh giá loại đạt, tính từ đầu khóa học.\n3. Điểm trung bình chung học kỳ là điểm trung bình theo trọng số tín chỉ của\ncác học phần mà sinh viên đăng ký học trong học kỳ đó (bao gồm cả các học phần\nđược đánh giá loại đạt và không đạt).\n4. Điểm trung bình chung các học phần là điểm trung bình theo trọng số tín\nchỉ của các học phần mà sinh viên đăng ký học từ đầu khóa học cho tới thời\nđiểm xem xét (bao gồm cả các học phần được đánh giá loại đạt và không đạt).",
+            "**Điều 3.** Các Trưởng phòng Hành chính Quản trị và Tổ chức Cán bộ, Kế hoạch – Tài chính, Công tác Sinh viên, Đào tạo; sinh viên, học viên cao học, nghiên cứu sinh; Thủ trưởng các đơn vị và cá nhân liên quan chịu trách nhiệm thực hiện Quyết định này./.\n02/10/2025\n02/10/2025\n### Bài viết liên quan\n04/08/2026\n29/07/2026\n17/07/2026\n### Bài viết liên quan\nTiếp nối nội dung được triển khai thường niên theo MOU giữa MB và Đại học Quốc gia Hà Nội, MB triển khai Chương trình Học bổng The Best of MB Chasing 2026 dành cho năm học 2026 – 2027. …\nBan điều hành Học bổng Vallet dành cho sinh viên miền Bắc trân trọng thông báo kết quả xét chọn học bổng Vallet năm 2026 đối với sinh viên của Trường Đại học Công nghệ, Đại học Quốc gia Hà …",
+            "Học kỳ chính, không tính học kỳ cuối khóa: tất cả sinh viên phải thực hiện\nđăng ký lớp học phần trước khi học kỳ mới bắt đầu. Số tín chỉ tối thiểu sinh viên phải\nđăng ký: 14 tín chỉ đối với sinh viên hệ chuẩn, 16 tín chỉ đối với chất lượng cao và\nchuẩn quốc tế. Số tín chỉ tối đa được phép đăng ký: 25 tín chỉ đối với sinh viên theo\nhọc một ngành, 28 tín chỉ đối với sinh viên theo học bằng kép. Chỉ những sinh viên\nđăng ký 14 tín chỉ trở lên mới được xét học bổng khuyến khích học tập. Trường hợp\nsinh viên có nguyện vọng đăng ký học ít hơn số tín chỉ tối thiểu trong một học kỳ\nphải được sự đồng ý của Thủ trưởng đơn vị đào tạo.\nHọc kỳ phụ: không bắt buộc, sinh viên đăng ký học theo nguyện vọng.\nSinh viên thuộc diện cảnh báo học vụ: tổng số tín chỉ đăng ký học (tối thiểu,",
+            "d. Bước 4: Huỷ môn đã đăng ký (nếu cần thiết) và In phiếu đăng ký học\nphần.\n- Huỷ một số một học đã đăng ký, hãy nhấn vào dấu . Xuất hiện màn hình\nthông báo bạn có chắc chắn muốn huỷ học phần đã đăng ký không? Nếu\nđồng ý nhấn chuột vào nút “OK”, ngược lại nhấn vào nút “Cancel”.\n- Nhấn chuột vào nút “Xem và in” khi việc đăng ký đã hoàn thành và chọn\nmáy in để in và ấn nút Print.\n35\n\n5. Kết thúc chương trình\nĐể kết thúc chương trình, nhấn chuột vào nút “Thoát”\nViệc thoát khỏi chương trình cần được thực hiện đúng quy trình. Tuyệt đối\nkhông tắt màn hình hay tắt máy như tắt một thiết bị tiêu thụ điện thông thường.\nPhải nhấn vào nút “Thoát” cho đến khi hệ thống thông báo là bạn đã thoát ra\nthành công.\n36",
+            "tra đánh giá.\nĐiều 5. Học phần\n1. Học phần là một phần kiến thức của chương trình đào tạo; mỗi học phần\ncó khối lượng kiến thức từ 2 đến 5 tín chỉ, được tổ chức giảng dạy trọn vẹn trong\nmột học kỳ (trừ học phần thực tập thực tế); mỗi học phần có mã số riêng do thủ\ntrưởng đơn vị đào tạo ban hành dựa trên nguyên tắc đánh mã của Đại học Quốc gia\nHà Nội."
+          ],
+          "ground_truth_answer": "The final course assessment is mandatory and must account for at least 60% of the overall course grade.",
+          "ground_truth_context": [
+            "Điểm đánh giá kết thúc học phần là bắt buộc và có trọng số không dưới 60% điểm của học phần."
+          ],
+          "source_document": "data/standardized/legal/quy-che-dao-tao-dai-hoc-dhqghn-3626.md",
+          "reference_document_ids": [
+            "quy-che-dao-tao-dai-hoc-dhqghn-3626"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 1.726,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 0.0,
+            "answer_relevancy": 0.0,
+            "context_recall": 0.0,
+            "context_precision": 0.0
+          }
+        },
+        {
+          "sample_id": "vnu_eval_015",
+          "category": "multilingual_cross_lingual",
+          "question": "For regular undergraduate students, how many months per academic year is the merit scholarship paid?",
+          "answer": "Học bổng được cấp cho sinh viên đại học hệ chính quy theo từng học kỳ và cấp 9 tháng trong năm học [Document 3].",
+          "retrieved_contexts": [
+            "luật từ mức khiển trách trở lên trong kỳ xét cấp học bổng.\n\n3.2. Mức học bổng\nDo Hiệu trưởng đơn vị đào tạo hoặc chủ nhiệm khoa trực thuộc (sau đây\ngọi chung là Hiệu trưởng) quy định nhưng bằng hoặc cao hơn mức trần học phí\nhiện hành của ngành, chuyên ngành mà sinh viên đó phải đóng (tính theo tháng).\nVới những ngành, chuyên ngành đào tạo không thu học phí thì áp dụng theo đơn\ngiá được Nhà nước đặt hàng, giao nhiệm vụ cho đơn vị. Chi tiết như sau:\n\na) Học bổng loại khá: Dành cho sinh viên có điểm trung bình chung học\ntập và điểm rèn luyện trong học kỳ đều đạt loại khá trở lên. Mức học bổng bằng\nhoặc cao hơn mức trần học phí hiện hành của ngành, chuyên ngành mà sinh viên\nđó phải đóng tại đơn vị theo quy định.",
+            "c) Học bổng được cấp theo từng học kỳ và cấp 10 tháng trong năm học. Tại\nhọc kỳ xét học bổng, sinh viên được xét, cấp học bổng phải hoàn thành ít nhất\n15 tín chỉ. Trường hợp đặc biệt do Hiệu trưởng đơn vị đào tạo quyết định.\n\nd) Riêng học kỳ cuối cùng của khóa học, đơn vị căn cứ vào kết quả xét tốt\nnghiệp theo đúng quy chế đào tạo tại ĐHQGHN và điểm rèn luyện toàn khóa để\nxét và cấp học bổng KKHT (điểm trung bình chung tích lũy toàn khóa học thay\ncho kết quả học tập của học kỳ đó). Trường hợp đặc biệt do Hiệu trưởng đơn vị\nđào tạo quyết định.\n\ne) Sinh viên thuộc diện hưởng học bổng chính sách, trợ cấp xã hội, chính\nsách  ưu  đãi  theo  quy  định  hiện  hành  của  nhà  nước  thì  vẫn  được  xét,  cấp  học\nbổng KKHT.\n\nĐiều 6. Học bổng cho sinh viên hệ đào tạo tài năng, hệ đào tạo chất",
+            "8. Quản lý hồ sơ cấp học bổng hàng năm và báo cáo tình hình thực hiện\n\nxét, cấp học bổng về ĐHQGHN trước ngày 30 tháng 6 hàng năm.\n\n9. Phối hợp tổ chức trao các chương trình học bổng do ĐHQGHN quản lý.\n Điều 17. Trách nhiệm của học sinh, sinh viên\n1.  Trung  thực  khi  cung  cấp  thông  tin,  hồ  sơ  đăng  ký  tham  gia  chương\n\ntrình học bổng.\n\n2.  Sử  dụng  học  bổng  được  cấp  theo  đúng  mục  đích,  yêu  cầu  của\nĐHQGHN cũng như của đối tác tài trợ học bổng để phục vụ học tập, nghiên cứu\nvà trang trải chi phí sinh hoạt của bản thân.\n\n3. Tích cực phấn đấu học tập và rèn luyện tốt, đáp ứng các tiêu chuẩn mà\n\nchương trình học bổng yêu cầu.",
+            "Điều 10. Nguyên tắc xét, cấp học bổng\nTrong một năm học, mỗi học sinh, sinh viên chỉ được nhận 01 học bổng\ntài trợ do ĐHQGHN hoặc các đơn vị quản lý. Trường hợp đặc biệt do Giám đốc\nĐHQGHN  (đối  với  những  học  bổng  tài  trợ  do  ĐHQGHN  quản  lý)  hoặc  Hiệu\ntrưởng (đối với các học bổng tài trợ do đơn vị đào tạo quản lý) quyết định.\n\nHọc  sinh,  sinh  viên  đã  được  nhận  học  bổng  khuyến  khích  học  tập  hoặc\nhọc bổng chính sách nếu đủ điều kiện vẫn được xét, cấp học bổng tài trợ trong\nnăm học.\n\n\f6",
+            "Học bổng được cấp theo từng học kỳ và cấp 9 tháng trong năm học.\nBên cạnh học bổng KKHT theo văn bản quy định này, Hiệu trưởng đơn vị\nđào  tạo  có  thể  có  các  chế  độ,  chính  sách  khác  đối  với  học  sinh  trường  THPT\nchuyên do đơn vị quản lý. Học sinh thuộc diện hưởng học bổng chính sách, trợ\ncấp xã hội, chính sách ưu đãi theo quy định hiện hành của nhà nước thì vẫn được\nxét, cấp học bổng KKHT.\n\n\f3\n\n2. Học bổng cho các đối tượng học sinh khác\nHiệu trưởng đơn vị đào tạo căn cứ thực tiễn tại đơn vị và các văn bản quy\nđịnh hiện hành, chỉ đạo triển khai thực hiện đầy đủ, bảo đảm quyền, lợi ích hợp\npháp của học sinh.\n\n3. Học bổng cho sinh viên đại học hệ chính quy\n3.1. Đối tượng, tiêu chí\nSinh viên có kết quả học tập, rèn luyện đạt từ loại khá trở lên và không bị kỷ"
+          ],
+          "ground_truth_answer": "The scholarship is awarded by semester and is paid for 10 months in an academic year.",
+          "ground_truth_context": [
+            "Học bổng được cấp theo từng học kỳ và cấp 10 tháng trong năm học."
+          ],
+          "source_document": "data/standardized/legal/quy-dinh-hoc-bong-dhqghn-4618.md",
+          "reference_document_ids": [
+            "quy-dinh-hoc-bong-dhqghn-4618"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 1.0,
+            "mrr": 0.5
+          },
+          "status": "success",
+          "latency_seconds": 2.682,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 0.5,
+            "answer_relevancy": 0.7922276013762941,
+            "context_recall": 1.0,
+            "context_precision": 0.49999999995
+          }
+        }
+      ]
+    },
+    "Config B (dense-only)": {
+      "overall_scores": {
+        "faithfulness": 0.6404761904761905,
+        "answer_relevancy": 0.6248650027775402,
+        "context_recall": 0.7333333333333333,
+        "context_precision": 0.7133333332687779
+      },
+      "execution_summary": {
+        "total_samples": 15,
+        "successful_samples": 15,
+        "pipeline_error_samples": 0,
+        "pipeline_success_rate": 100.0
+      },
+      "audit_log": [
+        {
+          "sample_id": "vnu_eval_001",
+          "category": "happy_case",
+          "question": "Một học phần tại ĐHQGHN thường có khối lượng bao nhiêu tín chỉ?",
+          "answer": "Một học phần tại Đại học Quốc gia Hà Nội (ĐHQGHN) thường có khối lượng kiến thức từ 2 đến 5 tín chỉ [Document 1].",
+          "retrieved_contexts": [
+            "tra đánh giá.\nĐiều 5. Học phần\n1. Học phần là một phần kiến thức của chương trình đào tạo; mỗi học phần\ncó khối lượng kiến thức từ 2 đến 5 tín chỉ, được tổ chức giảng dạy trọn vẹn trong\nmột học kỳ (trừ học phần thực tập thực tế); mỗi học phần có mã số riêng do thủ\ntrưởng đơn vị đào tạo ban hành dựa trên nguyên tắc đánh mã của Đại học Quốc gia\nHà Nội.",
+            "tập, mỗi học kỳ sinh viên đăng ký với số lượng tín chỉ (không bao gồm các học phần\nngoại ngữ, giáo dục thể chất, giáo dục quốc phòng - an ninh, kỹ năng bổ trợ, cải thiện\nđiểm, tự chọn tự do) như sau:\n5",
+            "13\nChương trình đào tạo song ngành gồm hai phần: Chương trình đào tạo ngành\nthứ nhất có khối lượng kiến thức tối thiểu là 120 tín chỉ, ngành thứ hai có khối\nlượng kiến thức từ 30 tín chỉ trở lên (những học phần giống nhau, tương đương\ngiữa hai chương trình đào tạo chỉ được tính khối lượng kiến thức một lần). Việc tổ\nchức và quản lý đào tạo được thực hiện liên thông giữa các khoa/bộ môn trong\ncùng một đơn vị đào tạo, giữa các đơn vị đào tạo trong Đại học Quốc gia Hà Nội;\ne) Chương trình đào tạo liên kết với cơ sở giáo dục nước ngoài do Đại học\nQuốc gia Hà Nội cấp bằng được thiết kế theo quy định của Đại học Quốc gia Hà\nNội và tham khảo chương trình đào tạo của đối tác nước ngoài để điều chỉnh, bổ\nsung đáp ứng yêu cầu và điều kiện thực tế của Việt Nam;",
+            "Để đảm bảo tiến độ thời gian hoàn thành khóa học và đảm bảo chất lượng học tập,\nmỗi học kỳ sinh viên đăng ký với số lượng tín chỉ (không bao gồm các học phần ngoại\nngữ, giáo dục thể chất, giáo dục quốc phòng - an ninh, kỹ năng bổ trợ, cải thiện điểm, tự\nchọn tự do) như sau:\nHọc kỳ chính, không tính học kỳ cuối khóa: tất cả sinh viên phải thực hiện đăng ký\nlớp học phần trước khi học kỳ mới bắt đầu. Số tín chỉ tối thiểu sinh viên phải đăng ký: 14\ntín chỉ đối với sinh viên hệ chuẩn, 16 tín chỉ đối với chất lượng cao và chuẩn quốc tế. Số\ntín chỉ tối đa được phép đăng ký: 25 tín chỉ đối với sinh viên theo học một ngành, 28 tín\nchỉ đối với sinh viên theo học bằng kép. Chỉ những sinh viên đăng ký 14 tín chỉ trở lên\nmới được xét học bổng khuyến khích học tập. Trường hợp sinh viên có nguyện vọng",
+            "Học kỳ chính, không tính học kỳ cuối khóa: tất cả sinh viên phải thực hiện\nđăng ký lớp học phần trước khi học kỳ mới bắt đầu. Số tín chỉ tối thiểu sinh viên phải\nđăng ký: 14 tín chỉ đối với sinh viên hệ chuẩn, 16 tín chỉ đối với chất lượng cao và\nchuẩn quốc tế. Số tín chỉ tối đa được phép đăng ký: 25 tín chỉ đối với sinh viên theo\nhọc một ngành, 28 tín chỉ đối với sinh viên theo học bằng kép. Chỉ những sinh viên\nđăng ký 14 tín chỉ trở lên mới được xét học bổng khuyến khích học tập. Trường hợp\nsinh viên có nguyện vọng đăng ký học ít hơn số tín chỉ tối thiểu trong một học kỳ\nphải được sự đồng ý của Thủ trưởng đơn vị đào tạo.\nHọc kỳ phụ: không bắt buộc, sinh viên đăng ký học theo nguyện vọng.\nSinh viên thuộc diện cảnh báo học vụ: tổng số tín chỉ đăng ký học (tối thiểu,"
+          ],
+          "ground_truth_answer": "Một học phần thường có khối lượng từ 2 đến 5 tín chỉ và được tổ chức giảng dạy trọn vẹn trong một học kỳ; học phần thực tập thực tế là ngoại lệ được nêu trong quy chế.",
+          "ground_truth_context": [
+            "Mỗi học phần có khối lượng kiến thức từ 2 đến 5 tín chỉ, được tổ chức giảng dạy trọn vẹn trong một học kỳ, trừ học phần thực tập thực tế."
+          ],
+          "source_document": "data/standardized/legal/quy-che-dao-tao-dai-hoc-dhqghn-3626.md",
+          "reference_document_ids": [
+            "quy-che-dao-tao-dai-hoc-dhqghn-3626"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 1.84,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.9658408984984006,
+            "context_recall": 1.0,
+            "context_precision": 0.9999999999
+          }
+        },
+        {
+          "sample_id": "vnu_eval_002",
+          "category": "happy_case",
+          "question": "Một năm học tại ĐHQGHN có bao nhiêu học kỳ chính và học kỳ phụ?",
+          "answer": "Một năm học tại ĐHQGHN có hai học kỳ chính và một học kỳ phụ. Mỗi học kỳ chính có 15 tuần học, từ 3 đến 4 tuần thi và 1 tuần dự phòng. Học kỳ phụ có ít nhất 5 tuần học và 1 tuần thi, được tổ chức trong thời gian giữa hai học kỳ chính [Chương III, Điều 16].",
+          "retrieved_contexts": [
+            "14\nChương III\nTỔ CHỨC ĐÀO TẠO\nĐiều 16. Học kỳ\nMỗi năm học có hai học kỳ chính và một học kỳ phụ. Mỗi học kỳ chính có\n15 tuần học, từ 3 đến 4 tuần thi và 1 tuần dự phòng.\nMỗi học kỳ phụ có ít nhất 5 tuần học và 1 tuần thi, được tổ chức trong thời\ngian giữa hai học kỳ chính.\nĐiều 17. Khóa học\n1. Thời gian của khóa học\na) Thời gian thiết kế của khóa học đào tạo chính quy là 8 học kỳ chính đối\nvới đào tạo cử nhân, từ 9 đến 10 học kỳ chính đối với đào tạo kĩ sư, 10 học kỳ\nchính đối với đào tạo dược sĩ, 12 học kỳ chính đối với đào tạo bác sĩ;\nb) Thời gian theo kế hoạch học tập chuẩn toàn khoá đối với hình thức đào\ntạo vừa làm vừa học dài hơn tối thiểu 20% so với hình thức đào tạo chính quy của\ncùng chương trình đào tạo;",
+            "- Trong 2 tuần đầu của học kỳ chính, sinh viên được phép đăng ký những học phần\nmuốn học thêm hoặc đăng ký đổi sang lớp học phần khác.\n- Việc rút bớt học phần trong khối lượng học tập đã đăng ký theo nhu cầu và khả\nnăng lựa chọn của sinh viên chỉ được chấp nhận:\n● Sinh viên có đơn trình bày rõ lý do xin rút bớt học phần (có ý kiến của\nCVHT), nộp tại P. 105-E3 chậm nhất 2 tuần kể từ đầu học kỳ chính.\n● Được Nhà trường đồng ý.\nNgoài thời hạn trên, học phần vẫn được giữ nguyên, nếu sinh viên không học sẽ\nphải nhận điểm F và không được trả lại học phí.\n- Phần giảng dạy lý thuyết được tổ chức tại giảng đường, phòng học theo công bố\ntrên Thời khóa biểu. Mỗi lớp từ 20 đến 140 sinh viên. Các nhóm bài tập/thực hành/thực",
+            "Học kỳ chính, không tính học kỳ cuối khóa: tất cả sinh viên phải thực hiện\nđăng ký lớp học phần trước khi học kỳ mới bắt đầu. Số tín chỉ tối thiểu sinh viên phải\nđăng ký: 14 tín chỉ đối với sinh viên hệ chuẩn, 16 tín chỉ đối với chất lượng cao và\nchuẩn quốc tế. Số tín chỉ tối đa được phép đăng ký: 25 tín chỉ đối với sinh viên theo\nhọc một ngành, 28 tín chỉ đối với sinh viên theo học bằng kép. Chỉ những sinh viên\nđăng ký 14 tín chỉ trở lên mới được xét học bổng khuyến khích học tập. Trường hợp\nsinh viên có nguyện vọng đăng ký học ít hơn số tín chỉ tối thiểu trong một học kỳ\nphải được sự đồng ý của Thủ trưởng đơn vị đào tạo.\nHọc kỳ phụ: không bắt buộc, sinh viên đăng ký học theo nguyện vọng.\nSinh viên thuộc diện cảnh báo học vụ: tổng số tín chỉ đăng ký học (tối thiểu,",
+            "học kỳ chính đối với đào tạo kỹ sư. Thời gian được phép tạm ngừng học để củng cố kiến\nthức, cải thiện kết quả học tập là 4 học kỳ chính, do đó sinh viên cần phải tính toán, lập\nkế hoạch để hoàn thiện được chương trình đào tạo trong thời gian của khóa học.\n- Trước khi đăng ký học phần chính thức, sinh viên cần kiểm tra thật cẩn thận các\nthông tin sau:\n● Ngày giờ đăng ký và thời hạn chót để đăng ký;\n● Tên và mã số học phần, lớp học phần;\n● Điều kiện tiên quyết của học phần có được bảo đảm hay không.\n● Các lớp học phần có bị trùng lặp về thời gian học không.\n● Có bảo đảm khối lượng học tập tối thiểu (hoặc tối đa) hay không.",
+            "c) Học bổng được cấp theo từng học kỳ và cấp 10 tháng trong năm học. Tại\nhọc kỳ xét học bổng, sinh viên được xét, cấp học bổng phải hoàn thành ít nhất\n15 tín chỉ. Trường hợp đặc biệt do Hiệu trưởng đơn vị đào tạo quyết định.\n\nd) Riêng học kỳ cuối cùng của khóa học, đơn vị căn cứ vào kết quả xét tốt\nnghiệp theo đúng quy chế đào tạo tại ĐHQGHN và điểm rèn luyện toàn khóa để\nxét và cấp học bổng KKHT (điểm trung bình chung tích lũy toàn khóa học thay\ncho kết quả học tập của học kỳ đó). Trường hợp đặc biệt do Hiệu trưởng đơn vị\nđào tạo quyết định.\n\ne) Sinh viên thuộc diện hưởng học bổng chính sách, trợ cấp xã hội, chính\nsách  ưu  đãi  theo  quy  định  hiện  hành  của  nhà  nước  thì  vẫn  được  xét,  cấp  học\nbổng KKHT.\n\nĐiều 6. Học bổng cho sinh viên hệ đào tạo tài năng, hệ đào tạo chất"
+          ],
+          "ground_truth_answer": "Mỗi năm học có hai học kỳ chính và một học kỳ phụ.",
+          "ground_truth_context": [
+            "Mỗi năm học có hai học kỳ chính và một học kỳ phụ."
+          ],
+          "source_document": "data/standardized/legal/quy-che-dao-tao-dai-hoc-dhqghn-3626.md",
+          "reference_document_ids": [
+            "quy-che-dao-tao-dai-hoc-dhqghn-3626"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 1.0,
+            "mrr": 1.0
+          },
+          "status": "success",
+          "latency_seconds": 2.053,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.8212822127375139,
+            "context_recall": 1.0,
+            "context_precision": 0.9999999999
+          }
+        },
+        {
+          "sample_id": "vnu_eval_003",
+          "category": "happy_case",
+          "question": "Sinh viên đại học hệ chính quy cần đáp ứng tiêu chí chung nào để được xét học bổng khuyến khích học tập?",
+          "answer": "Sinh viên đại học hệ chính quy cần có kết quả học tập và rèn luyện đạt từ loại khá trở lên để được xét học bổng khuyến khích học tập. Điều này có nghĩa là sinh viên phải có điểm trung bình chung học tập và điểm rèn luyện đạt yêu cầu tối thiểu theo quy định [Document 5].",
+          "retrieved_contexts": [
+            "HỌC BỔNG KHUYẾN KHÍCH HỌC TẬP, HỌC BỔNG CHÍNH SÁCH\n\nChương II\n\nĐiều 5. Học bổng khuyến khích học tập (KKHT)\n1. Học bổng cho học sinh trường trung học phổ thông (THPT) chuyên\n1.1. Đối tượng và tiêu chí\na)  Đối  tượng:  Học  sinh  trường  THPT  chuyên  thuộc  các  đơn  vị  đào  tạo\n\ntrong ĐHQGHN\n\nb) Tiêu chí: Có học lực đạt từ loại giỏi trở lên, hạnh kiểm đạt từ loại tốt\ntrở lên trong học kỳ xét cấp học bổng và đạt được một trong các tiêu chuẩn sau:\nĐiểm môn chuyên của học kỳ xét cấp học bổng phải đạt từ 8,5 trở lên hoặc đạt\nmột  trong  các  giải  từ  khuyến  khích  trở  lên  trong  các  kỳ  thi  học  sinh  giỏi  cấp\nĐHQGHN, quốc gia, khu vực, quốc tế của năm đó.",
+            "Học bổng được cấp theo từng học kỳ và cấp 9 tháng trong năm học.\nBên cạnh học bổng KKHT theo văn bản quy định này, Hiệu trưởng đơn vị\nđào  tạo  có  thể  có  các  chế  độ,  chính  sách  khác  đối  với  học  sinh  trường  THPT\nchuyên do đơn vị quản lý. Học sinh thuộc diện hưởng học bổng chính sách, trợ\ncấp xã hội, chính sách ưu đãi theo quy định hiện hành của nhà nước thì vẫn được\nxét, cấp học bổng KKHT.\n\n\f3\n\n2. Học bổng cho các đối tượng học sinh khác\nHiệu trưởng đơn vị đào tạo căn cứ thực tiễn tại đơn vị và các văn bản quy\nđịnh hiện hành, chỉ đạo triển khai thực hiện đầy đủ, bảo đảm quyền, lợi ích hợp\npháp của học sinh.\n\n3. Học bổng cho sinh viên đại học hệ chính quy\n3.1. Đối tượng, tiêu chí\nSinh viên có kết quả học tập, rèn luyện đạt từ loại khá trở lên và không bị kỷ",
+            "b) Học bổng loại giỏi: Dành cho sinh viên trong học kỳ xét, cấp học bổng\ncó điểm trung bình chung học tập đạt loại giỏi trở lên và điểm rèn luyện đạt loại\ntốt trở lên. Mức học bổng cao hơn loại khá, cụ thể do hiệu trưởng quyết định.\n\nc) Học bổng loại xuất sắc: Dành cho sinh viên có điểm trung bình chung\nhọc tập và điểm rèn luyện trong học kỳ đều đạt loại xuất sắc. Mức học bổng cao\nhơn loại giỏi, cụ thể do hiệu trưởng quyết định.\n\nd) Điểm trung bình chung học tập và điểm rèn luyện quy định tại các điểm a,\nb và c khoản này được xác định theo quy định hiện hành của ĐHQGHN; trong đó\nđiểm trung bình chung học tập để xét học bổng cho sinh viên được tính từ điểm thi,\nkiểm tra hết môn học lần thứ nhất.\n\n3.3.  Nguồn học  bổng:  Học  bổng  KKHT  được  bố  trí  tối  thiểu  8%  nguồn\n\nthu học phí.",
+            "Để đảm bảo tiến độ thời gian hoàn thành khóa học và đảm bảo chất lượng học tập,\nmỗi học kỳ sinh viên đăng ký với số lượng tín chỉ (không bao gồm các học phần ngoại\nngữ, giáo dục thể chất, giáo dục quốc phòng - an ninh, kỹ năng bổ trợ, cải thiện điểm, tự\nchọn tự do) như sau:\nHọc kỳ chính, không tính học kỳ cuối khóa: tất cả sinh viên phải thực hiện đăng ký\nlớp học phần trước khi học kỳ mới bắt đầu. Số tín chỉ tối thiểu sinh viên phải đăng ký: 14\ntín chỉ đối với sinh viên hệ chuẩn, 16 tín chỉ đối với chất lượng cao và chuẩn quốc tế. Số\ntín chỉ tối đa được phép đăng ký: 25 tín chỉ đối với sinh viên theo học một ngành, 28 tín\nchỉ đối với sinh viên theo học bằng kép. Chỉ những sinh viên đăng ký 14 tín chỉ trở lên\nmới được xét học bổng khuyến khích học tập. Trường hợp sinh viên có nguyện vọng",
+            "g) Tiêu chí xét cấp lần đầu và điều kiện cấp duy trì, quy trình, cách thức\nthực hiện hàng năm do người đứng đầu đơn vị đào tạo có các ngành khoa học cơ\nbản thuộc diện triển khai chương trình học bổng quy định cụ thể.\n\nĐiều 8. Học bổng chính sách\nThực hiện theo Điều 9, Nghị định số 84/2020/NĐ-CP ngày 17/7/2020 của\n\nChính phủ Quy định chi tiết một số điều của Luật Giáo dục.\n\nChương III\nHỌC BỔNG TÀI TRỢ CỦA ĐỐI TÁC\n\nĐiều 9. Đối tượng, tiêu chí và mức học bổng\nĐược xác định theo từng chương trình học bổng trên cơ sở văn bản thông\nbáo, thỏa thuận được ký kết giữa ĐHQGHN hoặc đơn vị đào tạo với đối tác (tổ\nchức hoặc cá nhân) tài trợ học bổng."
+          ],
+          "ground_truth_answer": "Sinh viên phải có kết quả học tập và rèn luyện từ loại khá trở lên, đồng thời không bị kỷ luật từ mức khiển trách trở lên trong kỳ xét học bổng.",
+          "ground_truth_context": [
+            "Sinh viên có kết quả học tập, rèn luyện đạt từ loại khá trở lên và không bị kỷ luật từ mức khiển trách trở lên trong kỳ xét cấp học bổng."
+          ],
+          "source_document": "data/standardized/legal/quy-dinh-hoc-bong-dhqghn-4618.md",
+          "reference_document_ids": [
+            "quy-dinh-hoc-bong-dhqghn-4618"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 1.0,
+            "mrr": 0.5
+          },
+          "status": "success",
+          "latency_seconds": 2.257,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 0.3333333333333333,
+            "answer_relevancy": 0.8323676266284982,
+            "context_recall": 0.0,
+            "context_precision": 0.49999999995
+          }
+        },
+        {
+          "sample_id": "vnu_eval_004",
+          "category": "happy_case",
+          "question": "Ký túc xá Hòa Lạc khu B,C có bao nhiêu phòng và bao nhiêu chỗ ở?",
+          "answer": "Ký túc xá Hòa Lạc khu B,C có tổng cộng 432 phòng ở với 2.328 chỗ ở [Document 1].",
+          "retrieved_contexts": [
+            "| 15  | Phùng Thị Ánh  | 08/05/1990  | Y sỹ  |\n**Cơ sở vật chất:**\nKý túc xá Hòa Lạc – Khu B,C nằm trong khuôn viên Công viên Công nghệ cao và Đổi mới sáng tạo của Đại học Quốc gia Hà Nội, vị trí thuận lợi gần các giảng đường của các đơn vị đào tạo. Với tổng diện tích 3,9 ha, toàn khu ký túc xá hiện tại gồm 05 tòa nhà, trong đó có 02 tòa nhà ở B1, C1 – 5 tầng và tòa nhà B2 – 11 tầng; tổng công suất 432 phòng ở với 2.328 chỗ ở; 02 khu tổ hợp dịch vụ nhà ăn B4, C4 – 2 tầng với quy mô mỗi khu gồm 02 nhà ăn lớn và các dịch vụ tiện ích khác phục vụ nhu cầu thiết yếu của các bạn HSSV như hệ thống giải khát ăn nhanh, cửa hàng tiện ích, khu giải trí, khu vui chơi thể thao.",
+            "**Giới thiệu chung**\nĐịa chỉ: Ký túc xá số 4 – Đô thị Đại học Quốc gia Hà Nội, xã Hòa Lạc, thành phố Hà Nội\nĐiện thoại: **082.789.8080**\nEmail: css.ktxhoalac@gmail.com\nTổng số CBVC: 18 người\nTrưởng ban: **Bà Nguyễn Minh Huệ**\nPhó trưởng ban:**Ông Lê Thành Thật**\nPhó trưởng ban:**Ông Lê Hoàng Hạc**\n**Chức năng, nhiệm vụ:**\nTổ chức thực hiện công tác quản lý, phục vụ HSSV nội trú; cung cấp các dịch vụ nhằm nâng cao đời sống tinh thần và hỗ trợ học tập, nghiên cứu khoa học cho HSSV; tổ chức các hoạt động tư vấn, hướng nghiệp, giới thiệu việc làm, khởi nghiệp, phát triển tinh thần đổi mới sáng tạo và các kỹ năng bổ trợ cho HSSV.\n**III. Cơ cấu tổ chức:**\nKý túc xá gồm các tổ chuyên môn:\n* **Tổ quản lý sinh viên** :\n*** Tổ Hành chính – Dịch vụ:**\n*** Tổ Bảo vệ** :\n*** Tổ Y tế** :",
+            "Việc tiếp nhận công trình nhà D1, D7, D8 có ý nghĩa thiết thực trong lộ trình chuẩn bị cơ sở vật chất, chỗ ở và các điều kiện sinh hoạt phục vụ sinh viên ĐHQGHN học tập tại Hòa Lạc trong năm học 2026-2027. Đây không chỉ là bước bổ sung quỹ chỗ ở cho sinh viên, mà còn là cơ sở để Trung tâm Hỗ trợ sinh viên từng bước hoàn thiện mô hình quản lý, vận hành ký túc xá theo hướng chuyên nghiệp, an toàn, văn minh và hiện đại.",
+            "Trước đó, ngày 06/7/2026, Đại học Quốc gia Hà Nội đã ban hành Quyết định số 3110/QĐ-ĐHQGHN về việc giao Trung tâm Hỗ trợ sinh viên quản lý, khai thác các công trình nhà D1, D7, D8 và hạ tầng kỹ thuật kèm theo tại khu ký túc xá số 4 thuộc Dự án đầu tư xây dựng khu ký túc xá sinh viên ĐHQGHN tại Hòa Lạc. Trên cơ sở quyết định này, việc tổ chức bàn giao là bước quan trọng nhằm cụ thể hóa nhiệm vụ được giao, tạo điều kiện để Trung tâm Hỗ trợ sinh viên chủ động tiếp nhận, quản lý, vận hành và chuẩn bị các điều kiện phục vụ sinh viên trong năm học 2026-2027.",
+            "# Giới thiệu về KTX Hòa Lạc - Khu B,C - Trung tâm Hỗ trợ sinh viên - Đại học Quốc gia Hà Nội\n\n**Source:** https://css.vnu.edu.vn/gioi-thieu-ve-ktx-hoa-lac-khu-bc/\n**Crawled:** 2026-08-04T10:16:50.763417\n\n---"
+          ],
+          "ground_truth_answer": "Ký túc xá Hòa Lạc khu B,C có 432 phòng ở với tổng công suất 2.328 chỗ ở.",
+          "ground_truth_context": [
+            "Toàn khu ký túc xá có tổng công suất 432 phòng ở với 2.328 chỗ ở."
+          ],
+          "source_document": "data/standardized/news/article_02.md",
+          "reference_document_ids": [
+            "article_02"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 1.612,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.9150399771979956,
+            "context_recall": 1.0,
+            "context_precision": 0.9999999999
+          }
+        },
+        {
+          "sample_id": "vnu_eval_005",
+          "category": "happy_case",
+          "question": "Cổng thông tin việc làm sinh viên ĐHQGHN hỗ trợ sinh viên những hoạt động nào?",
+          "answer": "Cổng thông tin việc làm sinh viên ĐHQGHN hỗ trợ sinh viên thông qua nhiều hoạt động hữu ích. Cụ thể, sinh viên có thể cập nhật thường xuyên các tin tuyển dụng mới nhất, tìm kiếm cơ hội thực tập và việc làm theo ngành học, kết nối trực tiếp với doanh nghiệp và nhà tuyển dụng, cũng như tiếp cận các chương trình hướng nghiệp, ngày hội việc làm và các hoạt động hỗ trợ sinh viên khác [Document 1].",
+          "retrieved_contexts": [
+            "🎓 TÌM VIỆC LÀM, THỰC TẬP DỄ DÀNG HƠN CÙNG CỔNG THÔNG TIN VIỆC LÀM SINH VIÊN ĐHQGHN Bạn đang tìm kiếm: ✅ Việc làm bán thời gian phù hợp với lịch học? ✅ Cơ hội thực tập để tích lũy kinh nghiệm? ✅ Việc làm sau tốt nghiệp từ các doanh nghiệp uy tín? Cổng thông tin việc làm sinh viên do Trung tâm Hỗ trợ sinh viên – ĐHQGHN xây dựng và vận hành sẽ giúp bạn kết nối nhanh chóng với các cơ hội nghề nghiệp phù hợp. 📌 Tại đây, sinh viên có thể: 🔹 Cập nhật thường xuyên các tin tuyển dụng mới nhất. 🔹 Tìm kiếm cơ hội thực tập và việc làm theo ngành học. 🔹 Kết nối trực tiếp với doanh nghiệp, nhà tuyển dụng. 🔹 Tiếp cận các chương trình hướng nghiệp, ngày hội việc làm và hoạt động hỗ trợ sinh viên",
+            "# TÌM VIỆC LÀM, THỰC TẬP DỄ DÀNG HƠN CÙNG CỔNG THÔNG TIN VIỆC LÀM SINH VIÊN ĐHQGHN - Trung tâm Hỗ trợ sinh viên - Đại học Quốc gia Hà Nội\n\n**Source:** https://css.vnu.edu.vn/tim-viec-lam-thuc-tap-de-dang-hon-cung-cong-thong-tin-viec-lam-sinh-vien-dhqghn/\n**Crawled:** 2026-08-04T10:16:56.146520\n\n---",
+            "c, Tổ chức các hoạt động hỗ trợ khác theo nhu cầu (tham quan, ngoại khóa, thể thao…)\nd, Các hoạt động tình nguyện: tiếp sức mùa thi, gây quỹ ủng hộ sinh viên nội trú, đồng bào vùng sâu, vùng xa.\n* [[Infographic] Những lưu ý dành cho thí sinh tham dự kỳ thi đánh giá năng lực của ĐHQGHN](https://css.vnu.edu.vn/infographic-nhung-luu-y-danh-cho-thi-sinh-tham-du-ky-thi-danh-gia-nang-luc-cua-dhqghn/)\n* [[Infographic] Phân loại cách ly người nhiễm, nghi nhiễm COVID-19](https://css.vnu.edu.vn/infographic-phan-loai-cach-ly-nguoi-nhiem-nghi-nhiem-covid-19-2/)",
+            "Trang chủ » Tin tức » TÌM VIỆC LÀM, THỰC TẬP DỄ DÀNG HƠN CÙNG CỔNG THÔNG TIN VIỆC LÀM SINH VIÊN ĐHQGHN",
+            ". 🔹 Tiếp cận các chương trình hướng nghiệp, ngày hội việc làm và hoạt động hỗ trợ sinh viên. 🌐 Truy cập ngay: http://vieclam.css.vnu.edu.vn/vi Hãy theo dõi và thường xuyên cập nhật thông tin để không bỏ lỡ những cơ hội việc làm phù hợp với bản thân! #VNUCSS #ViecLamSinhVien #HuongNghiep #ThucTap #TuyenDung #SinhVienDHQGHN"
+          ],
+          "ground_truth_answer": "Cổng hỗ trợ cập nhật tin tuyển dụng, tìm cơ hội thực tập và việc làm theo ngành học, kết nối với doanh nghiệp và nhà tuyển dụng, đồng thời tiếp cận các chương trình hướng nghiệp và ngày hội việc làm.",
+          "ground_truth_context": [
+            "Sinh viên có thể cập nhật tin tuyển dụng, tìm cơ hội thực tập và việc làm theo ngành học, kết nối với doanh nghiệp, nhà tuyển dụng và tiếp cận các chương trình hướng nghiệp, ngày hội việc làm."
+          ],
+          "source_document": "data/standardized/news/article_05.md",
+          "reference_document_ids": [
+            "article_05"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 2.453,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 0.8571428571428571,
+            "answer_relevancy": 0.8433375331613238,
+            "context_recall": 1.0,
+            "context_precision": 0.699999999965
+          }
+        },
+        {
+          "sample_id": "vnu_eval_006",
+          "category": "paraphrase_synonym",
+          "question": "SV muốn học thêm CTĐT thứ 2 thì phải học CTĐT đầu ít nhất mấy kỳ?",
+          "answer": "Sinh viên muốn học thêm chương trình đào tạo thứ hai phải hoàn thành chương trình đào tạo thứ nhất và không được vượt quá thời gian đào tạo tối đa. Cụ thể, sinh viên cần phải tốt nghiệp chương trình đào tạo thứ nhất và đã đăng ký muộn nhất 02 năm trước thời điểm xét tốt nghiệp chương trình thứ hai [Quy chế đào tạo đại học, 2026]. Tuy nhiên, thông tin về số kỳ học tối thiểu cho chương trình đào tạo thứ nhất không được cung cấp trong nguồn hiện có. Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+          "retrieved_contexts": [
+            "học kỳ chính đối với đào tạo kỹ sư. Thời gian được phép tạm ngừng học để củng cố kiến\nthức, cải thiện kết quả học tập là 4 học kỳ chính, do đó sinh viên cần phải tính toán, lập\nkế hoạch để hoàn thiện được chương trình đào tạo trong thời gian của khóa học.\n- Trước khi đăng ký học phần chính thức, sinh viên cần kiểm tra thật cẩn thận các\nthông tin sau:\n● Ngày giờ đăng ký và thời hạn chót để đăng ký;\n● Tên và mã số học phần, lớp học phần;\n● Điều kiện tiên quyết của học phần có được bảo đảm hay không.\n● Các lớp học phần có bị trùng lặp về thời gian học không.\n● Có bảo đảm khối lượng học tập tối thiểu (hoặc tối đa) hay không.",
+            "Học kỳ chính, không tính học kỳ cuối khóa: tất cả sinh viên phải thực hiện\nđăng ký lớp học phần trước khi học kỳ mới bắt đầu. Số tín chỉ tối thiểu sinh viên phải\nđăng ký: 14 tín chỉ đối với sinh viên hệ chuẩn, 16 tín chỉ đối với chất lượng cao và\nchuẩn quốc tế. Số tín chỉ tối đa được phép đăng ký: 25 tín chỉ đối với sinh viên theo\nhọc một ngành, 28 tín chỉ đối với sinh viên theo học bằng kép. Chỉ những sinh viên\nđăng ký 14 tín chỉ trở lên mới được xét học bổng khuyến khích học tập. Trường hợp\nsinh viên có nguyện vọng đăng ký học ít hơn số tín chỉ tối thiểu trong một học kỳ\nphải được sự đồng ý của Thủ trưởng đơn vị đào tạo.\nHọc kỳ phụ: không bắt buộc, sinh viên đăng ký học theo nguyện vọng.\nSinh viên thuộc diện cảnh báo học vụ: tổng số tín chỉ đăng ký học (tối thiểu,",
+            "nhận tốt nghiệp chương trình đào tạo thứ nhất, không vượt quá thời gian đào tạo\ntối đa và đã đăng kí muộn nhất 02 năm trước thời điểm xét tốt nghiệp chương trình\nthứ hai.",
+            "đăng ký học ít hơn số tín chỉ tối thiểu trong một học kỳ phải được sự đồng ý của Thủ\ntrưởng đơn vị đào tạo.\nHọc kỳ phụ: không bắt buộc, sinh viên đăng ký học theo nguyện vọng.\nSinh viên thuộc diện cảnh báo học vụ: tổng số tín chỉ đăng ký học (tối thiểu, tối đa)\nsẽ do Khoa và Phòng Đào tạo tư vấn và quy định cụ thể đối với từng trường hợp.\n5. Đăng ký học phần\nChú ý: Đầu khóa học Nhà trường sẽ cung cấp cho sinh viên chương trình đào tạo\nngành học, quy chế đào tạo và bố trí Cố vấn học tập. Sinh viên liên hệ với Cố vấn học tập\nđể xây dựng kế hoạch học tập toàn khóa (Mẫu 3) và nộp lại cho Phòng Đào tạo.\nBước 1: Đầu mỗi học kỳ, sinh viên căn cứ vào kế hoạch học tập của mình cùng\nvới tư vấn của CVHT và thời khóa biểu do trường công bố để đăng ký lớp học phần trực",
+            "14\nChương III\nTỔ CHỨC ĐÀO TẠO\nĐiều 16. Học kỳ\nMỗi năm học có hai học kỳ chính và một học kỳ phụ. Mỗi học kỳ chính có\n15 tuần học, từ 3 đến 4 tuần thi và 1 tuần dự phòng.\nMỗi học kỳ phụ có ít nhất 5 tuần học và 1 tuần thi, được tổ chức trong thời\ngian giữa hai học kỳ chính.\nĐiều 17. Khóa học\n1. Thời gian của khóa học\na) Thời gian thiết kế của khóa học đào tạo chính quy là 8 học kỳ chính đối\nvới đào tạo cử nhân, từ 9 đến 10 học kỳ chính đối với đào tạo kĩ sư, 10 học kỳ\nchính đối với đào tạo dược sĩ, 12 học kỳ chính đối với đào tạo bác sĩ;\nb) Thời gian theo kế hoạch học tập chuẩn toàn khoá đối với hình thức đào\ntạo vừa làm vừa học dài hơn tối thiểu 20% so với hình thức đào tạo chính quy của\ncùng chương trình đào tạo;"
+          ],
+          "ground_truth_answer": "Sinh viên phải đã học ít nhất hai học kỳ của chương trình đào tạo thứ nhất.",
+          "ground_truth_context": [
+            "Sinh viên được đăng ký học thêm chương trình đào tạo thứ hai nếu đã học ít nhất hai học kỳ của chương trình đào tạo thứ nhất."
+          ],
+          "source_document": "data/standardized/legal/quy-che-dao-tao-dai-hoc-dhqghn-3626.md",
+          "reference_document_ids": [
+            "quy-che-dao-tao-dai-hoc-dhqghn-3626"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 2.916,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 0.3333333333333333,
+            "answer_relevancy": 0.0,
+            "context_recall": 0.0,
+            "context_precision": 0.0
+          }
+        },
+        {
+          "sample_id": "vnu_eval_007",
+          "category": "paraphrase_synonym",
+          "question": "Phòng KTX HL có máy lạnh, nước nóng và chỗ ngồi học không?",
+          "answer": "Phòng ký túc xá (KTX) Hòa Lạc được trang bị đầy đủ tiện nghi như giường tầng, tủ, bàn học, bình nước nóng và điều hòa nhiệt độ. Điều này cho thấy rằng phòng KTX có máy lạnh, nước nóng và chỗ ngồi học [Document 1].",
+          "retrieved_contexts": [
+            "Các phòng ở khang trang, sạch đẹp, tiện nghi với trang bị giường tầng, tủ, bàn học, bình nước nóng, điều hòa nhiệt độ. Khu ký túc xá với không gian thư giãn và học tập đầy đủ, hiện đại, cảnh quan môi trường với cây xanh, sân vườn, sân thể thao rộng rãi, thoáng mát đáp ứng mọi nhu cầu ăn ở, sinh hoạt và học tập cho HSSV nội trú..\n**Các hoạt động hỗ trợ**\nHiện nay, Trung tâm Hỗ trợ sinh viên đã thành lập **Văn phòng tư vấn và hỗ trợ sinh viên tại KTX** để tổ chức các hoạt động hỗ trợ sinh viên như:\na, Tìm kiếm và giới thiệu việc làm; Tư vấn thực tập\nb, Tìm kiếm học bổng và hỗ trợ cho những sinh viên có hoàn cảnh đặc biệt.\nc, Tổ chức các hoạt động hỗ trợ khác theo nhu cầu (tham quan, ngoại khóa, thể thao…)",
+            "BƯỚC 3: Làm thủ tục nhận phòng tại KTX\n– Thời gian: Từ 8h00′ -17h00′ Ngày 03/8/2025 (Chủ Nhật).\n– Địa điểm: Văn phòng Ban Quản lý KTX Mễ Trì – Tầng 1 nhà C0, số 182 Lương Thế Vinh, Thanh Xuân, Hà Nội.\n*** 𝐆𝐡𝐢 𝐜𝐡𝐮́:\n– Học sinh QH 2025 thực hiện đủ 03 bước\n– Học sinh QH 2023, QH 2024 thực hiện bước 02 và 03\n– Hết thời gian quy định, Học sinh không hoàn thiện hồ sơ và không nộp lệ phí, đồng nghĩa với không có nhu cầu ở KTX.\n***=======\nTHÔNG TIN LIÊN HỆ: Hotline 0834182182",
+            "– Thời gian hoàn thiện hồ sơ: Từ ngày 22/7 đến hết ngày 31/7/2025\n– Lưu ý: Học sinh có 02 loại phòng để lựa chọn đăng ký: MT_A5 (ở 04 HS) và MT_N2a (ở 02 HS)\nBƯỚC 2: Nộp lệ phí và dịch vụ gia tăng\n– Hình thức nộp: Học sinh lựa chọn 01 trong 02 cách:\n+ Chuyển khoản từ ngày 01/8 đến ngày 04/8/2025 (KTX sẽ có hướng dẫn nộp chuyển khoản trước ngày 31/7/2025 trên Website )\n+ Nộp trực tiếp tại Văn phòng Ban Quản lý KTX (Tầng 01 nhà C0, số 182 Lương Thế Vinh, Thanh Xuân, Hà Nội) trong ngày 03/8/2025 (Chủ Nhật)\n– Lệ phí kỳ I: Tính từ ngày 01/8/2025 đến 31/12/2025 (5 tháng)\n– Tổng số tiền học sinh phải nộp theo loại phòng được sắp xếp: Xem trong mục “Biên lai” tại Website\nBƯỚC 3: Làm thủ tục nhận phòng tại KTX\n– Thời gian: Từ 8h00′ -17h00′ Ngày 03/8/2025 (Chủ Nhật).",
+            "**Giới thiệu chung**\nĐịa chỉ: Ký túc xá số 4 – Đô thị Đại học Quốc gia Hà Nội, xã Hòa Lạc, thành phố Hà Nội\nĐiện thoại: **082.789.8080**\nEmail: css.ktxhoalac@gmail.com\nTổng số CBVC: 18 người\nTrưởng ban: **Bà Nguyễn Minh Huệ**\nPhó trưởng ban:**Ông Lê Thành Thật**\nPhó trưởng ban:**Ông Lê Hoàng Hạc**\n**Chức năng, nhiệm vụ:**\nTổ chức thực hiện công tác quản lý, phục vụ HSSV nội trú; cung cấp các dịch vụ nhằm nâng cao đời sống tinh thần và hỗ trợ học tập, nghiên cứu khoa học cho HSSV; tổ chức các hoạt động tư vấn, hướng nghiệp, giới thiệu việc làm, khởi nghiệp, phát triển tinh thần đổi mới sáng tạo và các kỹ năng bổ trợ cho HSSV.\n**III. Cơ cấu tổ chức:**\nKý túc xá gồm các tổ chuyên môn:\n* **Tổ quản lý sinh viên** :\n*** Tổ Hành chính – Dịch vụ:**\n*** Tổ Bảo vệ** :\n*** Tổ Y tế** :",
+            "2.  Thời gian học tập tại phòng tự học\n-  Sáng: Mở cửa từ 8h00 (mở cửa cả ngày thứ 7).\n-  Chiều: Đóng cửa lúc 19h00.\nYêu cầu sinh viên phải đến phòng tự học (315-G2) tối thiểu 2 lần/tuần. Ngoài ra, nếu gặp khó khăn trong quá trình học tập trên lớp, sinh\nviên phải tham gia các giờ tự học có trợ giảng hướng dẫn (lịch chi tiết được thông báo cụ thể trong HK)."
+          ],
+          "ground_truth_answer": "Có. Phòng ở được trang bị điều hòa nhiệt độ, bình nước nóng và bàn học; ngoài ra còn có giường tầng và tủ.",
+          "ground_truth_context": [
+            "Các phòng ở được trang bị giường tầng, tủ, bàn học, bình nước nóng và điều hòa nhiệt độ."
+          ],
+          "source_document": "data/standardized/news/article_02.md",
+          "reference_document_ids": [
+            "article_02"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 2.322,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.8656635497719655,
+            "context_recall": 1.0,
+            "context_precision": 0.9999999999
+          }
+        },
+        {
+          "sample_id": "vnu_eval_008",
+          "category": "paraphrase_synonym",
+          "question": "Xét HB KKHT thì GPA lấy điểm thi lần đầu hay điểm cải thiện?",
+          "answer": "Điểm trung bình chung học tập để xét học bổng KKHT cho sinh viên được tính từ điểm thi, kiểm tra hết môn học lần thứ nhất [Document 1 | Source: quy-dinh-hoc-bong-dhqghn-4618.md | Type: legal].",
+          "retrieved_contexts": [
+            "b) Học bổng loại giỏi: Dành cho sinh viên trong học kỳ xét, cấp học bổng\ncó điểm trung bình chung học tập đạt loại giỏi trở lên và điểm rèn luyện đạt loại\ntốt trở lên. Mức học bổng cao hơn loại khá, cụ thể do hiệu trưởng quyết định.\n\nc) Học bổng loại xuất sắc: Dành cho sinh viên có điểm trung bình chung\nhọc tập và điểm rèn luyện trong học kỳ đều đạt loại xuất sắc. Mức học bổng cao\nhơn loại giỏi, cụ thể do hiệu trưởng quyết định.\n\nd) Điểm trung bình chung học tập và điểm rèn luyện quy định tại các điểm a,\nb và c khoản này được xác định theo quy định hiện hành của ĐHQGHN; trong đó\nđiểm trung bình chung học tập để xét học bổng cho sinh viên được tính từ điểm thi,\nkiểm tra hết môn học lần thứ nhất.\n\n3.3.  Nguồn học  bổng:  Học  bổng  KKHT  được  bố  trí  tối  thiểu  8%  nguồn\n\nthu học phí.",
+            "c) Học bổng được cấp theo từng học kỳ và cấp 10 tháng trong năm học. Tại\nhọc kỳ xét học bổng, sinh viên được xét, cấp học bổng phải hoàn thành ít nhất\n15 tín chỉ. Trường hợp đặc biệt do Hiệu trưởng đơn vị đào tạo quyết định.\n\nd) Riêng học kỳ cuối cùng của khóa học, đơn vị căn cứ vào kết quả xét tốt\nnghiệp theo đúng quy chế đào tạo tại ĐHQGHN và điểm rèn luyện toàn khóa để\nxét và cấp học bổng KKHT (điểm trung bình chung tích lũy toàn khóa học thay\ncho kết quả học tập của học kỳ đó). Trường hợp đặc biệt do Hiệu trưởng đơn vị\nđào tạo quyết định.\n\ne) Sinh viên thuộc diện hưởng học bổng chính sách, trợ cấp xã hội, chính\nsách  ưu  đãi  theo  quy  định  hiện  hành  của  nhà  nước  thì  vẫn  được  xét,  cấp  học\nbổng KKHT.\n\nĐiều 6. Học bổng cho sinh viên hệ đào tạo tài năng, hệ đào tạo chất",
+            "3.3.  Nguồn học  bổng:  Học  bổng  KKHT  được  bố  trí  tối  thiểu  8%  nguồn\n\nthu học phí.\n\n3.4. Trình tự xét, cấp học bổng:\na) Hiệu trưởng căn cứ vào nguồn học bổng khuyến khích học tập xác định số\nlượng suất học bổng cho từng khóa học, ngành học. Trong trường hợp số lượng sinh\nviên thuộc diện được xét, cấp học bổng nhiều hơn số suất học bổng thì việc xét, cấp\nhọc bổng do Hiệu trưởng quyết định;\n\n\f4\n\nb) Hiệu trưởng căn cứ vào kết quả học tập, rèn luyện của sinh viên thực hiện\nxét, cấp học bổng theo thứ tự từ loại suất sắc trở xuống đến hết số suất học bổng đã\nđược xác định;",
+            "HỌC BỔNG KHUYẾN KHÍCH HỌC TẬP, HỌC BỔNG CHÍNH SÁCH\n\nChương II\n\nĐiều 5. Học bổng khuyến khích học tập (KKHT)\n1. Học bổng cho học sinh trường trung học phổ thông (THPT) chuyên\n1.1. Đối tượng và tiêu chí\na)  Đối  tượng:  Học  sinh  trường  THPT  chuyên  thuộc  các  đơn  vị  đào  tạo\n\ntrong ĐHQGHN\n\nb) Tiêu chí: Có học lực đạt từ loại giỏi trở lên, hạnh kiểm đạt từ loại tốt\ntrở lên trong học kỳ xét cấp học bổng và đạt được một trong các tiêu chuẩn sau:\nĐiểm môn chuyên của học kỳ xét cấp học bổng phải đạt từ 8,5 trở lên hoặc đạt\nmột  trong  các  giải  từ  khuyến  khích  trở  lên  trong  các  kỳ  thi  học  sinh  giỏi  cấp\nĐHQGHN, quốc gia, khu vực, quốc tế của năm đó.",
+            "Học bổng được cấp theo từng học kỳ và cấp 9 tháng trong năm học.\nBên cạnh học bổng KKHT theo văn bản quy định này, Hiệu trưởng đơn vị\nđào  tạo  có  thể  có  các  chế  độ,  chính  sách  khác  đối  với  học  sinh  trường  THPT\nchuyên do đơn vị quản lý. Học sinh thuộc diện hưởng học bổng chính sách, trợ\ncấp xã hội, chính sách ưu đãi theo quy định hiện hành của nhà nước thì vẫn được\nxét, cấp học bổng KKHT.\n\n\f3\n\n2. Học bổng cho các đối tượng học sinh khác\nHiệu trưởng đơn vị đào tạo căn cứ thực tiễn tại đơn vị và các văn bản quy\nđịnh hiện hành, chỉ đạo triển khai thực hiện đầy đủ, bảo đảm quyền, lợi ích hợp\npháp của học sinh.\n\n3. Học bổng cho sinh viên đại học hệ chính quy\n3.1. Đối tượng, tiêu chí\nSinh viên có kết quả học tập, rèn luyện đạt từ loại khá trở lên và không bị kỷ"
+          ],
+          "ground_truth_answer": "Điểm trung bình chung học tập dùng để xét học bổng được tính từ điểm thi hoặc kiểm tra hết môn lần thứ nhất, không lấy điểm cải thiện sau đó.",
+          "ground_truth_context": [
+            "Điểm trung bình chung học tập để xét học bổng cho sinh viên được tính từ điểm thi, kiểm tra hết môn học lần thứ nhất."
+          ],
+          "source_document": "data/standardized/legal/quy-dinh-hoc-bong-dhqghn-4618.md",
+          "reference_document_ids": [
+            "quy-dinh-hoc-bong-dhqghn-4618"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 1.0,
+            "mrr": 1.0
+          },
+          "status": "success",
+          "latency_seconds": 2.052,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 0.3333333333333333,
+            "answer_relevancy": 0.8077853710590291,
+            "context_recall": 1.0,
+            "context_precision": 0.9999999999
+          }
+        },
+        {
+          "sample_id": "vnu_eval_009",
+          "category": "edge_case",
+          "question": "Một sinh viên chính quy có học lực khá, rèn luyện khá, không bị kỷ luật nhưng chỉ hoàn thành 12 tín chỉ trong học kỳ thì có đương nhiên đủ điều kiện nhận học bổng KKHT không?",
+          "answer": "Một sinh viên chính quy có học lực khá, rèn luyện khá, không bị kỷ luật nhưng chỉ hoàn thành 12 tín chỉ trong học kỳ thì không đủ điều kiện nhận học bổng KKHT. Theo quy định, sinh viên được xét, cấp học bổng KKHT phải hoàn thành ít nhất 15 tín chỉ trong học kỳ xét học bổng [Document 1 | Source: quy-dinh-hoc-bong-dhqghn-4618.md].",
+          "retrieved_contexts": [
+            "c) Học bổng được cấp theo từng học kỳ và cấp 10 tháng trong năm học. Tại\nhọc kỳ xét học bổng, sinh viên được xét, cấp học bổng phải hoàn thành ít nhất\n15 tín chỉ. Trường hợp đặc biệt do Hiệu trưởng đơn vị đào tạo quyết định.\n\nd) Riêng học kỳ cuối cùng của khóa học, đơn vị căn cứ vào kết quả xét tốt\nnghiệp theo đúng quy chế đào tạo tại ĐHQGHN và điểm rèn luyện toàn khóa để\nxét và cấp học bổng KKHT (điểm trung bình chung tích lũy toàn khóa học thay\ncho kết quả học tập của học kỳ đó). Trường hợp đặc biệt do Hiệu trưởng đơn vị\nđào tạo quyết định.\n\ne) Sinh viên thuộc diện hưởng học bổng chính sách, trợ cấp xã hội, chính\nsách  ưu  đãi  theo  quy  định  hiện  hành  của  nhà  nước  thì  vẫn  được  xét,  cấp  học\nbổng KKHT.\n\nĐiều 6. Học bổng cho sinh viên hệ đào tạo tài năng, hệ đào tạo chất",
+            "Học bổng được cấp theo từng học kỳ và cấp 9 tháng trong năm học.\nBên cạnh học bổng KKHT theo văn bản quy định này, Hiệu trưởng đơn vị\nđào  tạo  có  thể  có  các  chế  độ,  chính  sách  khác  đối  với  học  sinh  trường  THPT\nchuyên do đơn vị quản lý. Học sinh thuộc diện hưởng học bổng chính sách, trợ\ncấp xã hội, chính sách ưu đãi theo quy định hiện hành của nhà nước thì vẫn được\nxét, cấp học bổng KKHT.\n\n\f3\n\n2. Học bổng cho các đối tượng học sinh khác\nHiệu trưởng đơn vị đào tạo căn cứ thực tiễn tại đơn vị và các văn bản quy\nđịnh hiện hành, chỉ đạo triển khai thực hiện đầy đủ, bảo đảm quyền, lợi ích hợp\npháp của học sinh.\n\n3. Học bổng cho sinh viên đại học hệ chính quy\n3.1. Đối tượng, tiêu chí\nSinh viên có kết quả học tập, rèn luyện đạt từ loại khá trở lên và không bị kỷ",
+            "HỌC BỔNG KHUYẾN KHÍCH HỌC TẬP, HỌC BỔNG CHÍNH SÁCH\n\nChương II\n\nĐiều 5. Học bổng khuyến khích học tập (KKHT)\n1. Học bổng cho học sinh trường trung học phổ thông (THPT) chuyên\n1.1. Đối tượng và tiêu chí\na)  Đối  tượng:  Học  sinh  trường  THPT  chuyên  thuộc  các  đơn  vị  đào  tạo\n\ntrong ĐHQGHN\n\nb) Tiêu chí: Có học lực đạt từ loại giỏi trở lên, hạnh kiểm đạt từ loại tốt\ntrở lên trong học kỳ xét cấp học bổng và đạt được một trong các tiêu chuẩn sau:\nĐiểm môn chuyên của học kỳ xét cấp học bổng phải đạt từ 8,5 trở lên hoặc đạt\nmột  trong  các  giải  từ  khuyến  khích  trở  lên  trong  các  kỳ  thi  học  sinh  giỏi  cấp\nĐHQGHN, quốc gia, khu vực, quốc tế của năm đó.",
+            "b) Học bổng loại giỏi: Dành cho sinh viên trong học kỳ xét, cấp học bổng\ncó điểm trung bình chung học tập đạt loại giỏi trở lên và điểm rèn luyện đạt loại\ntốt trở lên. Mức học bổng cao hơn loại khá, cụ thể do hiệu trưởng quyết định.\n\nc) Học bổng loại xuất sắc: Dành cho sinh viên có điểm trung bình chung\nhọc tập và điểm rèn luyện trong học kỳ đều đạt loại xuất sắc. Mức học bổng cao\nhơn loại giỏi, cụ thể do hiệu trưởng quyết định.\n\nd) Điểm trung bình chung học tập và điểm rèn luyện quy định tại các điểm a,\nb và c khoản này được xác định theo quy định hiện hành của ĐHQGHN; trong đó\nđiểm trung bình chung học tập để xét học bổng cho sinh viên được tính từ điểm thi,\nkiểm tra hết môn học lần thứ nhất.\n\n3.3.  Nguồn học  bổng:  Học  bổng  KKHT  được  bố  trí  tối  thiểu  8%  nguồn\n\nthu học phí.",
+            "3.3.  Nguồn học  bổng:  Học  bổng  KKHT  được  bố  trí  tối  thiểu  8%  nguồn\n\nthu học phí.\n\n3.4. Trình tự xét, cấp học bổng:\na) Hiệu trưởng căn cứ vào nguồn học bổng khuyến khích học tập xác định số\nlượng suất học bổng cho từng khóa học, ngành học. Trong trường hợp số lượng sinh\nviên thuộc diện được xét, cấp học bổng nhiều hơn số suất học bổng thì việc xét, cấp\nhọc bổng do Hiệu trưởng quyết định;\n\n\f4\n\nb) Hiệu trưởng căn cứ vào kết quả học tập, rèn luyện của sinh viên thực hiện\nxét, cấp học bổng theo thứ tự từ loại suất sắc trở xuống đến hết số suất học bổng đã\nđược xác định;"
+          ],
+          "ground_truth_answer": "Không. Ngoài tiêu chí học tập, rèn luyện và kỷ luật, sinh viên phải hoàn thành ít nhất 15 tín chỉ trong học kỳ xét học bổng. Trường hợp đặc biệt chỉ được xem xét theo quyết định của Hiệu trưởng.",
+          "ground_truth_context": [
+            "Sinh viên có kết quả học tập, rèn luyện đạt từ loại khá trở lên và không bị kỷ luật từ mức khiển trách trở lên trong kỳ xét cấp học bổng.",
+            "Tại học kỳ xét học bổng, sinh viên được xét, cấp học bổng phải hoàn thành ít nhất 15 tín chỉ; trường hợp đặc biệt do Hiệu trưởng đơn vị đào tạo quyết định."
+          ],
+          "source_document": "data/standardized/legal/quy-dinh-hoc-bong-dhqghn-4618.md",
+          "reference_document_ids": [
+            "quy-dinh-hoc-bong-dhqghn-4618"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.5,
+            "mrr": 0.5
+          },
+          "status": "success",
+          "latency_seconds": 2.233,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.8157298278062922,
+            "context_recall": 1.0,
+            "context_precision": 0.9999999999
+          }
+        },
+        {
+          "sample_id": "vnu_eval_010",
+          "category": "edge_case",
+          "question": "Sinh viên đã học 2 học kỳ, ngành thứ hai khác ngành thứ nhất và có GPA 2,3. Trong trường hợp nào sinh viên vẫn có thể đăng ký chương trình đào tạo thứ hai?",
+          "answer": "Sinh viên đã học 2 học kỳ, ngành thứ hai khác ngành thứ nhất và có GPA 2,3 sẽ không đủ điều kiện để đăng ký chương trình đào tạo thứ hai. Theo quy định, sinh viên cần có điểm trung bình chung tất cả các học phần tính từ đầu khóa học đến thời điểm đăng ký học chương trình đào tạo thứ hai đạt từ 2,5 trở lên hoặc từ 2,0 trở lên và đáp ứng ngưỡng bảo đảm chất lượng đầu vào của chương trình thứ hai trong năm tuyển sinh [Điều 25, Document 5]. Do đó, với GPA 2,3, sinh viên không đáp ứng được yêu cầu này.",
+          "retrieved_contexts": [
+            "ký học chương trình đào tạo thứ hai đạt từ 2,0 trở lên và đáp ứng điều kiện trúng\ntuyển của chương trình thứ hai trong năm tuyển sinh;",
+            "1. Sinh viên đang học tại các đơn vị đào tạo của Đại học Quốc gia Hà Nội\ntheo hình thức đào tạo chính quy được đăng ký học thêm một chương trình đào tạo\nthứ hai nếu có đủ các điều kiện:\na) Ngành học chính của chương trình đào tạo thứ hai phải khác ngành học\nchính của chương trình đào tạo thứ nhất;\nb) Đã học ít nhất hai học kỳ của chương trình đào tạo thứ nhất;\nc) Điểm trung bình chung tất cả các học phần tính từ đầu khóa học đến thời\nđiểm đăng ký học chương trình đào tạo thứ hai đạt từ 2,5 trở lên và đáp ứng ngưỡng\nbảo đảm chất lượng đầu vào của chương trình thứ hai trong năm tuyển sinh hoặc\nđiểm trung bình chung tất cả các học phần tính từ đầu khóa học đến thời điểm đăng\nký học chương trình đào tạo thứ hai đạt từ 2,0 trở lên và đáp ứng điều kiện trúng",
+            "23\nĐiều 25. Đào tạo văn bằng thứ hai\n1. Đào tạo văn bằng thứ hai theo hình thức vừa làm vừa học dành cho người\nđã có bằng đại học.\n2. Chương trình đào tạo văn bằng thứ hai được xác định cho người học theo\nnguyên tắc: người học được bảo lưu kết quả học tập đối với những học phần trong\nchương trình đào tạo ngành học thứ nhất có từ 80% trở lên nội dung tương đương\nvới nội dung học phần trong chương trình đào tạo của ngành học mới và điểm học\nphần đạt từ điểm D trở lên; những học phần có nội dung tương đương từ 50% đến\ndưới 80% thì người học không được bảo lưu kết quả học tập nhưng có thể tự học\nvà dự thi để lấy điểm; những học phần chưa học hoặc có nội dung tương đương\ndưới 50% thì người học phải dự học mới được dự thi theo quy định chung.",
+            "nhận tốt nghiệp chương trình đào tạo thứ nhất, không vượt quá thời gian đào tạo\ntối đa và đã đăng kí muộn nhất 02 năm trước thời điểm xét tốt nghiệp chương trình\nthứ hai.",
+            "lượng kiến thức tương đương có trong chương trình thứ nhất.\n6. Đơn vị tổ chức chương trình đào tạo thứ nhất và thứ hai cập nhật kết quả\nhọc tập của sinh viên sau mỗi học kỳ lên Cổng thông tin đào tạo đại học của Đại\nhọc Quốc gia Hà Nội. Trong quá trình sinh viên học cùng lúc hai chương trình, nếu\nđiểm trung bình chung tích luỹ của chương trình đào tạo thứ nhất đạt dưới điểm\ntrung bình hoặc thuộc diện cảnh báo kết quả học tập thì phải dừng học chương\ntrình đào tạo thứ hai ở học kỳ tiếp theo; sinh viên sẽ bị loại khỏi danh sách học\nchương trình đào tạo thứ hai.\n7. Sinh viên chỉ được xét tốt nghiệp chương trình thứ hai nếu được công\nnhận tốt nghiệp chương trình đào tạo thứ nhất, không vượt quá thời gian đào tạo"
+          ],
+          "ground_truth_answer": "Sinh viên có thể đăng ký nếu đáp ứng điều kiện trúng tuyển của chương trình thứ hai trong năm tuyển sinh, đồng thời có đơn xin học chương trình thứ hai và trả học phí theo quy định. Phương án GPA từ 2,5 kèm ngưỡng bảo đảm chất lượng đầu vào không áp dụng vì GPA hiện tại là 2,3.",
+          "ground_truth_context": [
+            "Điều kiện điểm là: GPA từ 2,5 trở lên và đáp ứng ngưỡng bảo đảm chất lượng đầu vào, hoặc GPA từ 2,0 trở lên và đáp ứng điều kiện trúng tuyển của chương trình thứ hai trong năm tuyển sinh.",
+            "Sinh viên phải có đơn xin học thêm chương trình đào tạo thứ hai và trả học phí theo quy định của đơn vị đào tạo."
+          ],
+          "source_document": "data/standardized/legal/quy-che-dao-tao-dai-hoc-dhqghn-3626.md",
+          "reference_document_ids": [
+            "quy-che-dao-tao-dai-hoc-dhqghn-3626"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 3.209,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 0.25,
+            "answer_relevancy": 0.8440162345313026,
+            "context_recall": 0.5,
+            "context_precision": 0.49999999995
+          }
+        },
+        {
+          "sample_id": "vnu_eval_011",
+          "category": "edge_case",
+          "question": "Trong thủ tục nội trú năm học 2025-2026 dành cho học sinh chuyên đã được xét duyệt, QH2025 và QH2023/QH2024 phải thực hiện các bước khác nhau như thế nào?",
+          "answer": "Trong thủ tục nội trú năm học 2025-2026, học sinh QH2025 và QH2023/QH2024 có sự khác biệt trong các bước thực hiện. \n\nCụ thể, học sinh QH2025 cần thực hiện đủ 03 bước, bao gồm: hoàn thiện hồ sơ nội trú, nộp lệ phí và dịch vụ gia tăng, cũng như làm thủ tục nhận phòng tại ký túc xá (KTX) [Document 1 | Source: article_03.md]. Trong khi đó, học sinh QH2023 và QH2024 chỉ cần thực hiện bước 02 và bước 03, tức là nộp lệ phí và dịch vụ gia tăng, sau đó làm thủ tục nhận phòng tại KTX [Document 5 | Source: article_03.md]. \n\nĐiều này có nghĩa là học sinh QH2025 có thêm bước hoàn thiện hồ sơ nội trú so với các học sinh QH2023 và QH2024.",
+          "retrieved_contexts": [
+            "Trang chủ » Sinh viên » CÔNG BỐ DANH SÁCH XÉT DUYỆT VÀ HƯỚNG DẪN LÀM THỦ TỤC NỘI TRÚ NĂM HỌC 2025-2026 CHO ĐỐI TƯỢNG HỌC SINH CHUYÊN\nCÔNG BỐ DANH SÁCH XÉT DUYỆT VÀ HƯỚNG DẪN LÀM THỦ TỤC NỘI TRÚ NĂM HỌC 2025-2026 CHO ĐỐI TƯỢNG HỌC SINH CHUYÊN\n=====***=====***=====\nI. ĐỐI TƯỢNG\nHọc sinh QH2023, QH2024 và QH2025 Trường THPT Chuyên Khoa học Tự nhiên và THPT Chuyên Khoa học Xã hội & Nhân văn đã được xét duyệt ở nội trú năm học 2025-2026.\nDanh sách học sinh QH2025 được duyệt ở nội trú xem chi tiết theo link sau:\nII. QUY TRÌNH LÀM THỦ TỤC NỘI TRÚ\nBƯỚC 1: Học sinh hoàn thiện hồ sơ nội trú\n– Khai báo trực tuyến (Online) thông qua Website: (Chi tiết thực hiện theo hướng dẫn tại Phụ lục 01: )\n– Thời gian hoàn thiện hồ sơ: Từ ngày 22/7 đến hết ngày 31/7/2025",
+            "BƯỚC 3: Làm thủ tục nhận phòng tại KTX\n– Thời gian: Từ 8h00′ -17h00′ Ngày 03/8/2025 (Chủ Nhật).\n– Địa điểm: Văn phòng Ban Quản lý KTX Mễ Trì – Tầng 1 nhà C0, số 182 Lương Thế Vinh, Thanh Xuân, Hà Nội.\n*** 𝐆𝐡𝐢 𝐜𝐡𝐮́:\n– Học sinh QH 2025 thực hiện đủ 03 bước\n– Học sinh QH 2023, QH 2024 thực hiện bước 02 và 03\n– Hết thời gian quy định, Học sinh không hoàn thiện hồ sơ và không nộp lệ phí, đồng nghĩa với không có nhu cầu ở KTX.\n***=======\nTHÔNG TIN LIÊN HỆ: Hotline 0834182182",
+            "– Thời gian hoàn thiện hồ sơ: Từ ngày 22/7 đến hết ngày 31/7/2025\n– Lưu ý: Học sinh có 02 loại phòng để lựa chọn đăng ký: MT_A5 (ở 04 HS) và MT_N2a (ở 02 HS)\nBƯỚC 2: Nộp lệ phí và dịch vụ gia tăng\n– Hình thức nộp: Học sinh lựa chọn 01 trong 02 cách:\n+ Chuyển khoản từ ngày 01/8 đến ngày 04/8/2025 (KTX sẽ có hướng dẫn nộp chuyển khoản trước ngày 31/7/2025 trên Website )\n+ Nộp trực tiếp tại Văn phòng Ban Quản lý KTX (Tầng 01 nhà C0, số 182 Lương Thế Vinh, Thanh Xuân, Hà Nội) trong ngày 03/8/2025 (Chủ Nhật)\n– Lệ phí kỳ I: Tính từ ngày 01/8/2025 đến 31/12/2025 (5 tháng)\n– Tổng số tiền học sinh phải nộp theo loại phòng được sắp xếp: Xem trong mục “Biên lai” tại Website\nBƯỚC 3: Làm thủ tục nhận phòng tại KTX\n– Thời gian: Từ 8h00′ -17h00′ Ngày 03/8/2025 (Chủ Nhật).",
+            "# CÔNG BỐ DANH SÁCH XÉT DUYỆT VÀ HƯỚNG DẪN LÀM THỦ TỤC NỘI TRÚ NĂM HỌC 2025-2026 CHO ĐỐI TƯỢNG HỌC SINH CHUYÊN - Trung tâm Hỗ trợ sinh viên - Đại học Quốc gia Hà Nội\n\n**Source:** https://css.vnu.edu.vn/cong-bo-danh-sach-xet-duyet-va-huong-dan-lam-thu-tuc-noi-tru-nam-hoc-2025-2026-cho-doi-tuong-hoc-sinh-chuyen/\n**Crawled:** 2026-08-04T10:16:52.840221\n\n---",
+            "HỌC KỲ PHỤ (05/07/2021  22/08/2021)\nQH-2020-I/CQ, QH-2015-\n| TT  Thời gian  |     |     | Ghi chú  |\n| -------------- | --- | --- | -------- |\nI/CQ\n| 45  05/07/202111/07/2021  | Học chuyên môn (tuần 1)  | Hội nghị đào tạo cấp Trường.  |     |\n| -------------------------- | ------------------------ | ----------------------------- | --- |\n\n46 12/07/202118/07/2021 Học chuyên môn (tuần 2) Dự kiến TKB HKI năm học 2021-2022.\n47 19/07/202125/07/2021 Học chuyên môn (tuần 3) QĐ Danh sách sinh viên theo học các định hướng.\n48 26/07/202101/08/2021 Học chuyên môn (tuần 4)\n49 02/08/202108/08/2021 Học chuyên môn (tuần 5) Công bố TKB HKI năm học 2021-2022\n50 09/08/202115/08/2021 Học chuyên môn (tuần 6) SV đăng ký học.\n51 16/08/202122/08/2021 Thi cuối học kỳ phụ\nBắt đầu năm học mới 2021– 2022"
+          ],
+          "ground_truth_answer": "Học sinh QH2025 phải thực hiện đủ ba bước: hoàn thiện hồ sơ nội trú, nộp lệ phí và dịch vụ gia tăng, rồi làm thủ tục nhận phòng. Học sinh QH2023 và QH2024 chỉ thực hiện bước 2 và bước 3.",
+          "ground_truth_context": [
+            "Học sinh QH2025 thực hiện đủ 03 bước; học sinh QH2023, QH2024 thực hiện bước 02 và 03."
+          ],
+          "source_document": "data/standardized/news/article_03.md",
+          "reference_document_ids": [
+            "article_03"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 3.561,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.8675228521785279,
+            "context_recall": 1.0,
+            "context_precision": 0.9999999999666667
+          }
+        },
+        {
+          "sample_id": "vnu_eval_012",
+          "category": "out_of_domain",
+          "question": "Học phí ngành Công nghệ thông tin UET năm học 2026-2027 là bao nhiêu?",
+          "answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+          "retrieved_contexts": [
+            "# Định mức học phí các chương trình đào tạo năm học 2025-2026 - Trường Đại học Công Nghệ - Đại học Quốc Gia Hà Nội\n\n**Source:** https://uet.vnu.edu.vn/dinh-muc-hoc-phi-cac-chuong-trinh-dao-tao-nam-hoc-2025-2026/\n**Crawled:** 2026-08-04T10:16:59.753533\n\n---\n\nTrở lại",
+            "Căn cứ khung chương trình các chương trình đào tạo tại Trường ĐHCN đã được phê duyệt và áp dụng;\nCăn cứ Tờ trình ngày 11 tháng 09 năm 2025 về định mức thu học phí các CTĐT tại trường ĐHCN năm học 2025 -2026 của các phòng Công tác sinh viên, Kế hoạch – Tài chính, Đào tạo;\nTheo đề nghị của Trưởng phòng Kế hoạch – Tài chính.\n**HIỆU TRƯỞNG****TRƯỜNG ĐẠI HỌC CÔNG NGHỆ**\n**QUYẾT ĐỊNH:**\n**Điều 1.** Ban hành Quy định định mức thu học phí và các khoản thu khác từ người học năm học 2025-2026 (chi tiết theo phụ lục ).\n**Điều 2****.** Mức thu học phí và các khoản thu khác ban hành theo Quyết định này được áp dụng từ năm học 2025-2026.",
+            "|     | ELT2028  | Chuyên nghiệp trong công nghệ  |        |     |             |\n| --- | -------- | ------------------------------ | ------ | --- | ----------- |\n|     |          |                                | 2  30  |     |             |\n|     |          |                                |        |     |             |\n|     | POL1001  | Tư tưởng Hồ Chí Minh           | 2  20  | 10  |    PHI1005  |\n|     | MAT1101  | Xác suất thống kê              | 3  30  | 15  |    MAT1041  |\n|     | INT2044  | Lý thuyết thông tin            | 3  45  |     |    MAT1101  |\nQH-2018-I/CQ-CA-\n|     | INT3403  | Đồ họa máy tính  | 3  30  | 15  |    INT2203  |\n| --- | -------- | ---------------- | ------ | --- | ----------- |\nCLCL\n|     |     | Chọn 2 học phần (3 tín chỉ mỗi     |     |     |     |",
+            "|     |     |     | 2     |     |       |\n| --- | --- | --- | ----- | --- | ----- |\nKhối kiến thức bổ trợ\n|     | ELT2028  | Chuyên nghiệp trong công nghệ  | 2  30  |     |       |\n| --- | -------- | ------------------------------ | ------ | --- | ----- |\nChọn 2 học phần (mỗi học phần 3\n|     |     | tín chỉ) trong các học phần tự  | 6     |     |       |\n| --- | --- | ------------------------------- | ----- | --- | ----- |\nchọn\n|     | INT3202  | Hệ quản trị cơ sở dữ liệu  | 3  30  | 15  |    INT2207  |\n| --- | -------- | -------------------------- | ------ | --- | ----------- |\nINT2204\n|     | INT3306  | Phát triển ứng dụng Web   | 3  30  | 15  |     |\n| --- | -------- | ------------------------- | ------ | --- | --- |\nINT2207",
+            "|     |            | Học phần bổ trợ 2 tín chỉ  | 2      |       |            |\nChuyên nghiệp trong công\n|     | ELT2028 2  |     | 2  30  |     |     |\n| --- | ---------- | --- | ------ | --- | --- |\nnghệ\n|     |     | Các học phần tự chọn 1  | 9   |     |     |\n| --- | --- | ----------------------- | --- | --- | --- |\nQH-2017-\n|     | INT3308 1  | Đánh giá hiệu năng mạng  | 3  42  | 3   |     |\n| --- | ---------- | ------------------------ | ------ | --- | --- |\nI/CQ-N\n|     | INT3304 1  | Lập trình mạng               | 3  30  | 15  |     |\n| --- | ---------- | ---------------------------- | ------ | --- | --- |\n|     | INT3305 1  | Truyền thông đa phương tiện  | 3  45  |     |     |\nThực hành hệ điều hành\n|     | INT3301 1  |     | 3  15  | 30  |     |"
+          ],
+          "ground_truth_answer": "Không đủ thông tin trong bộ tài liệu hiện tại để xác định học phí ngành Công nghệ thông tin UET năm học 2026-2027. Hệ thống phải từ chối suy đoán và đề nghị người dùng kiểm tra thông báo học phí chính thức mới nhất của UET.",
+          "ground_truth_context": [
+            ""
+          ],
+          "source_document": "",
+          "reference_document_ids": [],
+          "retrieval_metrics": {
+            "hit_rate": 0.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 1.861,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 1.0,
+            "answer_relevancy": 0.0,
+            "context_recall": 1.0,
+            "context_precision": 0.49999999995
+          }
+        },
+        {
+          "sample_id": "vnu_eval_013",
+          "category": "out_of_domain",
+          "question": "Thư viện ĐHQGHN mở cửa đến mấy giờ vào Chủ nhật?",
+          "answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+          "retrieved_contexts": [
+            "2.  Thời gian học tập tại phòng tự học\n-  Sáng: Mở cửa từ 8h00 (mở cửa cả ngày thứ 7).\n-  Chiều: Đóng cửa lúc 19h00.\nYêu cầu sinh viên phải đến phòng tự học (315-G2) tối thiểu 2 lần/tuần. Ngoài ra, nếu gặp khó khăn trong quá trình học tập trên lớp, sinh\nviên phải tham gia các giờ tự học có trợ giảng hướng dẫn (lịch chi tiết được thông báo cụ thể trong HK).",
+            "## Đào tạo sau Đại học\n\nNgày 07/10/2024, Đại học Quốc gia Hà Nội (ĐHQGHN) ban hành Quyết định số 4618/QĐ-ĐHQGHN, văn bản này quy định về công tác quản lý, sử dụng học bổng tại Đại học Quốc gia Hà Nội (ĐHQGHN); áp dụng đối với học sinh, sinh viên, học viên cao học, nghiên cứu sinh của ĐHQGHN (gọi chung là học sinh, sinh viên) và các đơn vị, bộ phận chức năng liên quan.\nChi tiết như văn bản .\nTrân trọng thông báo.\n09/10/2024\n09/10/2024\n### Bài viết liên quan\n24/02/2025\n19/12/2024\n22/11/2024",
+            "🎓 TÌM VIỆC LÀM, THỰC TẬP DỄ DÀNG HƠN CÙNG CỔNG THÔNG TIN VIỆC LÀM SINH VIÊN ĐHQGHN Bạn đang tìm kiếm: ✅ Việc làm bán thời gian phù hợp với lịch học? ✅ Cơ hội thực tập để tích lũy kinh nghiệm? ✅ Việc làm sau tốt nghiệp từ các doanh nghiệp uy tín? Cổng thông tin việc làm sinh viên do Trung tâm Hỗ trợ sinh viên – ĐHQGHN xây dựng và vận hành sẽ giúp bạn kết nối nhanh chóng với các cơ hội nghề nghiệp phù hợp. 📌 Tại đây, sinh viên có thể: 🔹 Cập nhật thường xuyên các tin tuyển dụng mới nhất. 🔹 Tìm kiếm cơ hội thực tập và việc làm theo ngành học. 🔹 Kết nối trực tiếp với doanh nghiệp, nhà tuyển dụng. 🔹 Tiếp cận các chương trình hướng nghiệp, ngày hội việc làm và hoạt động hỗ trợ sinh viên",
+            "| INT1003  |                                 | 2  INT1003 22  | 47  |                                  | Chiều  3  | 7-8  303-G2  | CL   |\n|          | của HK)                         |                |     | (0913507435, minhdl@vnu.edu.vn)  |           |              |      |\nThS. Kiều Thanh Bình\nINT1003  Tin học cơ sở 1  2  INT1003 22  24  Sáng  5  1-3  PM 313-G2  N1\n(0967 586 888, binhkt.vnu@gmail.com)\nTS. Ngô Thị Duyên\nINT1003  Tin học cơ sở 1  2  INT1003 22  23  Sáng  5  4-6  PM 313-G2  N2\n(0986898948,  duyennt@vnu.edu.vn)\nTS. Trần Quốc Long\nINT1006  Tin học cơ sở 4  3  INT1006 22  47  Chiều  4  7-8  304-G2  CL\n(0982 319 416, tqlong@gmail.com)\nINT1006  Tin học cơ sở 4  3  INT1006 22  24  ThS. Phạm Hải đăng  Chiều  5  10-12  PM 305-G2  N1\nThS. Vũ Bá Duy",
+            "8. Quản lý hồ sơ cấp học bổng hàng năm và báo cáo tình hình thực hiện\n\nxét, cấp học bổng về ĐHQGHN trước ngày 30 tháng 6 hàng năm.\n\n9. Phối hợp tổ chức trao các chương trình học bổng do ĐHQGHN quản lý.\n Điều 17. Trách nhiệm của học sinh, sinh viên\n1.  Trung  thực  khi  cung  cấp  thông  tin,  hồ  sơ  đăng  ký  tham  gia  chương\n\ntrình học bổng.\n\n2.  Sử  dụng  học  bổng  được  cấp  theo  đúng  mục  đích,  yêu  cầu  của\nĐHQGHN cũng như của đối tác tài trợ học bổng để phục vụ học tập, nghiên cứu\nvà trang trải chi phí sinh hoạt của bản thân.\n\n3. Tích cực phấn đấu học tập và rèn luyện tốt, đáp ứng các tiêu chuẩn mà\n\nchương trình học bổng yêu cầu."
+          ],
+          "ground_truth_answer": "Bộ tài liệu hiện tại không cung cấp giờ mở cửa Chủ nhật của thư viện ĐHQGHN. Hệ thống phải nói rõ không tìm thấy thông tin và không tự suy đoán thời gian.",
+          "ground_truth_context": [
+            ""
+          ],
+          "source_document": "",
+          "reference_document_ids": [],
+          "retrieval_metrics": {
+            "hit_rate": 0.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 1.354,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 0.0,
+            "answer_relevancy": 0.0,
+            "context_recall": 0.5,
+            "context_precision": 0.9999999999
+          }
+        },
+        {
+          "sample_id": "vnu_eval_014",
+          "category": "multilingual_cross_lingual",
+          "question": "What is the minimum weight of the final course assessment in the overall course grade at VNU?",
+          "answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+          "retrieved_contexts": [
+            "Kết quả học tập của sinh viên được đánh giá sau mỗi học kỳ chính theo các\ntiêu chí sau:\n1. Khối lượng kiến thức học tập là tổng số tín chỉ của những học phần (không\ntính học phần tự chọn tự do) mà sinh viên đã đăng ký học trong học kỳ.\n2. Khối lượng kiến thức tích lũy là tổng số tín chỉ của những học phần đã\nđược đánh giá loại đạt, tính từ đầu khóa học.\n3. Điểm trung bình chung học kỳ là điểm trung bình theo trọng số tín chỉ của\ncác học phần mà sinh viên đăng ký học trong học kỳ đó (bao gồm cả các học phần\nđược đánh giá loại đạt và không đạt).\n4. Điểm trung bình chung các học phần là điểm trung bình theo trọng số tín\nchỉ của các học phần mà sinh viên đăng ký học từ đầu khóa học cho tới thời\nđiểm xem xét (bao gồm cả các học phần được đánh giá loại đạt và không đạt).",
+            "Học kỳ chính, không tính học kỳ cuối khóa: tất cả sinh viên phải thực hiện\nđăng ký lớp học phần trước khi học kỳ mới bắt đầu. Số tín chỉ tối thiểu sinh viên phải\nđăng ký: 14 tín chỉ đối với sinh viên hệ chuẩn, 16 tín chỉ đối với chất lượng cao và\nchuẩn quốc tế. Số tín chỉ tối đa được phép đăng ký: 25 tín chỉ đối với sinh viên theo\nhọc một ngành, 28 tín chỉ đối với sinh viên theo học bằng kép. Chỉ những sinh viên\nđăng ký 14 tín chỉ trở lên mới được xét học bổng khuyến khích học tập. Trường hợp\nsinh viên có nguyện vọng đăng ký học ít hơn số tín chỉ tối thiểu trong một học kỳ\nphải được sự đồng ý của Thủ trưởng đơn vị đào tạo.\nHọc kỳ phụ: không bắt buộc, sinh viên đăng ký học theo nguyện vọng.\nSinh viên thuộc diện cảnh báo học vụ: tổng số tín chỉ đăng ký học (tối thiểu,",
+            "tra đánh giá.\nĐiều 5. Học phần\n1. Học phần là một phần kiến thức của chương trình đào tạo; mỗi học phần\ncó khối lượng kiến thức từ 2 đến 5 tín chỉ, được tổ chức giảng dạy trọn vẹn trong\nmột học kỳ (trừ học phần thực tập thực tế); mỗi học phần có mã số riêng do thủ\ntrưởng đơn vị đào tạo ban hành dựa trên nguyên tắc đánh mã của Đại học Quốc gia\nHà Nội.",
+            "ký trong học kỳ kế tiếp. Trường hợp loại học lực của sinh viên được xác định vào\nthời điểm sau khi sinh viên đã đăng ký học phần, sinh viên phải rút bớt học phần\ntrong giới hạn khối lượng quy định.\n2. Sau mỗi học kỳ, căn cứ vào điểm trung bình chung học kỳ, học lực của\nsinh viên được xếp thành các loại sau:\na) Xuất sắc: Điểm trung bình chung học kỳ từ 3,60 đến 4,00\nb) Giỏi: Điểm trung bình chung học kỳ từ 3,20 đến 3,59\nc) Khá: Điểm trung bình chung học kỳ từ 2,50 đến 3,19\nd) Trung bình: Điểm trung bình chung học kỳ từ 2,00 đến 2,49\nđ) Yếu: Điểm trung bình chung học kỳ đạt dưới 2,0 nhưng chưa thuộc trường\nhợp bị buộc thôi học.\nChương VIII\nCÔNG NHẬN TỐT NGHIỆP\nĐiều 46. Điều kiện tốt nghiệp\n1. Sinh viên sau khi hoàn thành chương trình đào tạo được xét công nhận tốt",
+            "- Trong 2 tuần đầu của học kỳ chính, sinh viên được phép đăng ký những học phần\nmuốn học thêm hoặc đăng ký đổi sang lớp học phần khác.\n- Việc rút bớt học phần trong khối lượng học tập đã đăng ký theo nhu cầu và khả\nnăng lựa chọn của sinh viên chỉ được chấp nhận:\n● Sinh viên có đơn trình bày rõ lý do xin rút bớt học phần (có ý kiến của\nCVHT), nộp tại P. 105-E3 chậm nhất 2 tuần kể từ đầu học kỳ chính.\n● Được Nhà trường đồng ý.\nNgoài thời hạn trên, học phần vẫn được giữ nguyên, nếu sinh viên không học sẽ\nphải nhận điểm F và không được trả lại học phí.\n- Phần giảng dạy lý thuyết được tổ chức tại giảng đường, phòng học theo công bố\ntrên Thời khóa biểu. Mỗi lớp từ 20 đến 140 sinh viên. Các nhóm bài tập/thực hành/thực"
+          ],
+          "ground_truth_answer": "The final course assessment is mandatory and must account for at least 60% of the overall course grade.",
+          "ground_truth_context": [
+            "Điểm đánh giá kết thúc học phần là bắt buộc và có trọng số không dưới 60% điểm của học phần."
+          ],
+          "source_document": "data/standardized/legal/quy-che-dao-tao-dai-hoc-dhqghn-3626.md",
+          "reference_document_ids": [
+            "quy-che-dao-tao-dai-hoc-dhqghn-3626"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 0.0,
+            "mrr": 0.0
+          },
+          "status": "success",
+          "latency_seconds": 1.461,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 0.0,
+            "answer_relevancy": 0.0,
+            "context_recall": 0.0,
+            "context_precision": 0.0
+          }
+        },
+        {
+          "sample_id": "vnu_eval_015",
+          "category": "multilingual_cross_lingual",
+          "question": "For regular undergraduate students, how many months per academic year is the merit scholarship paid?",
+          "answer": "Học bổng được cấp cho sinh viên đại học hệ chính quy theo từng học kỳ và cấp 9 tháng trong năm học [Document 1].",
+          "retrieved_contexts": [
+            "Học bổng được cấp theo từng học kỳ và cấp 9 tháng trong năm học.\nBên cạnh học bổng KKHT theo văn bản quy định này, Hiệu trưởng đơn vị\nđào  tạo  có  thể  có  các  chế  độ,  chính  sách  khác  đối  với  học  sinh  trường  THPT\nchuyên do đơn vị quản lý. Học sinh thuộc diện hưởng học bổng chính sách, trợ\ncấp xã hội, chính sách ưu đãi theo quy định hiện hành của nhà nước thì vẫn được\nxét, cấp học bổng KKHT.\n\n\f3\n\n2. Học bổng cho các đối tượng học sinh khác\nHiệu trưởng đơn vị đào tạo căn cứ thực tiễn tại đơn vị và các văn bản quy\nđịnh hiện hành, chỉ đạo triển khai thực hiện đầy đủ, bảo đảm quyền, lợi ích hợp\npháp của học sinh.\n\n3. Học bổng cho sinh viên đại học hệ chính quy\n3.1. Đối tượng, tiêu chí\nSinh viên có kết quả học tập, rèn luyện đạt từ loại khá trở lên và không bị kỷ",
+            "c) Học bổng được cấp theo từng học kỳ và cấp 10 tháng trong năm học. Tại\nhọc kỳ xét học bổng, sinh viên được xét, cấp học bổng phải hoàn thành ít nhất\n15 tín chỉ. Trường hợp đặc biệt do Hiệu trưởng đơn vị đào tạo quyết định.\n\nd) Riêng học kỳ cuối cùng của khóa học, đơn vị căn cứ vào kết quả xét tốt\nnghiệp theo đúng quy chế đào tạo tại ĐHQGHN và điểm rèn luyện toàn khóa để\nxét và cấp học bổng KKHT (điểm trung bình chung tích lũy toàn khóa học thay\ncho kết quả học tập của học kỳ đó). Trường hợp đặc biệt do Hiệu trưởng đơn vị\nđào tạo quyết định.\n\ne) Sinh viên thuộc diện hưởng học bổng chính sách, trợ cấp xã hội, chính\nsách  ưu  đãi  theo  quy  định  hiện  hành  của  nhà  nước  thì  vẫn  được  xét,  cấp  học\nbổng KKHT.\n\nĐiều 6. Học bổng cho sinh viên hệ đào tạo tài năng, hệ đào tạo chất",
+            "học, Chính trị học, Nhân học, Việt Nam học, Ngôn ngữ học, Hán Nôm.\n\n\f5\n\nc) Số suất học bổng: Tối thiểu 05 suất/ngành/khóa học. Số suất học bổng\nhàng năm do Hiệu trưởng quyết định tùy thuộc vào số lượng và chất lượng hồ sơ\nứng tuyển.\n\nd) Mức học bổng: Gồm miễn học phí và bố trí chỗ ở trong ký túc xá cho\ncả khóa học (4 năm học), hỗ trợ sinh hoạt phí tối thiểu 2 triệu đồng/tháng trong\nnăm thứ nhất và các năm tiếp theo nếu duy trì được học lực loại giỏi trở lên.\n\nđ) Nguồn học bổng: Học bổng cho các ngành khoa học cơ bản được bố trí\n\ntừ nguồn thu hợp pháp của đơn vị đào tạo.\n\ne) Sinh viên được cấp học bổng có cơ hội tham gia chương trình Ươm tạo\nnhà khoa học, được phân công nhà khoa học đỡ đầu, tham gia nghiên cứu khoa\nhọc, hoạt động ngoại khóa, trải nghiệm thực tế trong suốt quá trình học.",
+            "Điều 10. Nguyên tắc xét, cấp học bổng\nTrong một năm học, mỗi học sinh, sinh viên chỉ được nhận 01 học bổng\ntài trợ do ĐHQGHN hoặc các đơn vị quản lý. Trường hợp đặc biệt do Giám đốc\nĐHQGHN  (đối  với  những  học  bổng  tài  trợ  do  ĐHQGHN  quản  lý)  hoặc  Hiệu\ntrưởng (đối với các học bổng tài trợ do đơn vị đào tạo quản lý) quyết định.\n\nHọc  sinh,  sinh  viên  đã  được  nhận  học  bổng  khuyến  khích  học  tập  hoặc\nhọc bổng chính sách nếu đủ điều kiện vẫn được xét, cấp học bổng tài trợ trong\nnăm học.\n\n\f6",
+            "luật từ mức khiển trách trở lên trong kỳ xét cấp học bổng.\n\n3.2. Mức học bổng\nDo Hiệu trưởng đơn vị đào tạo hoặc chủ nhiệm khoa trực thuộc (sau đây\ngọi chung là Hiệu trưởng) quy định nhưng bằng hoặc cao hơn mức trần học phí\nhiện hành của ngành, chuyên ngành mà sinh viên đó phải đóng (tính theo tháng).\nVới những ngành, chuyên ngành đào tạo không thu học phí thì áp dụng theo đơn\ngiá được Nhà nước đặt hàng, giao nhiệm vụ cho đơn vị. Chi tiết như sau:\n\na) Học bổng loại khá: Dành cho sinh viên có điểm trung bình chung học\ntập và điểm rèn luyện trong học kỳ đều đạt loại khá trở lên. Mức học bổng bằng\nhoặc cao hơn mức trần học phí hiện hành của ngành, chuyên ngành mà sinh viên\nđó phải đóng tại đơn vị theo quy định."
+          ],
+          "ground_truth_answer": "The scholarship is awarded by semester and is paid for 10 months in an academic year.",
+          "ground_truth_context": [
+            "Học bổng được cấp theo từng học kỳ và cấp 10 tháng trong năm học."
+          ],
+          "source_document": "data/standardized/legal/quy-dinh-hoc-bong-dhqghn-4618.md",
+          "reference_document_ids": [
+            "quy-dinh-hoc-bong-dhqghn-4618"
+          ],
+          "retrieval_metrics": {
+            "hit_rate": 1.0,
+            "recall_at_k": 1.0,
+            "mrr": 0.5
+          },
+          "status": "success",
+          "latency_seconds": 2.291,
+          "error": null,
+          "ragas_scores": {
+            "faithfulness": 0.5,
+            "answer_relevancy": 0.7943889580922545,
+            "context_recall": 1.0,
+            "context_precision": 0.49999999995
+          }
+        }
+      ]
+    }
+  }
+}

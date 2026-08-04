@@ -101,11 +101,14 @@ def get_embedding_model():
     """
     global _MODEL
     if _MODEL is None:
+        import os
+        import torch
+        torch.set_num_threads(os.cpu_count() or 8)
         from sentence_transformers import SentenceTransformer
 
-        print(f"⏳ Đang load embedding model: {EMBEDDING_MODEL} ...")
+        print(f"[INFO] Dang load embedding model: {EMBEDDING_MODEL} ...")
         _MODEL = SentenceTransformer(EMBEDDING_MODEL)
-        print("✓ Model đã sẵn sàng")
+        print("[OK] Model da san sang")
     return _MODEL
 
 
@@ -211,7 +214,7 @@ def embed_chunks(chunks: list[dict]) -> list[dict]:
     # Điều này cần thiết để ngưỡng SCORE_THRESHOLD ở Task 9 có ý nghĩa thật.
     embeddings = model.encode(
         texts,
-        batch_size=8,          # bge-m3 khá nặng, batch nhỏ để không tràn RAM/VRAM
+        batch_size=64,
         normalize_embeddings=True,
         show_progress_bar=True,
     )
@@ -232,7 +235,7 @@ def index_to_vectorstore(chunks: list[dict]):
     global _COLLECTION
 
     if not chunks:
-        print("⚠ Không có chunk nào để index.")
+        print("[WARNING] Khong co chunk nao de index.")
         return
 
     import chromadb
@@ -242,7 +245,7 @@ def index_to_vectorstore(chunks: list[dict]):
 
     try:
         client.delete_collection(COLLECTION_NAME)
-        print(f"  ✓ Đã xoá collection cũ '{COLLECTION_NAME}' để reindex sạch")
+        print(f"  [OK] Da xoa collection cu '{COLLECTION_NAME}' de reindex sach")
     except Exception:
         pass  # chưa tồn tại — lần chạy đầu tiên
 
@@ -267,33 +270,33 @@ def index_to_vectorstore(chunks: list[dict]):
             embeddings=[c["embedding"] for c in batch],
             metadatas=[c["metadata"] for c in batch],
         )
-        print(f"  ✓ Đã index {min(start + UPSERT_BATCH_SIZE, len(chunks))}/{len(chunks)} chunks")
+        print(f"  [OK] Da index {min(start + UPSERT_BATCH_SIZE, len(chunks))}/{len(chunks)} chunks")
 
 
 def run_pipeline():
-    """Chạy toàn bộ pipeline: load → chunk → embed → index."""
+    """Chạy toàn bộ pipeline: load -> chunk -> embed -> index."""
     print("=" * 60)
     print("Task 4: Chunking & Indexing")
     print(f"  Chunking: {CHUNKING_METHOD} (size={CHUNK_SIZE}, overlap={CHUNK_OVERLAP})")
     print(f"  Embedding: {EMBEDDING_MODEL} (dim={EMBEDDING_DIM})")
-    print(f"  Vector Store: {VECTOR_STORE} → {CHROMA_DIR}")
+    print(f"  Vector Store: {VECTOR_STORE} -> {CHROMA_DIR}")
     print("=" * 60)
 
     docs = load_documents()
-    print(f"\n✓ Loaded {len(docs)} documents")
+    print(f"\n[OK] Loaded {len(docs)} documents")
 
     chunks = chunk_documents(docs)
-    print(f"✓ Created {len(chunks)} chunks")
+    print(f"[OK] Created {len(chunks)} chunks")
     if chunks:
         sizes = [len(c["content"]) for c in chunks]
-        print(f"  (kích thước chunk: min={min(sizes)}, max={max(sizes)}, "
-              f"trung bình={sum(sizes) // len(sizes)})")
+        print(f"  (kich thuoc chunk: min={min(sizes)}, max={max(sizes)}, "
+              f"trung binh={sum(sizes) // len(sizes)})")
 
     chunks = embed_chunks(chunks)
-    print(f"✓ Embedded {len(chunks)} chunks")
+    print(f"[OK] Embedded {len(chunks)} chunks")
 
     index_to_vectorstore(chunks)
-    print(f"\n✓ Hoàn tất — collection '{COLLECTION_NAME}' có {get_collection().count()} chunks")
+    print(f"\n[OK] Hoan tat — collection '{COLLECTION_NAME}' co {get_collection().count()} chunks")
 
 
 if __name__ == "__main__":

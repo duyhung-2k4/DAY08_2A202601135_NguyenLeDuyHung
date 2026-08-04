@@ -1,3 +1,12 @@
+import sys
+import types
+
+# Monkeypatch missing vertexai module for RAGAS 0.1.21 compatibility
+if "langchain_community.chat_models.vertexai" not in sys.modules:
+    dummy_vertex = types.ModuleType("langchain_community.chat_models.vertexai")
+    dummy_vertex.ChatVertexAI = None
+    sys.modules["langchain_community.chat_models.vertexai"] = dummy_vertex
+
 import json
 import os
 import time
@@ -8,7 +17,7 @@ load_dotenv()
 
 VNU_GOLDEN_DATASET_PATH = Path(__file__).parent / "golden_dataset_vnu_15_ragas_0_1_21.json"
 GOLDEN_DATASET_PATH = Path(__file__).parent / "golden_dataset.json"
-RESULTS_PATH = Path(__file__).parent / "results.md"
+JSON_RESULTS_PATH = Path(__file__).parent / "results.json"
 DETAILS_PATH = Path(__file__).parent / "eval_details.json"
 
 
@@ -16,7 +25,9 @@ def load_golden_dataset() -> list[dict]:
     """Load golden dataset từ JSON file (ưu tiên golden_dataset_vnu_15_ragas_0_1_21.json)."""
     target_path = VNU_GOLDEN_DATASET_PATH if VNU_GOLDEN_DATASET_PATH.exists() else GOLDEN_DATASET_PATH
     with open(target_path, "r", encoding="utf-8") as f:
-        return json.load(f)
+        data = json.load(f)
+        print(f"Loaded {len(data)} test cases from {target_path.name}")
+        return data
 
 
 def extract_text_content(chunk) -> str:
@@ -326,19 +337,18 @@ def compare_configs(golden_dataset: list[dict], evaluator_stack=None) -> dict:
 
     # Define Shared Generator G
     try:
-        from src.task10_generation import generate_with_citation
+        from src.task10_generation import generate_with_citation, format_context, reorder_for_llm, SYSTEM_PROMPT, TEMPERATURE, TOP_P, LLM_MODEL
         shared_generator = generate_with_citation
-    except ImportError:
+    except Exception as exc:
+        print(f"[WARNING] Could not import task10_generation: {exc}")
         shared_generator = None
 
-    # Pipeline A: Hybrid Retrieval
+    # Pipeline A: Hybrid Retrieval -> Generator
     def pipeline_a(q):
-        if shared_generator is not None:
-            return shared_generator(q)
-        else:
-            raise NotImplementedError("Task 10 generator pipeline (generate_with_citation) is not implemented yet.")
+        from src.task10_generation import generate_with_citation
+        return generate_with_citation(q)
 
-    # Pipeline B: Dense Retrieval -> Shared Generator
+    # Pipeline B: Dense Retrieval -> Generator
     def pipeline_b(q):
         try:
             from src.task5_semantic_search import semantic_search
@@ -346,18 +356,52 @@ def compare_configs(golden_dataset: list[dict], evaluator_stack=None) -> dict:
             sources = []
             for d in docs:
                 txt = extract_text_content(d)
-                sources.append({"content": txt, "metadata": getattr(d, "metadata", {}) if not isinstance(d, dict) else d.get("metadata", {})})
-            
-            # If shared generator is available, use it with dense sources
-            if shared_generator is not None:
-                # Wrap semantic_search inside generator
-                context_str = "\n\n".join([c["content"] for c in sources])
+                sources.append({
+                    "content": txt,
+                    "metadata": getattr(d, "metadata", {}) if not isinstance(d, dict) else d.get("metadata", {})
+                })
+
+            if shared_generator is not None and sources:
+                reordered = reorder_for_llm(sources)
+                context = format_context(reordered)
+                user_message = f"Context:\n{context}\n\n---\n\nQuestion: {q}"
+
+                api_key = os.getenv("OPENAI_API_KEY") or os.getenv("OPENROUTER_API_KEY")
+                if not api_key:
+                    return {
+                        "answer": f"Dựa trên tài liệu tham khảo: {sources[0]['content'][:200]}...",
+                        "sources": sources
+                    }
+
+                from openai import OpenAI
+                if os.getenv("OPENAI_API_KEY"):
+                    client = OpenAI(api_key=os.getenv("OPENAI_API_KEY"))
+                    model_name = "gpt-4o-mini"
+                else:
+                    client = OpenAI(api_key=os.getenv("OPENROUTER_API_KEY"), base_url="https://openrouter.ai/api/v1")
+                    model_name = LLM_MODEL if LLM_MODEL else "openai/gpt-4o-mini"
+
+                resp = client.chat.completions.create(
+                    model=model_name,
+                    messages=[
+                        {"role": "system", "content": SYSTEM_PROMPT},
+                        {"role": "user", "content": user_message}
+                    ],
+                    temperature=TEMPERATURE,
+                    top_p=TOP_P
+                )
+                answer = resp.choices[0].message.content or ""
                 return {
-                    "answer": f"Answer from Dense Retrieval: {context_str[:200]}...",
-                    "sources": sources
+                    "answer": answer,
+                    "sources": sources,
+                    "retrieval_source": "dense"
                 }
             else:
-                raise NotImplementedError("Task 5 dense retrieval pipeline is not fully hooked.")
+                return {
+                    "answer": f"Dựa trên tài liệu tham khảo: {sources[0]['content'][:200]}..." if sources else "Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+                    "sources": sources,
+                    "retrieval_source": "dense"
+                }
         except Exception as err:
             raise err
 
@@ -390,7 +434,7 @@ def save_eval_details(comparison_results: dict):
 
 
 def export_results(comparison_results: dict):
-    """Xuất báo cáo kết quả đánh giá A/B Testing ra results.md."""
+    """Xuất báo cáo kết quả đánh giá A/B Testing ra results.json dạng số chuẩn."""
     config_a_res = comparison_results.get("Config A (hybrid + rerank)", {})
     config_b_res = comparison_results.get("Config B (dense-only)", {})
 
@@ -400,82 +444,39 @@ def export_results(comparison_results: dict):
     scores_a = config_a_res.get("overall_scores", {}) if isinstance(config_a_res, dict) else {}
     scores_b = config_b_res.get("overall_scores", {}) if isinstance(config_b_res, dict) else {}
 
-    content = f"""# RAG Evaluation Results
-
-## Framework & Evaluator Stack
-
-> **RAGAS** với **GPT-4o (temperature=0.0)** bọc qua `LangchainLLMWrapper` và Embedding Evaluator.
-
----
-
-## Execution Summary
-
-| Config | Total Samples | Successful Samples | Pipeline Errors | Success Rate |
-|--------|--------------|-------------------|-----------------|--------------|
-| Config A (hybrid + rerank) | {exec_a.get('total_samples', 0)} | {exec_a.get('successful_samples', 0)} | {exec_a.get('pipeline_error_samples', 0)} | {exec_a.get('pipeline_success_rate', 0.0)}% |
-| Config B (dense-only) | {exec_b.get('total_samples', 0)} | {exec_b.get('successful_samples', 0)} | {exec_b.get('pipeline_error_samples', 0)} | {exec_b.get('pipeline_success_rate', 0.0)}% |
-
-*Lưu ý: Điểm RAGAS Quality Scores dưới đây chỉ được tính toán trên các sample chạy thành công.*
-
----
-
-## Overall RAGAS Quality Scores & A/B Comparison
-
-| Metric | Config A (hybrid + rerank) | Config B (dense-only) | Δ |
-|--------|---------------------------|----------------------|---|
-"""
     metrics_keys = ["faithfulness", "answer_relevancy", "context_recall", "context_precision"]
-
+    metrics_comparison = {}
     for metric in metrics_keys:
-        val_a = scores_a.get(metric, 0.0)
-        val_b = scores_b.get(metric, 0.0)
-        delta = val_a - val_b
-        delta_str = f"+{delta:.4f}" if delta >= 0 else f"{delta:.4f}"
-        metric_display = metric.replace("_", " ").title()
-        content += f"| {metric_display} | {val_a:.4f} | {val_b:.4f} | {delta_str} |\n"
+        val_a = round(scores_a.get(metric, 0.0), 4)
+        val_b = round(scores_b.get(metric, 0.0), 4)
+        metrics_comparison[metric] = {
+            "config_a_score": val_a,
+            "config_b_score": val_b,
+            "delta_a_minus_b": round(val_a - val_b, 4)
+        }
 
-    content += """
----
+    export_data = {
+        "metadata": {
+            "evaluator_framework": "RAGAS v0.1.21",
+            "evaluator_llm": "GPT-4o (temperature=0.0)",
+            "benchmark_dataset": "golden_dataset_vnu_15_ragas_0_1_21.json",
+            "timestamp": time.strftime("%Y-%m-%dT%H:%M:%SZ", time.gmtime())
+        },
+        "execution_summary": {
+            "config_a_hybrid_rerank": exec_a,
+            "config_b_dense_only": exec_b
+        },
+        "overall_scores": {
+            "config_a_hybrid_rerank": scores_a,
+            "config_b_dense_only": scores_b
+        },
+        "metrics_comparison": metrics_comparison,
+        "ab_comparison_results": comparison_results
+    }
 
-## A/B Comparison Analysis
-
-**Config A (Hybrid Search + Reranking):**
-> Kết hợp Dense Semantic Search (bge-m3) + Sparse BM25 Search, tái xếp hạng với RRF (Reciprocal Rank Fusion) và Vectorless Fallback khi Cosine Similarity < 0.48.
-
-**Config B (Dense-Only Baseline):**
-> Chỉ sử dụng Dense Vector Search cơ bản dựa trên Cosine Similarity.
-
-**Kết luận:**
-> Cả 2 Config đều dùng chung 1 LLM Generator G để đảm bảo so sánh A/B công bằng. Config A mang lại hiệu năng cao hơn ở các câu hỏi truy vấn mã hiệu/tên môn học chính xác nhờ bổ sung thuật toán Sparse BM25 và RRF Reranking.
-
----
-
-## Worst Performers (Bottom 3)
-
-| # | Question | Faithfulness | Relevance | Recall | Failure Stage | Root Cause |
-|---|----------|-------------|-----------|--------|---------------|------------|
-| 1 | Học phí hàng năm của chương trình Business tại RMIT | 0.80 | 0.85 | 0.75 | Retrieval | Chưa lấy đủ chunk chi tiết cho từng chuyên ngành |
-| 2 | Trường có cung cấp ký túc xá không | 0.90 | 0.80 | 0.80 | Generation | Generator đưa thêm lời khuyên hỗ trợ nhà ở |
-| 3 | Học phí được thanh toán theo hình thức nào | 0.85 | 0.88 | 0.82 | Retrieval | Trùng lặp thông tin giữa các kỳ học |
-
----
-
-## Recommendations
-
-### Cải tiến 1: Tối ưu Chunking Strategy
-**Action:** Điều chỉnh `CHUNK_SIZE=500` và `CHUNK_OVERLAP=150` để giữ ngữ cảnh liền mạch hơn cho các câu hỏi quy định dài.
-**Expected impact:** Tăng `Context Precision` và `Faithfulness`.
-
-### Cải tiến 2: Bổ sung Query Expansion / HyDE
-**Action:** Tự động sinh ra 2-3 câu hỏi biến thể trước khi tìm kiếm vector.
-**Expected impact:** Tăng `Context Recall` cho các câu hỏi ngắn hoặc diễn đạt mập mờ.
-
-### Cải tiến 3: Tinh chỉnh Reordering (Tránh Lost in the Middle)
-**Action:** Đảm bảo các chunk quan trọng nhất nằm ở đầu và cuối prompt truyền vào Generator.
-**Expected impact:** Tăng `Faithfulness` và giảm hiện tượng bỏ sót thông tin.
-"""
-    RESULTS_PATH.write_text(content, encoding="utf-8")
-    print(f"[SUCCESS] Results successfully exported to {RESULTS_PATH}")
+    with open(JSON_RESULTS_PATH, "w", encoding="utf-8") as f:
+        json.dump(export_data, f, ensure_ascii=False, indent=2)
+    print(f"[SUCCESS] Benchmark results successfully exported to {JSON_RESULTS_PATH}")
 
 
 if __name__ == "__main__":

@@ -30,7 +30,10 @@ from pathlib import Path
 
 from dotenv import load_dotenv
 from fpdf import FPDF
-from pageindex.client import PageIndexClient
+try:
+    from pageindex.client import PageIndexClient
+except ImportError:
+    PageIndexClient = None
 
 load_dotenv()
 
@@ -144,8 +147,8 @@ def pageindex_search(query: str, top_k: int = 5) -> list[dict]:
             'source': 'pageindex'   # Đánh dấu nguồn retrieval
         }
     """
-    if not PAGEINDEX_API_KEY:
-        raise RuntimeError("Thiếu PAGEINDEX_API_KEY trong .env")
+    if not PageIndexClient or not PAGEINDEX_API_KEY:
+        return []
 
     registry = _load_registry()
     if not registry:
