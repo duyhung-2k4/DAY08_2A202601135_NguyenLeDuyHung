@@ -554,9 +554,87 @@ run_dashboard()
 
 ### Kiến Trúc Hệ Thống
 
+**Giai đoạn 1 — Ingestion (Task 1-4): xây dựng vector store**
+
 ```
-[Vẽ diagram kiến trúc ở đây]
+┌─────────────────────┐   ┌─────────────────────┐
+│ Task 1: Legal Docs   │   │ Task 2: News Crawl   │
+│ (PDF/DOCX, VNU)      │   │ (Crawl4AI → JSON)     │
+│ → data/landing/legal │   │ → data/landing/news   │
+└──────────┬───────────┘   └──────────┬───────────┘
+           │                          │
+           └────────────┬─────────────┘
+                         ▼
+           ┌─────────────────────────────┐
+           │ Task 3: MarkItDown           │
+           │ PDF/DOCX/JSON → Markdown      │
+           │ → data/standardized/         │
+           └──────────────┬────────────────┘
+                          ▼
+           ┌─────────────────────────────┐
+           │ Task 4: Chunking & Indexing   │
+           │ RecursiveCharacterTextSplitter │
+           │ (size=800, overlap=100)        │
+           │ → Embedding: BAAI/bge-m3 (1024d)│
+           │ → ChromaDB (chroma_db/, cosine) │
+           └─────────────────────────────┘
 ```
+
+**Giai đoạn 2 — Retrieval (Task 5-9): trả lời một câu hỏi**
+
+```
+                              Query người dùng
+                                     │
+                 ┌───────────────────┴───────────────────┐
+                 ▼                                        ▼
+   ┌─────────────────────────┐              ┌─────────────────────────┐
+   │ Task 5: Semantic Search   │              │ Task 6: Lexical Search    │
+   │ (dense, cosine similarity,│              │ (sparse, BM25 keyword)    │
+   │  embed bằng bge-m3;        │              │                            │
+   │  bonus: HyDE)               │              │                            │
+   └────────────┬─────────────┘              └────────────┬─────────────┘
+                │                                          │
+                └───────────────────┬──────────────────────┘
+                                     ▼
+                     ┌─────────────────────────────┐
+                     │ Task 7: Merge + Rerank        │
+                     │ (RRF hoặc cross-encoder)       │
+                     └──────────────┬──────────────────┘
+                                    ▼
+                     top-1 cosine score gốc (Task 5) < SCORE_THRESHOLD?
+                            │                          │
+                         KHÔNG (đủ tốt)              CÓ (không đủ)
+                            │                          ▼
+                            │            ┌─────────────────────────────┐
+                            │            │ Task 8: PageIndex Fallback   │
+                            │            │ (vectorless, đọc theo cấu     │
+                            │            │  trúc chương/mục tài liệu)    │
+                            │            └──────────────┬──────────────┘
+                            └──────────────┬─────────────┘
+                                           ▼
+                     ┌─────────────────────────────┐
+                     │ Task 9: retrieve()             │
+                     │ Hợp nhất kết quả hybrid/fallback │
+                     │ → top_k chunks cuối cùng         │
+                     └──────────────┬──────────────────┘
+                                    ▼
+                     ┌─────────────────────────────┐
+                     │ Task 10: Generation            │
+                     │ reorder_for_llm() (chống         │
+                     │ "lost in the middle") → prompt   │
+                     │ có citation → LLM (OpenRouter)    │
+                     └──────────────┬──────────────────┘
+                                    ▼
+                     ┌─────────────────────────────┐
+                     │ app.py (Streamlit Chatbot)     │
+                     │ Hiển thị answer + citation +     │
+                     │ source documents đã dùng          │
+                     └─────────────────────────────┘
+```
+
+**Ghi chú:**
+- Nhánh fallback ở Task 9 so `score_threshold` với **cosine similarity gốc** từ Task 5 (thang `[0,1]`), **không** so với điểm RRF đã fuse — xem cảnh báo chi tiết ở mục Task 9 bên dưới.
+- `supervisor.py` (nếu nhóm làm pattern nâng cao) có thể chạy Task 5 + Task 6 song song bằng worker riêng trước khi vào bước Merge + Rerank.
 
 ---
 

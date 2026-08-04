@@ -8,9 +8,11 @@ Hướng dẫn:
     4. Yêu cầu LLM trả lời có citation
     5. Nếu không đủ evidence → "I cannot verify this information"
 
-Gợi ý LLM: OpenRouter có nhiều model gắn hậu tố ":free" không tính phí — xem
-https://openrouter.ai/models?max_price=0 — phù hợp nếu chưa có credit trả phí.
-Base URL: "https://openrouter.ai/api/v1", dùng chung interface với OpenAI SDK.
+Gợi ý LLM: ưu tiên gọi thẳng OpenAI (OPENAI_API_KEY). Nếu không có credit trả phí,
+dùng OpenRouter (OPENROUTER_API_KEY) — có nhiều model gắn hậu tố ":free" không tính phí,
+xem https://openrouter.ai/models?max_price=0. OpenRouter dùng chung interface OpenAI SDK
+qua base_url "https://openrouter.ai/api/v1" nhưng cần tiền tố provider trong model ID
+(vd "openai/gpt-4o-mini"); gọi OpenAI trực tiếp thì dùng tên model trần ("gpt-4o-mini").
 """
 
 import os
@@ -37,8 +39,9 @@ TOP_P = 0.9
 # Chọn 0.3 vì: RAG cần factual, ít sáng tạo
 TEMPERATURE = 0.3
 
-# TODO: Chọn LLM model (OpenRouter model ID)
-LLM_MODEL = "openai/gpt-4o-mini"  # hoặc model ":free" nếu chưa có credit
+# Tên model khi gọi thẳng OpenAI (không tiền tố provider). Khi fallback qua OpenRouter,
+# generate_with_citation() tự thêm tiền tố "openai/" — xem logic chọn client bên dưới.
+LLM_MODEL = "gpt-4o-mini"
 
 
 # =============================================================================
@@ -156,18 +159,26 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
     # Step 4: Build prompt
     user_message = f"""Context:\n{context}\n\n---\n\nQuestion: {query}"""
 
-    # Step 5: Call LLM (OpenRouter — OpenAI-compatible API)
+    # Step 5: Call LLM — ưu tiên gọi thẳng OpenAI, fallback OpenRouter nếu không có
+    # OPENAI_API_KEY (free tier). Model ID và base_url phải khớp provider đang dùng.
     from openai import OpenAI
 
-    api_key = os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY")
+    api_key = os.getenv("OPENAI_API_KEY") or os.getenv("OPENROUTER_API_KEY")
     if not api_key:
         raise RuntimeError(
-            "Thiếu OPENROUTER_API_KEY / OPENAI_API_KEY — kiểm tra file .env"
+            "Thiếu OPENAI_API_KEY / OPENROUTER_API_KEY — kiểm tra file .env"
         )
-    client = OpenAI(api_key=api_key, base_url="https://openrouter.ai/api/v1")
+
+    using_openrouter = not os.getenv("OPENAI_API_KEY") and bool(os.getenv("OPENROUTER_API_KEY"))
+    client = OpenAI(
+        api_key=api_key,
+        base_url="https://openrouter.ai/api/v1" if using_openrouter else None,
+    )
+    # OpenRouter cần tiền tố provider (vd "openai/gpt-4o-mini"); OpenAI trực tiếp thì không.
+    model = f"openai/{LLM_MODEL}" if using_openrouter else LLM_MODEL
 
     response = client.chat.completions.create(
-        model=LLM_MODEL,
+        model=model,
         messages=[
             {"role": "system", "content": SYSTEM_PROMPT},
             {"role": "user", "content": user_message},
