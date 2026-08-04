@@ -8,9 +8,11 @@ Hướng dẫn:
     4. Yêu cầu LLM trả lời có citation
     5. Nếu không đủ evidence → "I cannot verify this information"
 
-Gợi ý LLM: OpenRouter có nhiều model gắn hậu tố ":free" không tính phí — xem
-https://openrouter.ai/models?max_price=0 — phù hợp nếu chưa có credit trả phí.
-Base URL: "https://openrouter.ai/api/v1", dùng chung interface với OpenAI SDK.
+Gợi ý LLM: ưu tiên gọi thẳng OpenAI (OPENAI_API_KEY). Nếu không có credit trả phí,
+dùng OpenRouter (OPENROUTER_API_KEY) — có nhiều model gắn hậu tố ":free" không tính phí,
+xem https://openrouter.ai/models?max_price=0. OpenRouter dùng chung interface OpenAI SDK
+qua base_url "https://openrouter.ai/api/v1" nhưng cần tiền tố provider trong model ID
+(vd "openai/gpt-4o-mini"); gọi OpenAI trực tiếp thì dùng tên model trần ("gpt-4o-mini").
 """
 
 import os
@@ -37,8 +39,9 @@ TOP_P = 0.9
 # Chọn 0.3 vì: RAG cần factual, ít sáng tạo
 TEMPERATURE = 0.3
 
-# TODO: Chọn LLM model (OpenRouter model ID)
-LLM_MODEL = "openai/gpt-4o-mini"  # hoặc model ":free" nếu chưa có credit
+# Tên model khi gọi thẳng OpenAI (không tiền tố provider). Khi fallback qua OpenRouter,
+# generate_with_citation() tự thêm tiền tố "openai/" — xem logic chọn client bên dưới.
+LLM_MODEL = "gpt-4o-mini"
 
 
 # =============================================================================
@@ -77,13 +80,9 @@ def reorder_for_llm(chunks: list[dict]) -> list[dict]:
     Returns:
         List reordered để maximize LLM attention.
     """
-def reorder_for_llm(chunks: list[dict]) -> list[dict]:
-    """
-    Sắp xếp chunks để tránh "lost in the middle" effect.
-    Strategy: đặt chunks quan trọng nhất ở đầu và cuối, kém quan trọng ở giữa.
-    """
     if len(chunks) <= 2:
         return chunks
+
     front = chunks[::2]   # index 0, 2, 4 -> đặt ở đầu
     back = chunks[1::2]   # index 1, 3    -> đặt ở cuối (reversed)
     return front + back[::-1]
@@ -97,13 +96,19 @@ def format_context(chunks: list[dict]) -> str:
     """
     Format chunks thành context string cho prompt.
     Mỗi chunk có label source để LLM có thể cite.
+
+    Args:
+        chunks: List of {'content': str, 'metadata': dict, 'score': float}
+
+    Returns:
+        Formatted context string.
     """
     context_parts = []
     for i, chunk in enumerate(chunks, 1):
         metadata = chunk.get("metadata", {}) if isinstance(chunk.get("metadata"), dict) else {}
         source = metadata.get("source", f"Source {i}")
         doc_type = metadata.get("type", "unknown")
-        txt = chunk.get("content", str(chunk))
+        txt = chunk.get("content", str(chunk)) if isinstance(chunk, dict) else str(chunk)
         context_parts.append(
             f"[Document {i} | Source: {source} | Type: {doc_type}]\n"
             f"{txt}\n"
@@ -117,44 +122,73 @@ def format_context(chunks: list[dict]) -> str:
 
 def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
     """
-    End-to-end RAG generation có citation với OpenAI / OpenRouter.
+    End-to-end RAG generation có citation.
+
+    Pipeline:
+        1. Retrieve relevant chunks
+        2. Reorder để tránh lost in the middle
+        3. Format context với source labels
+        4. Build prompt (system + context + query)
+        5. Call LLM
+        6. Return answer + sources
+
+    Args:
+        query: Câu hỏi của user
+
+    Returns:
+        {
+            'answer': str,           # Câu trả lời có citation
+            'sources': list[dict],   # Các chunks đã dùng
+            'retrieval_source': str  # 'hybrid' hoặc 'pageindex'
+        }
     """
+    # Step 1: Retrieve
     chunks = retrieve(query, top_k=top_k)
+
+    if not chunks:
+        return {
+            "answer": "Tôi không thể xác minh thông tin này từ nguồn hiện có.",
+            "sources": [],
+            "retrieval_source": "none",
+        }
+
+    # Step 2: Reorder (tránh lost in the middle)
     reordered = reorder_for_llm(chunks)
+
+    # Step 3: Format context
     context = format_context(reordered)
 
+    # Step 4: Build prompt
     user_message = f"Context:\n{context}\n\n---\n\nQuestion: {query}"
 
+    # Step 5: Call LLM — ưu tiên gọi thẳng OpenAI, fallback OpenRouter nếu không có
     openai_key = os.getenv("OPENAI_API_KEY")
     openrouter_key = os.getenv("OPENROUTER_API_KEY")
     api_key = openai_key or openrouter_key
 
-    if not api_key or not chunks:
-        if not chunks:
-            answer = "Tôi không thể xác minh thông tin này từ nguồn hiện có."
-        else:
-            answer = f"Dựa trên tài liệu tham khảo: {chunks[0]['content'][:200]}..."
+    if not api_key:
+        answer = f"Dựa trên tài liệu tham khảo: {chunks[0]['content'][:200]}..." if chunks else "Tôi không thể xác minh thông tin này từ nguồn hiện có."
         return {
             "answer": answer,
             "sources": chunks,
-            "retrieval_source": chunks[0].get("source", "hybrid") if chunks else "none"
+            "retrieval_source": chunks[0].get("source", "hybrid") if chunks else "none",
         }
 
     try:
         from openai import OpenAI
 
-        if openai_key:
-            client = OpenAI(api_key=openai_key)
-            model_name = "gpt-4o-mini"
-        else:
-            client = OpenAI(api_key=openrouter_key, base_url="https://openrouter.ai/api/v1")
-            model_name = LLM_MODEL if LLM_MODEL else "openai/gpt-4o-mini"
+        using_openrouter = not openai_key and bool(openrouter_key)
+        client = OpenAI(
+            api_key=api_key,
+            base_url="https://openrouter.ai/api/v1" if using_openrouter else None,
+        )
+        model = f"openai/{LLM_MODEL}" if using_openrouter else LLM_MODEL
 
         response = client.chat.completions.create(
-            model=model_name,
+            model=model,
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
-                {"role": "user", "content": user_message}
+                {"role": "user", "content": user_message},
             ],
             temperature=TEMPERATURE,
             top_p=TOP_P,
@@ -164,18 +198,19 @@ def generate_with_citation(query: str, top_k: int = TOP_K) -> dict:
         print(f"[WARNING] LLM Generation error ({exc}) -> Fallback to extracted context")
         answer = f"Dựa trên tài liệu tham khảo: {chunks[0]['content'][:200]}..." if chunks else "Tôi không thể xác minh thông tin này từ nguồn hiện có."
 
+    # Step 6: Return
     return {
         "answer": answer,
         "sources": chunks,
-        "retrieval_source": chunks[0].get("source", "hybrid") if chunks else "hybrid"
+        "retrieval_source": chunks[0].get("source", "hybrid") if chunks else "none",
     }
 
 
 if __name__ == "__main__":
     test_queries = [
-        "Học phí tại RMIT Vietnam là bao nhiêu?",
+        "Học phí tại UET là bao nhiêu?",
         "Làm sao để đặt phòng học nhóm ở thư viện?",
-        "Sinh viên quốc tế có những học bổng nào?",
+        "Sinh viên VNU có những học bổng nào?",
     ]
 
     for q in test_queries:

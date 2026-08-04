@@ -28,7 +28,9 @@ load_dotenv()
 # gọi trực tiếp hyde_search() khi muốn dùng.
 USE_HYDE = False
 
-HYDE_MODEL = "openai/gpt-4o-mini"
+# Tên model khi gọi thẳng OpenAI. Khi fallback qua OpenRouter, _generate_hypothetical_doc()
+# tự thêm tiền tố "openai/" cần thiết cho routing của OpenRouter.
+HYDE_MODEL = "gpt-4o-mini"
 
 
 def semantic_search(query: str, top_k: int = 10) -> list[dict]:
@@ -102,21 +104,24 @@ def _generate_hypothetical_doc(query: str) -> str:
 
     Trả về "" nếu không gọi được LLM (không có API key, hết quota, lỗi mạng).
     """
-    api_key = os.getenv("OPENROUTER_API_KEY") or os.getenv("OPENAI_API_KEY")
+    # Ưu tiên gọi thẳng OpenAI; fallback OpenRouter (free tier) nếu không có OPENAI_API_KEY.
+    api_key = os.getenv("OPENAI_API_KEY") or os.getenv("OPENROUTER_API_KEY")
     if not api_key:
         return ""
 
     try:
         from openai import OpenAI
 
+        using_openrouter = not os.getenv("OPENAI_API_KEY") and bool(os.getenv("OPENROUTER_API_KEY"))
         client = OpenAI(
             api_key=api_key,
-            base_url="https://openrouter.ai/api/v1"
-            if os.getenv("OPENROUTER_API_KEY")
-            else None,
+            base_url="https://openrouter.ai/api/v1" if using_openrouter else None,
         )
+        # OpenRouter cần tiền tố provider (vd "openai/gpt-4o-mini"); OpenAI trực tiếp thì không.
+        model = f"openai/{HYDE_MODEL}" if using_openrouter else HYDE_MODEL
+
         response = client.chat.completions.create(
-            model=HYDE_MODEL,
+            model=model,
             messages=[
                 {
                     "role": "system",
