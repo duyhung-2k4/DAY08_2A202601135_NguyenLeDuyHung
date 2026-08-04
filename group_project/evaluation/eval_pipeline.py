@@ -84,13 +84,14 @@ def evaluate_with_ragas(rag_pipeline_fn, golden_dataset: list[dict], evaluator_l
     if evaluator_llm is None:
         evaluator_llm = get_evaluator_llm()
 
-    eval_data = {"question": [], "answer": [], "contexts": [], "ground_truth": []}
+    eval_data = {"question": [], "answer": [], "contexts": [], "ground_truth": [], "ground_truth_context": []}
 
     print(f"Running evaluation on {len(golden_dataset)} samples...")
 
     for item in golden_dataset:
         question = item.get("question", "")
         ground_truth = item.get("expected_answer", item.get("ground_truth", ""))
+        gt_context = item.get("ground_truth_context", [item.get("expected_context", "")])
 
         # Invoke pipeline
         try:
@@ -113,6 +114,7 @@ def evaluate_with_ragas(rag_pipeline_fn, golden_dataset: list[dict], evaluator_l
         eval_data["answer"].append(answer)
         eval_data["contexts"].append(contexts if contexts else [""])
         eval_data["ground_truth"].append(ground_truth)
+        eval_data["ground_truth_context"].append(gt_context)
 
     dataset = Dataset.from_dict(eval_data)
     metrics = [faithfulness, answer_relevancy, context_recall, context_precision]

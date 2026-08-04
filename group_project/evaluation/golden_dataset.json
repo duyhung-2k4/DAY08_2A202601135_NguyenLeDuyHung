@@ -1,17 +1,32 @@
 [
   {
+    "id": "eval_001",
+    "category": "happy_case",
     "question": "Học phí hàng năm của chương trình Business tại RMIT Vietnam là bao nhiêu?",
     "expected_answer": "Khoảng 375.840.000 VND mỗi năm (tùy chương trình cụ thể).",
-    "expected_context": "Trang Tuition Fees, mục Undergraduate Programs"
+    "ground_truth_context": [
+      "Mức học phí chương trình Cử nhân Kinh doanh (Undergraduate Business Programs) tại RMIT Vietnam là khoảng 375.840.000 VNĐ mỗi năm, tương đương 125.280.000 VNĐ mỗi học kỳ tùy thuộc số lượng môn học đăng ký."
+    ],
+    "source_document": "data/standardized/tuition-fees-rmit.md"
   },
   {
+    "id": "eval_002",
+    "category": "happy_case",
     "question": "Học phí được thanh toán theo hình thức nào?",
     "expected_answer": "Thanh toán theo từng học kỳ, tính theo từng môn học đã đăng ký.",
-    "expected_context": "Trang Tuition Fees, mục Payment Structure"
+    "ground_truth_context": [
+      "Phương thức thanh toán học phí: Học phí được thanh toán theo từng học kỳ, tính dựa trên số lượng môn học sinh viên đăng ký trong học kỳ đó trước ngày bắt đầu khóa học."
+    ],
+    "source_document": "data/standardized/tuition-fees-rmit.md"
   },
   {
+    "id": "eval_003",
+    "category": "happy_case",
     "question": "Trường có cung cấp ký túc xá trong khuôn viên không?",
     "expected_answer": "Không — trường không cung cấp chỗ ở trong khuôn viên, nhưng có đội ngũ hỗ trợ sinh viên tìm chỗ ở gần trường.",
-    "expected_context": "Trang Accommodation Services"
+    "ground_truth_context": [
+      "Dịch vụ Ký túc xá và Chỗ ở: RMIT Vietnam hiện không vận hành ký túc xá trong khuôn viên trường. Tuy nhiên, Trung tâm Hỗ trợ Sinh viên có đội ngũ chuyên trách hỗ trợ tìm kiếm chỗ ở và căn hộ gần trường cho sinh viên."
+    ],
+    "source_document": "data/standardized/accommodation-services-rmit.md"
   }
 ]
